@@ -38,7 +38,7 @@
                                         <a href="index.php" class="nav-item nav-link active">Home</a>
                                         <a href="about.php" class="nav-item nav-link">About</a>
                                         <a href="service.php" class="nav-item nav-link">Service</a>
-                                        <a href="portfolio.php" class="nav-item nav-link">Project</a>
+                                        <a href="portfolio.php" class="nav-item nav-link">Courses</a>
                                         <a href="single.php" class="nav-item nav-link">Single</a>
                                         <a href="contact.php" class="nav-item nav-link">Contact</a>
                                         <div class="nav-item dropdown">
