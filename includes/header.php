@@ -4,7 +4,7 @@
                         <div class="col-lg-3">
                             <div class="brand">
                                 <a href="index.php">
-                                    TAPQ
+                                    TAP<span style="color:gold;">Q</span>
                                     <!-- <img src="img/logo.png" alt="Logo"> -->
                                 </a>
                             </div>
@@ -31,24 +31,28 @@
                                 <a href="#" class="navbar-brand">MENU</a>
                                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                                     <span class="navbar-toggler-icon"></span>
-                                </button>
+                              </button>
 
                                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                                     <div class="navbar-nav ml-auto">
-                                        <a href="index.php" class="nav-item nav-link active">Home</a>
+                                        <a href="index.php" class="nav-item nav-link">Home</a>
                                         <a href="about.php" class="nav-item nav-link">About</a>
-                                        <a href="service.php" class="nav-item nav-link">Service</a>
-                                        <a href="portfolio.php" class="nav-item nav-link">Courses</a>
-                                        <a href="single.php" class="nav-item nav-link">Single</a>
+                                        <!-- <a href="service.php" class="nav-item nav-link">Service</a> -->
+                                        <!-- <a href="portfolio.php" class="nav-item nav-link">Courses</a> -->
+                                        <!-- <a href="single.php" class="nav-item nav-link">Single</a> -->
                                         <a href="contact.php" class="nav-item nav-link">Contact</a>
                                         <div class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Levels</a>
                                             <div class="dropdown-menu">
-                                                <a href="#" class="dropdown-item">Sub Item 1</a>
-                                                <a href="#" class="dropdown-item">Sub Item 2</a>
+                                                <a href="level1.php" class="dropdown-item">100 Level</a>
+                                                <a href="level2.php" class="dropdown-item">200 level</a>
+                                                <a href="level3.php" class="dropdown-item">300 level</a>
+                                                <a href="level4.php" class="dropdown-item">400 level</a>
+                                                <a href="level5.php" class="dropdown-item">500 level</a>
+                                                <a href="level6.php" class="dropdown-item">600 level</a>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn">Get A Quote</a>
+                                        <a href="#" class="btn">Login</a>
                                     </div>
                                 </div>
                             </div>

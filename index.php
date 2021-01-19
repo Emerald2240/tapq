@@ -18,15 +18,17 @@
 
                 <div class="hero row align-items-center">
                     <div class="col-md-7">
-                        <h2>Best & Trusted</h2>
-                        <h2><span>Cleaning</span> Service</h2>
-                        <p>Lorem ipsum dolor sit amet elit pretium facilisis ornare</p>
+                        <h2>Accurate</h2>
+                        <h2><span>Free</span> Reference</h2>
+                        <p>Giving Students an edge over the messed up system</p>
                         <a class="btn" href="">Explore Now</a>
                     </div>
                     <div class="col-md-5">
                         <div class="form">
-                            <h3>Get A Quote</h3>
-                            <form>
+                            <h3 class="">Quote of the day</h3>
+                            <p>Approach the world with less judgement and more curiosity. Less fear more empathy. Less hate more love.</p>
+                            <strong>John Cena</strong>
+                            <!-- <form>
                                 <input class="form-control" type="text" placeholder="Your Name">
                                 <input class="form-control" type="text" placeholder="Mobile Number">
                                 <div class="control-group">
@@ -39,7 +41,7 @@
                                 </div>
                                 <textarea class="form-control" placeholder="Comment"></textarea>
                                 <button class="btn btn-block">Get A Quote</button>
-                            </form>
+                            </form> -->
                         </div>
                     </div>
                 </div>
@@ -49,7 +51,7 @@
 
 
         <!-- About Start -->
-        <div class="about">
+        <!-- <div class="about">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-md-6">
@@ -71,12 +73,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- About End -->
 
 
         <!-- Service Start -->
-        <div class="service">
+        <!-- <div class="service">
             <div class="container">
                 <div class="section-header">
                     <p>Our Services</p>
@@ -125,12 +127,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Service End -->
 
 
         <!-- Feature Start -->
-        <div class="feature">
+        <!-- <div class="feature">
             <div class="container">
                 <div class="row">
                     <div class="col-md-5">
@@ -180,7 +182,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Feature End -->
 
 
@@ -188,11 +190,11 @@
         <div class="team">
             <div class="container">
                 <div class="section-header">
-                    <p>Team Member</p>
-                    <h2>Meet Our Expert Cleaners</h2>
+                    <p>Team Members</p>
+                    <h2>Meet Our Hardworking Admins</h2>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3 col-md-6">
+                    <div class="col-lg-3 col-md-6 ">
                         <div class="team-item">
                             <div class="team-img">
                                 <img src="img/team-1.jpg" alt="Team Image">
@@ -349,7 +351,7 @@
 
 
         <!-- Pricing Plan Start -->
-        <div class="price">
+        <!-- <div class="price">
             <div class="container">
                 <div class="section-header">
                     <p>Pricing Plan</p>
@@ -451,12 +453,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Pricing Plan End -->
 
 
         <!-- Newsletter Start -->
-        <div class="newsletter">
+        <!-- <div class="newsletter">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-8">
@@ -465,7 +467,7 @@
                             Lorem ipsum dolor sit amet adipiscing elit
                         </p>
                     </div>
-                    <div class="col-md-4">
+                    <div classq="col-md-4">
                         <div class="form">
                             <input class="form-control" placeholder="Email here">
                             <button class="btn">Submit</button>
@@ -473,7 +475,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Newsletter End -->
 
 
@@ -544,7 +546,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-9">
-                        <h2>Get A Free Cleaning Service</h2>
+                        <h2>Build a service like this one</h2>
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit
                         </p>
@@ -559,7 +561,7 @@
 
 
         <!-- Blog Start -->
-        <div class="blog">
+        <!-- <div class="blog">
             <div class="container">
                 <div class="section-header">
                     <p>Latest From Blog</p>
@@ -616,7 +618,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Blog End -->
 
 
