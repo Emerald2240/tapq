@@ -1,266 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <?php
     require_once "includes/head.php";
     ?>
-    </head>
+</head>
 
-    <body>
-        <div class="wrapper">
-            <!-- Header Start -->
-                    <?php
-                    require_once "includes/header.php";
-                    ?>
-            <!-- Header End -->
-            
-            
-            <!-- Page Header Start -->
-            <div class="page-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <h2>Our Services</h2>
-                        </div>
-                        <div class="col-12">
-                            <a href="">Home</a>
-                            <a href="">Our Services</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Page Header End -->
-
-
-            <!-- Service Start -->
-            <div class="service">
-                <div class="container">
-                    <div class="section-header">
-                        <p>Our Services</p>
-                        <h2>Provide Services Worldwide</h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-item">
-                                <img src="img/service-1.jpg" alt="Service">
-                                <h3>Flour Cleaning</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare
-                                </p>
-                                <a class="btn" href="">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-item">
-                                <img src="img/service-2.jpg" alt="Service">
-                                <h3>Glass Cleaning</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare
-                                </p>
-                                <a class="btn" href="">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-item">
-                                <img src="img/service-3.jpg" alt="Service">
-                                <h3>Carpet Cleaning</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare
-                                </p>
-                                <a class="btn" href="">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="service-item">
-                                <img src="img/service-4.jpg" alt="Service">
-                                <h3>Toilet Cleaning</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare
-                                </p>
-                                <a class="btn" href="">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Service End -->
-            
-            
-            <!-- Feature Start -->
-            <div class="feature">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="section-header left">
-                                <p>Why Choose Us</p>
-                                <h2>Expert Cleaners and World Class Services</h2>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis porttitor. Aliquam interdum at lacus non blandit.
-                            </p>
-                            <a class="btn" href="">Learn More</a>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="row align-items-center feature-item">
-                                <div class="col-5">
-                                    <img src="img/feature-1.jpg" alt="Feature">
-                                </div>
-                                <div class="col-7">
-                                    <h3>Expert Cleaners</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row align-items-center feature-item">
-                                <div class="col-5">
-                                    <img src="img/feature-2.jpg" alt="Feature">
-                                </div>
-                                <div class="col-7">
-                                    <h3>Reasonable Prices</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row align-items-center feature-item">
-                                <div class="col-5">
-                                    <img src="img/feature-3.jpg" alt="Feature">
-                                </div>
-                                <div class="col-7">
-                                    <h3>Quick & Best Services</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Feature End -->
-            
-            
-            <!-- Pricing Plan Start -->
-            <div class="price">
-                <div class="container">
-                    <div class="section-header">
-                        <p>Pricing Plan</p>
-                        <h2>No Extra Hidden Charges</h2>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="price-item">
-                                <div class="price-header">
-                                    <div class="price-icon">
-                                        <i class="fa fa-home"></i>
-                                    </div>
-                                    <div class="price-title">
-                                        <h2>Standard</h2>
-                                    </div>
-                                    <div class="price-pricing">
-                                        <h2><small>$</small>99</h2>
-                                    </div>
-                                </div>
-                                <div class="price-body">
-                                    <div class="price-des">
-                                        <ul>
-                                            <li>3 Bedrooms cleaning</li>
-                                            <li>2 Bathrooms cleaning</li>
-                                            <li>1 Living room Cleaning</li>
-                                            <li>Vacuum Cleaning</li>
-                                            <li>Within 6 Hours</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="price-footer">
-                                    <div class="price-action">
-                                        <a href=""><i class="fa fa-shopping-cart"></i>Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="price-item featured-item">
-                                <div class="price-header">
-                                    <div class="price-icon">
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <div class="price-title">
-                                        <h2>Premium</h2>
-                                    </div>
-                                    <div class="price-pricing">
-                                        <h2><small>$</small>149</h2>
-                                    </div>
-                                </div>
-                                <div class="price-body">
-                                    <div class="price-des">
-                                        <ul>
-                                            <li>5 Bedrooms cleaning</li>
-                                            <li>3 Bathrooms cleaning</li>
-                                            <li>2 Living room Cleaning</li>
-                                            <li>Vacuum Cleaning</li>
-                                            <li>Within 6 Hours</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="price-footer">
-                                    <div class="price-action">
-                                        <a href=""><i class="fa fa-shopping-cart"></i>Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="price-item">
-                                <div class="price-header">
-                                    <div class="price-icon">
-                                        <i class="fa fa-gift"></i>
-                                    </div>
-                                    <div class="price-title">
-                                        <h2>Enterprise</h2>
-                                    </div>
-                                    <div class="price-pricing">
-                                        <h2><small>$</small>199</h2>
-                                    </div>
-                                </div>
-                                <div class="price-body">
-                                    <div class="price-des">
-                                        <ul>
-                                            <li>8 Bedrooms cleaning</li>
-                                            <li>5 Bathrooms cleaning</li>
-                                            <li>3 Living room Cleaning</li>
-                                            <li>Vacuum Cleaning</li>
-                                            <li>Within 12 Hours</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="price-footer">
-                                    <div class="price-action">
-                                        <a href=""><i class="fa fa-shopping-cart"></i>Book Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Pricing Plan End -->
-
-
-            <!-- Footer Start -->
-            <?php
-    require_once "includes/footer.php";
-    ?>
-            <!-- Footer End -->
-            
-            <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-        </div>
-
-        <!-- JavaScript Libraries -->
+<body>
+    <div class="wrapper">
+        <!-- Header Start -->
         <?php
+        require_once "includes/header.php";
+        ?>
+        <!-- Header End -->
+
+
+        <!-- Page Header Start -->
+        <div class="page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Fifth Year</h2>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+
+        <!-- Service Start -->
+        <div class="service">
+            <div class="container-lg">
+                <form>
+                    <div class="form-group row">
+                        <div class="col-sm-11 p-2">
+                            <input type="text" class="form-control" type="search" placeholder="Course name, code, department, lecturer.">
+                        </div>
+                        <div class="col-sm-1 p-2 ">
+                            <button class="btn btn-outline-info" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="container-lg">
+                <nav aria-label="...">
+                    <ul class="pagination mt-5">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">A</a></li>
+                        <li class="page-item" aria-current="page">
+                            <a class="page-link" href="#">B <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">C</a></li>
+                        <li class="page-item"><a class="page-link" href="#">D</a></li>
+                        <li class="page-item"><a class="page-link" href="#">E</a></li>
+                        <li class="page-item"><a class="page-link" href="#">F</a></li>
+                        <li class="page-item"><a class="page-link" href="#">G</a></li>
+
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="container-lg">
+            <a class="course" href="#">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">ABE101</li>
+                        <li class="list-group-item">Agricultural and Biological Engineering</li>
+                        <li class="list-group-item">Agricultural Engineering</li>
+                    </ul>
+            </a>
+
+            <a class="course" href="#">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">ABE191</li>
+                        <li class="list-group-item">Electro-Mechanical Machines</li>
+                        <li class="list-group-item">Computer Engineering</li>
+                    </ul>
+            </a>
+
+            <a class="course" href="#">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">ABE133</li>
+                        <li class="list-group-item">Software Development Techniques</li>
+                        <li class="list-group-item">Computer Engineering</li>
+                    </ul>
+            </a>
+
+            <a class="course" href="#">
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">ABE113</li>
+                        <li class="list-group-item">Electrical Fields</li>
+                        <li class="list-group-item">Electrical Engineering</li>
+                    </ul>
+            </a>
+
+            <a class="course" href="#">
+                <!-- <li class="list-group-item"> -->
+                    <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item">ABE171</li>
+                        <li class="list-group-item">Digital Circuits</li>
+                        <li class="list-group-item">Computer Engineering</li>
+                    </ul>
+                <!-- </li> -->
+            </a>
+            </div>
+
+        </div>
+        <!-- Service End -->
+
+
+        <!-- Feature Start -->
+
+        <!-- Feature End -->
+
+
+        <!-- Pricing Plan Start -->
+
+        <!-- Pricing Plan End -->
+
+
+        <!-- Footer Start -->
+        <?php
+        require_once "includes/footer.php";
+        ?>
+        <!-- Footer End -->
+
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <?php
     require_once "includes/scripts.php";
     ?>
-    </body>
-</html>
+</body>
 
+</html>
