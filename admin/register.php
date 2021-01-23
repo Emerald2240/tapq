@@ -1,5 +1,6 @@
-
 <?php
+ require_once "../config/connect.php";
+ require_once "../functions/functions.php";
 //if(isset($_SESSION['username'])){
 //header('location:admin.php');
 //exit();}
@@ -37,9 +38,14 @@
         <!-- Page Header End -->
 
         <?php
-        //require_once "../config/connect.php";
-        require_once "../functions/functions.php";
         processRegister($_POST);
+        ?>
+
+        <?php
+        // if (isset($_SESSION['username'])) {
+        //     header('location:admin.php');
+        //     exit();
+        // }
         ?>
 
         <!-- Service Start -->

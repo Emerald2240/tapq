@@ -13,168 +13,173 @@ function Sanitize($data, $case = null)
     return $result;
 }
 
-// function loadPosts()
-// {
-//     global $db1;
-//     $user = "Admin";
-//     if (!empty($user)) {
-//         $query = "SELECT owner, author, datecreated, postimg,  posttitle, 	postcont, 	views, 	likes, id FROM level100 ORDER BY `id` DESC ";
-//         $response = @mysqli_query($db1, $query);
-//         if ($response) {
+function loadPosts()
+{
+    global $db;
+    $user = "Admin";
+    if (!empty($user)) {
+        $query = "SELECT owner, author, datecreated, postimg,  posttitle, 	postcont, 	views, 	likes, id FROM level100 ORDER BY `id` DESC ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
 
-//             // $row = mysqli_fetch_all($response);
-//             // echo '<pre>';
-//             // print_r($row[0][5]);
-//             // die;
+            // $row = mysqli_fetch_all($response);
+            // echo '<pre>';
+            // print_r($row[0][5]);
+            // die;
 
-//             while ($row = mysqli_fetch_array($response)) {
+            while ($row = mysqli_fetch_array($response)) {
 
-//                 $master =  $row['author'];
-//                 $query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
-//                 $result = @mysqli_query($db, $query2);
-//                 if (mysqli_num_rows($result) > 0) {
-//                     $result = $result->fetch_assoc();
-//                     $profpic = $result['profilepic'];
-//                 }
-//                 echo '<a href = editPost.php?id=';
-//                 echo $row['id'];
-//                 echo ' >';
-//                 echo ' <div class="post">
-//                 <div class="pic"><img src="../images/blog_images/' . $row['postimg'] . '" alt="' . $row['postimg'] . '"></div>
-//                 <div class="cont">
-//                     <i class="fa fa-bars options"></i>
-//                     <div class="post-info space-below">
+                $master =  $row['author'];
+                $query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
+                $result = @mysqli_query($db, $query2);
+                if (mysqli_num_rows($result) > 0) {
+                    $result = $result->fetch_assoc();
+                    $profpic = $result['profilepic'];
+                }
+                echo '<a href = editPost.php?id=';
+                echo $row['id'];
+                echo ' >';
+                echo ' <div class="post">
+                <div class="pic"><img src="../images/blog_images/' . $row['postimg'] . '" alt="' . $row['postimg'] . '"></div>
+                <div class="cont">
+                    <i class="fa fa-bars options"></i>
+                    <div class="post-info space-below">
                         
-//                         <div class="post-info-text">
-//                         <div class="profpic" style="background-image: url(../images/profile_images/' . $profpic . '); width:60px; height:60px; background-repeat: no-repeat;
-//                         background-position: center; border-radius:50%;
-//                         background-size: contain;"></div>
+                        <div class="post-info-text">
+                        <div class="profpic" style="background-image: url(../images/profile_images/' . $profpic . '); width:60px; height:60px; background-repeat: no-repeat;
+                        background-position: center; border-radius:50%;
+                        background-size: contain;"></div>
                         
-//                             <span>' . $row['owner'] . '<i class="fa fa-pawn"></i></span>
-//                             <span><b>' . $row['datecreated'] . '</b></span>
-//                         </div>
-//                     </div>
-//                     <div class="actual-content">
-//                         <h2>' . $row['posttitle'] . '</h2>
-//                         <p class="space-below-large">' . $row['postcont'] . '</p>
-//                     </div>
-//                     <hr class="space-below">
-//                     <span>' . $row['views'] . ' views Write a comment</span>
-//                     <div class="small-space likes">' . $row['likes'] . '<i class="fa fa-heart red"></i></div>
-//                 </div>
-//             </div>';
-//                 echo '</a>';
-//             }
-//         }
-//     }
-// }
+                            <span>' . $row['owner'] . '<i class="fa fa-pawn"></i></span>
+                            <span><b>' . $row['datecreated'] . '</b></span>
+                        </div>
+                    </div>
+                    <div class="actual-content">
+                        <h2>' . $row['posttitle'] . '</h2>
+                        <p class="space-below-large">' . $row['postcont'] . '</p>
+                    </div>
+                    <hr class="space-below">
+                    <span>' . $row['views'] . ' views Write a comment</span>
+                    <div class="small-space likes">' . $row['likes'] . '<i class="fa fa-heart red"></i></div>
+                </div>
+            </div>';
+                echo '</a>';
+            }
+        }
+    }
+}
 
-// function processsPost($formstream)
-// {
-//     $msg = "";
+function processsPost($formstream)
+{
+    $msg = "";
 
-//     if (isset($formstream['submit'])) {
-//         $data_missing = [];
+    if (isset($formstream['submit'])) {
+        $data_missing = [];
 
-//         if (empty($formstream['title'])) {
-//             $data_missing['title'] = "Missing Title";
-//         } else {
-//             $posttitle = Sanitize(trim(($_POST['title'])), "none");
-//         }
+        if (empty($formstream['title'])) {
+            $data_missing['title'] = "Missing Title";
+        } else {
+            $posttitle = Sanitize(trim(($_POST['title'])), "none");
+        }
 
-//         if (empty($formstream['content'])) {
-//             $data_missing['content'] = "Missing Content";
-//         } else {
-//             $postcontent = Sanitize(trim(($_POST['content'])), "none");
-//         }
+        if (empty($formstream['content'])) {
+            $data_missing['content'] = "Missing Content";
+        } else {
+            $postcontent = Sanitize(trim(($_POST['content'])), "none");
+        }
 
-//         //image adding section
-//         $image = $_FILES['image']['name'];
-//         $target = "../images/blog_images/" . basename($image);
+        //image adding section
+        $image = $_FILES['image']['name'];
+        $target = "../images/blog_images/" . basename($image);
 
-//         $formstream['image'] = $image;
-//         if (empty($formstream['image'])) {
-//             $data_missing['image'] = "Missing Image";
-//         } else {
-//             //$image = $_FILES['image']['name'];
-//             //$target = "images/".basename($image);
-//         }
+        $formstream['image'] = $image;
+        if (empty($formstream['image'])) {
+            $data_missing['image'] = "Missing Image";
+        } else {
+            //$image = $_FILES['image']['name'];
+            //$target = "images/".basename($image);
+        }
 
-//         if (empty($data_missing)) {
-//             // $_SESSION['username'] = $firstname .' '. $lastname;
-//             // $_SESSION['username'] = 'Admin';
-//             $author = $_SESSION['email'];
-//             $owner = $_SESSION['username'];
-//             addPost($owner, $author, $posttitle, $postcontent, $image);
+        if (empty($data_missing)) {
+            // $_SESSION['username'] = $firstname .' '. $lastname;
+            // $_SESSION['username'] = 'Admin';
+            $author = $_SESSION['email'];
+            $owner = $_SESSION['username'];
+            addPost($owner, $author, $posttitle, $postcontent, $image);
 
-//             if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-//                 $msg = 'Image Uploaded Succesfully';
-//             } else {
-//                 $msg = 'Failed to upload image';
-//             }
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+                $msg = 'Image Uploaded Succesfully';
+            } else {
+                $msg = 'Failed to upload image';
+            }
 
-//             // header("location:index.php");
-//             return (true);
-//         } else {
-//             //  echo "<pre>";
-//             // print_r($data_missing);
-//             foreach ($data_missing as $miss) {
-//                 echo '<p class="red space">';
-//                 echo "$miss";
-//                 echo '</p>';
-//             }
-//             // echo"</pre>";
-//             return false;
-//         }
-//     }
-// }
+            // header("location:index.php");
+            return (true);
+        } else {
+            //  echo "<pre>";
+            // print_r($data_missing);
+            foreach ($data_missing as $miss) {
+                echo '<p class="red space">';
+                echo "$miss";
+                echo '</p>';
+            }
+            // echo"</pre>";
+            return false;
+        }
+    }
+}
 
-// function addPost($owner, $author, $tit, $cont, $img)
-// {
-//     $zero = 0;
+function addPost($owner, $author, $tit, $cont, $img)
+{
+    $zero = 0;
 
-//     global $db;
+    global $db;
 
-//     Sanitize($owner, "none");
-//     Sanitize($author, 'none');
-//     Sanitize($tit, 'none');
-//     Sanitize($cont, 'none');
-//     Sanitize($img, 'none');
-//     $sql = "INSERT INTO posts(id, 	owner, author, 	datecreated, postimg,	posttitle, 	postcont, 	views, 	likes ) VALUES (NULL, '$owner', '$author', NOW(), '$img', '$tit', '$cont', '$zero','$zero')";
+    Sanitize($owner, "none");
+    Sanitize($author, 'none');
+    Sanitize($tit, 'none');
+    Sanitize($cont, 'none');
+    Sanitize($img, 'none');
+    $sql = "INSERT INTO posts(id, 	owner, author, 	datecreated, postimg,	posttitle, 	postcont, 	views, 	likes ) VALUES (NULL, '$owner', '$author', NOW(), '$img', '$tit', '$cont', '$zero','$zero')";
 
 
-//     if (mysqli_query($db, $sql)) {
-//         echo "New post created successfully";
-//         // header("location:index.php");
-//     } else {
-//         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
-//     }
-//     mysqli_close($db);
-// }
+    if (mysqli_query($db, $sql)) {
+        echo "New post created successfully";
+        // header("location:index.php");
+    } else {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    mysqli_close($db);
+}
 
-// function addCourse(){
-// }
+function addCourse()
+{
+}
 
-// function addExam(){}
+function addExam()
+{}
 
-// function fetchAdmin($formData)
-// {
-//     //Somtoo's Function
+function fetchAdmin($formData)
+{
+    //Somtoo's Function
 
-//     global $db;
-//     extract($formData);
-//     $sql = "SELECT * FROM `admins` WHERE `email`='$email' AND `password`='$password' ";
-//     $result = $db->query($sql);
-//     if ($result->num_rows > 0) {
-//         $result = $result->fetch_assoc();
-//         return $result;
-//     } else {
-//         return array();
-//     }
-// }
+    global $db;
+    extract($formData);
+    $sql = "SELECT * FROM `admins` WHERE `email`='$email' AND `password`='$password' ";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        $result = $result->fetch_assoc();
+        return $result;
+    } else {
+        return array();
+    }
+}
 
 function processRegister($formstream)
 {
+    //session_start();
+    //echo "<pre>";
+    //print_r($_FILES);
     //session_start();
     extract($formstream);
 
@@ -263,29 +268,39 @@ function processRegister($formstream)
           if(empty( $_FILES['image']['name'])){
             $data_missing['image'] = "Missing Image";
           }else{
-          $image = $_FILES['image']['name'];
-          $target = "../images/" . basename($image);
-  
-          $formstream['image'] = $image;
-        //   if (empty($formstream['image'])) {
-        //       $data_missing['image'] = "Missing Image";
-        //   } else {
-        //       //$image = $_FILES['image']['name'];
-        //       //$target = "images/".basename($image);
-        //   }
+          $uniqueimagename =time().uniqid(rand());
+
+          $target = "../images/" . $uniqueimagename;
+          $allowtypes = array('jpg', 'png', 'jpeg', 'gif', 'svg');
+      
+
+          if (!is_dir("../images")) {
+              mkdir("../images", 0755);
+          }
+
+          $filename = "";
+          $tmpfilename = "";
+
+              $filename =  $_FILES['image']['tmp_name'];
+
+              $tmpfilename = basename( $_FILES['image']['name']);
         }
 
         if (empty($data_missing)) {
-            // $_SESSION['username'] = $firstname .' '. $lastname;
-            //AddRegistered($firstname, $lastname, $email, $phone, $password);
+            $_SESSION['username'] = $firstname .' '. $lastname;
+            AddRegistered($firstname, $lastname, $phone, $email, $username, $password, $job, $twitter, $facebook,  $linkedin, $instagram, $uniqueimagename);
             echo("Everything entered Succesfully");
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-                $msg = 'Image Uploaded Succesfully';
-            } else {
-                $msg = 'Failed to upload image';
+            $filetype = pathinfo($tmpfilename, PATHINFO_EXTENSION);
+            if (in_array($filetype, $allowtypes)) {
+
+                //upload file to server
+                if (move_uploaded_file($filename, $target . "." . $filetype)) {
+
+                } else {
+                    echo '<br>';
+                    echo 'Something went wrong with the image upload';
+                }
             }
-            // header("location:login.php");
-            return (true);
         } else {
             //  echo "<pre>";
             // print_r($data_missing);
@@ -300,17 +315,17 @@ function processRegister($formstream)
     }
 }
 
-// function AddRegistered($fname, $lname, $em, $ph, $pass)
-// {
+function AddRegistered($fname, $lname, $ph, $em, $usrnm, $pass, $jb, $twt, $fcb, $lkdin, $insta, $profpic)
+{
 
-//     global $db;
-//     $sql = "INSERT INTO users(firstname ,lastname, emailaddress, phone, password ) VALUES ('$fname', '$lname', '$em', '$ph', '$pass')";
+    global $db;
+    $sql = "INSERT INTO admins(firstname, lastname, phone, email, username, password, post, twitter, facebook, linkedin, instagram, profile_pic) VALUES ('$fname', '$lname', '$ph', '$em', '$usrnm', '$pass', '$jb', '$twt', '$fcb', '$lkdin', '$insta', '$profpic')";
 
-//     if (mysqli_query($db, $sql)) {
-//         echo "New record created successfully";
-//         header("location:login.php");
-//     } else {
-//         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
-//     }
-//     mysqli_close($db);
-// }
+    if (mysqli_query($db, $sql)) {
+        echo "New record created successfully";
+        //header("location:login.php");
+    } else {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    mysqli_close($db);
+}
