@@ -41,12 +41,7 @@
         processRegister($_POST);
         ?>
 
-        <?php
-        // if (isset($_SESSION['username'])) {
-        //     header('location:admin.php');
-        //     exit();
-        // }
-        ?>
+        
 
         <!-- Service Start -->
         <div class="service">

@@ -5,6 +5,7 @@
     <?php
     require_once "includes/head.php";
     ?>
+    <title>TA Past Questions 600 Level Page</title>
 </head>
 
 <body>
@@ -80,7 +81,7 @@
                 </nav>
             </div>
 
-            <div class="container-lg">
+            <div class="container-lg">/
 
             <a class="course" href="#">
                     <ul class="list-group list-group-horizontal">

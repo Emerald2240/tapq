@@ -11,6 +11,7 @@ require_once "functions/functions.php";
     <?php
     require_once "includes/head.php";
     ?>
+    <title>TA Past Questions 100 Level Page</title>
 </head>
 
 <body>

@@ -4,6 +4,7 @@
     <?php
     require_once "includes/head.php";
     ?>
+    <title>Contact TA Past Questions</title>
     </head>
 
     <body>

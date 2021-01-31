@@ -5,6 +5,7 @@
     <?php
     require_once "includes/head.php";
     ?>
+    <title>TA Past Questions 400 Level Page</title>
 </head>
 
 <body>
