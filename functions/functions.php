@@ -158,7 +158,8 @@ function AddRegistered($fname, $lname, $ph, $em, $pass)
 
 function processLogin($formstream)
 {
-    extract($formstream);
+    //This simply queries the database to see if the users data is really available then sets the users data to a session to show theyve logged in
+        extract($formstream);
     global $db;
 
     if (isset($submit)) {
