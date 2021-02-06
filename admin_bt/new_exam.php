@@ -15,7 +15,7 @@ if (!isset($_SESSION['log'])) {
 <?php
     require_once("includes/head.php");
     ?>
-    <title>Courses</title>
+    <title><?php echo $_GET['coursename'] ?></title>
 </head>
 
 <body id="page-top">
@@ -42,10 +42,8 @@ if (!isset($_SESSION['log'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Courses</h1>
-                        <a href="new_course.php" class="btn btn-primary btn-user">
-                                            <i class="fa fa-plus fa-fw"></i>
-                                        </a>
+                        <h1 class="h3 mb-0 text-gray-800">
+                            <?php echo $_GET['coursename'] ?></h1>
                     </div>
 
                     <!-- Content Row -->
@@ -62,56 +60,7 @@ if (!isset($_SESSION['log'])) {
                                 <!-- <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                                 </div> -->
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                            <thead>
-                                    
-                                            <tr>
-                                                    <th>Course Code</th>
-                                                    <th>Course Title</th>
-                                                    <th>Faculty</th>
-                                                    <th>Level</th>
-                                                    <th>Credit</th>
-                                                    <th>Semester</th>
-                                                    <th>Edit</th>
-                                                    <th>New Exam</th>
-                                                    <th>Delete</th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>
-                                                <th>Course Code</th>
-                                                    <th>Course Title</th>
-                                                    <th>Faculty</th>
-                                                    <th>Level</th>
-                                                    <th>Edit</th>
-                                                    <th>Credit</th>
-                                                    <th>Semester</th>
-                                                    <th>New Exam</th>
-                                                    <th>Delete</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-
-                                            <?php loadCourses();?>
-
-
-
-
-
-
-
-
-
-
-
-                                            
-                                               
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                            
                             </div>
 
                         </div>
@@ -142,7 +91,6 @@ if (!isset($_SESSION['log'])) {
     <!-- Logout Modal-->
     <?php
     require_once("includes/logout_modal.php");
-    
     ?>
 
     <?php

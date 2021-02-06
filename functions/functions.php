@@ -227,10 +227,34 @@ function processNewCourse($formstream)
             $data_missing['Course_level'] = "Missing Course Level";
         } else {
 
-            if($level > 6 || $level < 1){
+            if($level > 7 || $level < 1){
                 $data_missing['Course_level'] = "Invalid Course Level";
             }else{
             $level = trim(Sanitize($level));
+            }
+
+        }
+
+        if (empty($credit)) {
+            $data_missing['Course_Credit'] = "Missing Course Credit";
+        } else {
+
+            if($credit > 8 || $credit < 1){
+                $data_missing['Course_Credit'] = "Invalid Course Credit";
+            }else{
+            $credit = trim(Sanitize($credit));
+            }
+
+        }
+
+        if (empty($semester)) {
+            $data_missing['Course_semester'] = "Missing Course semester";
+        } else {
+
+            if($semester > 2 || $semester < 1){
+                $data_missing['Course_semester'] = "Invalid Course semester";
+            }else{
+            $semester = trim(Sanitize($semester));
             }
 
         }
@@ -244,16 +268,16 @@ function processNewCourse($formstream)
 
         if (empty($data_missing)) {
             $_SESSION['rege'] = "true";
-            AddNewCourse($code, $title, $faculty, $level);
+            AddNewCourse($code, $title, $faculty, $credit, $level, $semester);
         }
     }
 }
 
-function AddNewCourse($cd, $tit, $fac, $lvl)
+function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
 {
     //This simply adds the filtered and cleansed data into the database 
     global $db;
-            $sql = "INSERT INTO courses(code, title, faculty, level ) VALUES ('$cd', '$tit', '$fac', '$lvl')";
+            $sql = "INSERT INTO courses(code, title, faculty, credit, level, semester ) VALUES ('$cd', '$tit', '$fac', '$cred', '$lvl', '$sem')";
 
     if (mysqli_query($db, $sql)) {
 
@@ -263,4 +287,104 @@ function AddNewCourse($cd, $tit, $fac, $lvl)
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
+}
+
+function loadCourses(){
+    global $db;
+    $user = "Admin";
+    if (!empty($user)) {
+        $query = "SELECT id, code, title, faculty, credit, level, semester FROM courses ORDER BY `id` DESC ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $_SESSION['course_id'] =  $row['id'];
+                //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
+
+               echo '<tr><td>'; 
+               echo $row['code'];
+               echo '</td>    <td>';
+               echo ucwords(strtolower($row['title']));
+               echo '</td><td>';
+               echo ucwords(strtolower($row['faculty']));
+               echo '</td><td>';
+               echo $row['level'].'00';
+               echo '</td><td>';
+               echo $row['credit'];
+               echo '</td>';
+               echo '<td>';
+               echo $row['semester'];
+               echo '</td><td>';
+
+               echo '<a href="edit_course.php?id=';
+               echo $row['id'];
+               echo '&coursename=';
+               echo ucwords(strtolower($row['title']));
+               echo '"><i class="fa fa-edit"></i></a></td>';
+               
+               echo '<td>';
+               echo '<a href="new_exam.php?id=';
+               echo $row['id'];
+               echo '"><i class="fa fa-plus"></i></a></td>';
+               echo '<td>';
+               echo '<a href="delete_course.php?id=';
+               echo $row['id'];
+               echo '"><i class="fa fa-trash"></i></a></td>';
+               
+               echo '</tr>';
+            }
+        } else {
+            echo 'No Posts Yet';
+        }
+    }
+}
+
+function loadVisitorPosts()
+{
+    global $db;
+    $user = "Admin";
+    if (!empty($user)) {
+        $query = "SELECT owner, author, datecreated, postimg,  posttitle, 	postcont, 	views, 	likes, id FROM posts ORDER BY `id` DESC ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $master =  $row['author'];
+                $query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
+                $result = @mysqli_query($db, $query2);
+                if (mysqli_num_rows($result) > 0) {
+                    $result = $result->fetch_assoc();
+
+                    $profpic = $result['profilepic'];
+                }
+
+                echo '<a href="blog detail.php?id=';
+                echo $row['id'];
+                echo '">';
+                echo '<div class="card"><div class="card-info">';
+                echo '<img src="images/blog_images/';
+                echo $row['postimg'];
+                echo '" class="card-img-top" alt="...">';
+                echo  '</div>';
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">';
+                echo $row['posttitle'] . '</h5></div>';
+                echo  '</div>';
+                echo '</a>';
+
+                // echo '<a href="blog detail.php?id=';
+                // echo $row['id'];
+                // echo '">';
+                // echo '<div class="col mb-4"><div class="card h-100">';
+                // echo '<img src="images/blog_images/';
+                // echo $row['postimg'];
+                // echo '" class="card-img-top" alt="...">';
+                // echo '<div class="card-body">';
+                // echo '<h5 class="card-title">';
+                // echo $row['posttitle'] . '</h5></div>
+                //    </div></div>';
+                // echo '</a>';
+            }
+        } else {
+            echo 'No Posts Yet';
+        }
+    }
 }

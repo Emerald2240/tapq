@@ -15,7 +15,7 @@ if (!isset($_SESSION['log'])) {
 <?php
     require_once("includes/head.php");
     ?>
-    <title>TAPQ Admin - Dashboard</title>
+    <title>Add New Course</title>
 </head>
 
 <body id="page-top">
@@ -58,6 +58,28 @@ if (!isset($_SESSION['log'])) {
                                 <div class="form-group">
                                     <label for="title">Course Title</label>
                                     <input type="text" class="form-control" name="title" id="title">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="credit">Credit Load</label>
+                                    <select class="form-control" name="credit" id="credit">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">Other</option>
+                                        <option value="8">Volatile</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="semester">Semester</label>
+                                    <select class="form-control" name="semester" id="semester">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group">
