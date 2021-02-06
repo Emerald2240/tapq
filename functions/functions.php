@@ -15,7 +15,6 @@ function Sanitize($data, $case = null)
     return $result;
 }
 
-
 function fetchAdmin($formData)
 {
     //Somtoo's Function
@@ -142,7 +141,7 @@ function processRegister($formstream)
 
 function AddRegistered($fname, $lname, $ph, $em, $pass)
 {
-//This simply adds the filtered and cleansed data into the database 
+    //This simply adds the filtered and cleansed data into the database 
     global $db;
     $sql = "INSERT INTO admins(firstname, lastname, phone, email, password) VALUES ('$fname', '$lname', '$ph', '$em', '$pass')";
 
@@ -159,7 +158,7 @@ function AddRegistered($fname, $lname, $ph, $em, $pass)
 function processLogin($formstream)
 {
     //This simply queries the database to see if the users data is really available then sets the users data to a session to show theyve logged in
-        extract($formstream);
+    extract($formstream);
     global $db;
 
     if (isset($submit)) {
@@ -173,13 +172,13 @@ function processLogin($formstream)
         if (mysqli_num_rows($result) > 0 && mysqli_num_rows($result) == 1) {
             $result = $result->fetch_assoc();
 
-            $_SESSION['username'] = ucwords(strtolower($result['firstname'])) . " " .ucwords (strtolower($result['lastname']));
+            $_SESSION['username'] = ucwords(strtolower($result['firstname'])) . " " . ucwords(strtolower($result['lastname']));
             $_SESSION['firstname'] = $result['firstname'];
             $_SESSION['lastname'] = $result['lastname'];
             //$_SESSION['datejoined'] = $result['datejoined'];
             $_SESSION['email'] = $result['emailaddress'];
             $_SESSION['phone'] = $result['phone'];
-           // $_SESSION['profilepic'] = $result['profilepic'];
+            // $_SESSION['profilepic'] = $result['profilepic'];
 
             $_SESSION['log'] = "true";
 
@@ -189,7 +188,7 @@ function processLogin($formstream)
             print_r($result);
             header('location:admin.php');
         } else {
-           
+
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
             <strong>Holy guacamole!</strong> Your username or password are incorrect.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -200,3 +199,68 @@ function processLogin($formstream)
     }
 }
 
+function processNewCourse($formstream)
+{
+    extract($formstream);
+
+    if (isset($submit)) {
+
+        $data_missing = [];
+
+        if (empty($code)) {
+            $data_missing['Course_code'] = "Missing Course Code";
+        } else {
+            if (strlen($code) == 6) {
+                $code = trim(Sanitize($code));
+            } else {
+                $data_missing['Course_code'] = "Course code is not 6 characters";
+            }
+        }
+
+        if (empty($title)) {
+            $data_missing['Course_title'] = "Missing Course Title";
+        } else {
+            $title = trim(Sanitize($title));
+        }
+
+        if (empty($level)) {
+            $data_missing['Course_level'] = "Missing Course Level";
+        } else {
+
+            if($level > 6 || $level < 1){
+                $data_missing['Course_level'] = "Invalid Course Level";
+            }else{
+            $level = trim(Sanitize($level));
+            }
+
+        }
+
+        if (empty($faculty)) {
+            $data_missing['Course_faculty'] = "Missing Course Faculty";
+        } else {
+            $faculty = trim(Sanitize($faculty));
+        }
+
+
+        if (empty($data_missing)) {
+            $_SESSION['rege'] = "true";
+            AddNewCourse($code, $title, $faculty, $level);
+        }
+    }
+}
+
+function AddNewCourse($cd, $tit, $fac, $lvl)
+{
+    //This simply adds the filtered and cleansed data into the database 
+    global $db;
+            $sql = "INSERT INTO courses(code, title, faculty, level ) VALUES ('$cd', '$tit', '$fac', '$lvl')";
+
+    if (mysqli_query($db, $sql)) {
+
+        echo "Course Saved";
+        //header("location:login.php");
+    } else {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    mysqli_close($db);
+}

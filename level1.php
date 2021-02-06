@@ -1,5 +1,5 @@
 <?php
-require_once "config/connect100.php";
+
 require_once "functions/functions.php";
 //session_start();
 ?>
