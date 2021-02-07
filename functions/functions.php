@@ -302,29 +302,48 @@ function loadCourses(){
 
                echo '<tr><td>'; 
                echo $row['code'];
-               echo '</td>    <td>';
-               echo ucwords(strtolower($row['title']));
-               echo '</td><td>';
-               echo ucwords(strtolower($row['faculty']));
-               echo '</td><td>';
-               echo $row['level'].'00';
-               echo '</td><td>';
-               echo $row['credit'];
                echo '</td>';
-               echo '<td>';
-               echo $row['semester'];
-               echo '</td><td>';
 
+               echo  '<td>';
                echo '<a href="edit_course.php?id=';
                echo $row['id'];
                echo '&coursename=';
                echo ucwords(strtolower($row['title']));
-               echo '"><i class="fa fa-edit"></i></a></td>';
-               
+               echo '"> ';
+               echo ucwords(strtolower($row['title']));
+               echo'</a></td>';
+
                echo '<td>';
-               echo '<a href="new_exam.php?id=';
+               echo ucwords(strtolower($row['faculty']));
+               echo '</td>';
+
+               echo '<td>';
+               echo $row['level'].'00';
+               echo '</td>';
+
+               echo '<td>';
+               echo $row['credit'];
+               echo '</td>';
+
+               echo '<td>';
+               echo $row['semester'];
+               echo '</td>';
+
+               echo '<td>';
+               echo '<a href="edit_course.php?id=';
                echo $row['id'];
+               echo '&coursename=';
+               echo ucwords(strtolower($row['title']));
+               echo '">';
+               echo '<i class="fa fa-edit"></i></a></td>';
+
+
+               echo '<td><a href="new_exam.php?id=';
+               echo $row['id'];
+               echo '&coursename=';
+               echo ucwords(strtolower($row['title']));
                echo '"><i class="fa fa-plus"></i></a></td>';
+
                echo '<td>';
                echo '<a href="delete_course.php?id=';
                echo $row['id'];
@@ -338,53 +357,37 @@ function loadCourses(){
     }
 }
 
-function loadVisitorPosts()
-{
+function loadTenyears(){
     global $db;
-    $user = "Admin";
-    if (!empty($user)) {
-        $query = "SELECT owner, author, datecreated, postimg,  posttitle, 	postcont, 	views, 	likes, id FROM posts ORDER BY `id` DESC ";
-        $response = @mysqli_query($db, $query);
-        if ($response) {
-            while ($row = mysqli_fetch_array($response)) {
-                $master =  $row['author'];
-                $query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
-                $result = @mysqli_query($db, $query2);
-                if (mysqli_num_rows($result) > 0) {
-                    $result = $result->fetch_assoc();
+    $currentYear = date('Y');
 
-                    $profpic = $result['profilepic'];
-                }
+    for($i = 0; $i < 10; $i++){
 
-                echo '<a href="blog detail.php?id=';
-                echo $row['id'];
-                echo '">';
-                echo '<div class="card"><div class="card-info">';
-                echo '<img src="images/blog_images/';
-                echo $row['postimg'];
-                echo '" class="card-img-top" alt="...">';
-                echo  '</div>';
-                echo '<div class="card-body">';
-                echo '<h5 class="card-title">';
-                echo $row['posttitle'] . '</h5></div>';
-                echo  '</div>';
-                echo '</a>';
-
-                // echo '<a href="blog detail.php?id=';
-                // echo $row['id'];
-                // echo '">';
-                // echo '<div class="col mb-4"><div class="card h-100">';
-                // echo '<img src="images/blog_images/';
-                // echo $row['postimg'];
-                // echo '" class="card-img-top" alt="...">';
-                // echo '<div class="card-body">';
-                // echo '<h5 class="card-title">';
-                // echo $row['posttitle'] . '</h5></div>
-                //    </div></div>';
-                // echo '</a>';
-            }
-        } else {
-            echo 'No Posts Yet';
+       // $courseId = $_SESSION['course_id'];
+       $courseId = $_GET['id'];
+        $sql = "select * from q_and_a where (year = '$currentYear' and course_id = '$courseId');";
+        $result = mysqli_query($db, $sql);
+    
+        if(mysqli_num_rows($result) > 0){
+    
+        }else{
+            echo '<option value="1">' ;
+            echo $currentYear; 
+            echo ' Level</option>';
         }
+        $currentYear = $currentYear- 1;
     }
+
+   
+// echo '
+//     <option value="1">100 Level</option>
+//     <option value="2">200 Level</option>
+//     <option value="3">300 Level</option>
+//     <option value="4">400 Level</option>
+//     <option value="5">500 Level</option>
+//     <option value="6">600 Level</option>
+//     <option value="7">Other</option>
+    
+//     ';
+
 }

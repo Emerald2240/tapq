@@ -12,7 +12,7 @@ if (!isset($_SESSION['log'])) {
 <html lang="en">
 
 <head>
-<?php
+    <?php
     require_once("includes/head.php");
     ?>
     <title><?php echo $_GET['coursename'] ?></title>
@@ -37,6 +37,13 @@ if (!isset($_SESSION['log'])) {
                 <?php require_once("includes/navbar.php") ?>
                 <!-- End of Topbar -->
 
+
+
+
+
+
+
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -46,22 +53,74 @@ if (!isset($_SESSION['log'])) {
                             <?php echo $_GET['coursename'] ?></h1>
                     </div>
 
+
+
                     <!-- Content Row -->
                     <div class="row">
                         <div class="container-fluid">
 
-                            <!-- Page Heading -->
-                            <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                            <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                                For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
-
                             <!-- DataTales Example -->
                             <div class="card shadow mb-4">
-                                <!-- <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                                </div> -->
-                            
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Add New Exam</h6>
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="container-lg">
+                                        <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="exam_year">Exam Year/Session</label>
+                                                <select class="form-control" name="exam_year" id="exam_year">
+                                                    <?php loadTenyears() ?>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="semester">Exam Semester</label>
+                                                <select class="form-control" name="semester" id="semester">
+                                                    <option value="1">First</option>
+                                                    <option value="2">Second</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="obj_thr">Exam Format</label>
+                                                <select class="form-control" name="obj_thr" id="obj_thr">
+                                                    <option value="1">Objective</option>
+                                                    <option value="2">Theory</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="no_questions">Number Of Questions</label>
+                                                <input type="number" class="form-control" name="no_questions" id="no_questions">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="lecturer">Lecturer Incharge</label>
+                                                <input type="text" class="form-control" name="lecturer" id="lecturer">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="duration">Exam Duration</label>
+                                                <input type="text" class="form-control" name="duration" id="duration">
+                                            </div>
+
+                                            <?php
+                                            //processNewCourse($_POST);
+                                            ?>
+
+                                            <a href="workshop.php" class="btn btn-primary btn-user">
+                                               Next
+                                            </a>
+
+
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+
+
 
                         </div>
                     </div>

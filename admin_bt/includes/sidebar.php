@@ -39,7 +39,10 @@
         <!-- <a class="collapse-item" href="new_course.php">Add New Course</a> -->
         <a class="collapse-item" href="courses.php">Courses</a>
             <h6 class="collapse-header">Login Screens:</h6>
-            <a class="collapse-item" href="logout.php">Logout</a>
+            <a class="collapse-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
             <!-- <a class="collapse-item" href="register.php">Register</a>
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
             <div class="collapse-divider"></div>
