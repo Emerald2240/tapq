@@ -105,7 +105,7 @@ function processRegister($formstream)
         // }
 
         if (empty($data_missing)) {
-            $_SESSION['rege'] = "true";
+            // $_SESSION['rege'] = "true";
             // AddRegistered($firstname, $lastname, $phone, $email, $username, $password, $job, $twitter, $facebook,  $linkedin, $instagram, $uniqueimagename);
             AddRegistered($firstname, $lastname, $phone, $email, $password);
             //echo '<br>';
@@ -135,6 +135,12 @@ function processRegister($formstream)
             //     // echo"</pre>";
             //     return false;
             // }
+        }else{
+        foreach ($data_missing as $miss) {
+            echo '<p class="danger">';
+            echo "$miss";
+            echo '</p>';
+        }
         }
     }
 }
@@ -227,36 +233,33 @@ function processNewCourse($formstream)
             $data_missing['Course_level'] = "Missing Course Level";
         } else {
 
-            if($level > 7 || $level < 1){
+            if ($level > 7 || $level < 1) {
                 $data_missing['Course_level'] = "Invalid Course Level";
-            }else{
-            $level = trim(Sanitize($level));
+            } else {
+                $level = trim(Sanitize($level));
             }
-
         }
 
         if (empty($credit)) {
             $data_missing['Course_Credit'] = "Missing Course Credit";
         } else {
 
-            if($credit > 8 || $credit < 1){
+            if ($credit > 8 || $credit < 1) {
                 $data_missing['Course_Credit'] = "Invalid Course Credit";
-            }else{
-            $credit = trim(Sanitize($credit));
+            } else {
+                $credit = trim(Sanitize($credit));
             }
-
         }
 
         if (empty($semester)) {
             $data_missing['Course_semester'] = "Missing Course semester";
         } else {
 
-            if($semester > 2 || $semester < 1){
+            if ($semester > 2 || $semester < 1) {
                 $data_missing['Course_semester'] = "Invalid Course semester";
-            }else{
-            $semester = trim(Sanitize($semester));
+            } else {
+                $semester = trim(Sanitize($semester));
             }
-
         }
 
         if (empty($faculty)) {
@@ -267,17 +270,22 @@ function processNewCourse($formstream)
 
 
         if (empty($data_missing)) {
-            $_SESSION['rege'] = "true";
             AddNewCourse($code, $title, $faculty, $credit, $level, $semester);
+        }else{
+        foreach ($data_missing as $miss) {
+            echo '<p class="danger">';
+            echo "$miss";
+            echo '</p>';
         }
     }
+}
 }
 
 function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
 {
     //This simply adds the filtered and cleansed data into the database 
     global $db;
-            $sql = "INSERT INTO courses(code, title, faculty, credit, level, semester ) VALUES ('$cd', '$tit', '$fac', '$cred', '$lvl', '$sem')";
+    $sql = "INSERT INTO courses(code, title, faculty, credit, level, semester ) VALUES ('$cd', '$tit', '$fac', '$cred', '$lvl', '$sem')";
 
     if (mysqli_query($db, $sql)) {
 
@@ -289,7 +297,8 @@ function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
     mysqli_close($db);
 }
 
-function loadCourses(){
+function loadCourses()
+{
     global $db;
     $user = "Admin";
     if (!empty($user)) {
@@ -300,56 +309,56 @@ function loadCourses(){
                 $_SESSION['course_id'] =  $row['id'];
                 //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
 
-               echo '<tr><td>'; 
-               echo $row['code'];
-               echo '</td>';
+                echo '<tr><td>';
+                echo $row['code'];
+                echo '</td>';
 
-               echo  '<td>';
-               echo '<a href="edit_course.php?id=';
-               echo $row['id'];
-               echo '&coursename=';
-               echo ucwords(strtolower($row['title']));
-               echo '"> ';
-               echo ucwords(strtolower($row['title']));
-               echo'</a></td>';
+                echo  '<td>';
+                echo '<a href="edit_course.php?id=';
+                echo $row['id'];
+                echo '&coursename=';
+                echo ucwords(strtolower($row['title']));
+                echo '"> ';
+                echo ucwords(strtolower($row['title']));
+                echo '</a></td>';
 
-               echo '<td>';
-               echo ucwords(strtolower($row['faculty']));
-               echo '</td>';
+                echo '<td>';
+                echo ucwords(strtolower($row['faculty']));
+                echo '</td>';
 
-               echo '<td>';
-               echo $row['level'].'00';
-               echo '</td>';
+                echo '<td>';
+                echo $row['level'] . '00';
+                echo '</td>';
 
-               echo '<td>';
-               echo $row['credit'];
-               echo '</td>';
+                echo '<td>';
+                echo $row['credit'];
+                echo '</td>';
 
-               echo '<td>';
-               echo $row['semester'];
-               echo '</td>';
+                echo '<td>';
+                echo $row['semester'];
+                echo '</td>';
 
-               echo '<td>';
-               echo '<a href="edit_course.php?id=';
-               echo $row['id'];
-               echo '&coursename=';
-               echo ucwords(strtolower($row['title']));
-               echo '">';
-               echo '<i class="fa fa-edit"></i></a></td>';
+                echo '<td>';
+                echo '<a href="edit_course.php?id=';
+                echo $row['id'];
+                echo '&coursename=';
+                echo ucwords(strtolower($row['title']));
+                echo '">';
+                echo '<i class="fa fa-edit"></i></a></td>';
 
 
-               echo '<td><a href="new_exam.php?id=';
-               echo $row['id'];
-               echo '&coursename=';
-               echo ucwords(strtolower($row['title']));
-               echo '"><i class="fa fa-plus"></i></a></td>';
+                echo '<td><a href="new_exam.php?id=';
+                echo $row['id'];
+                echo '&coursename=';
+                echo ucwords(strtolower($row['title']));
+                echo '"><i class="fa fa-plus"></i></a></td>';
 
-               echo '<td>';
-               echo '<a href="delete_course.php?id=';
-               echo $row['id'];
-               echo '"><i class="fa fa-trash"></i></a></td>';
-               
-               echo '</tr>';
+                echo '<td>';
+                echo '<a href="delete_course.php?id=';
+                echo $row['id'];
+                echo '"><i class="fa fa-trash"></i></a></td>';
+
+                echo '</tr>';
             }
         } else {
             echo 'No Posts Yet';
@@ -357,37 +366,106 @@ function loadCourses(){
     }
 }
 
-function loadTenyears(){
+function loadTenyears()
+{
     global $db;
     $currentYear = date('Y');
 
-    for($i = 0; $i < 10; $i++){
+    for ($i = 0; $i < 10; $i++) {
 
-       // $courseId = $_SESSION['course_id'];
-       $courseId = $_GET['id'];
+        // $courseId = $_SESSION['course_id'];
+        $courseId = $_GET['id'];
         $sql = "select * from q_and_a where (year = '$currentYear' and course_id = '$courseId');";
         $result = mysqli_query($db, $sql);
-    
-        if(mysqli_num_rows($result) > 0){
-    
-        }else{
-            echo '<option value="1">' ;
-            echo $currentYear; 
-            echo ' Level</option>';
+
+        if (mysqli_num_rows($result) > 0) {
+        } else {
+            echo '<option value="' . $currentYear . '">';
+            echo $currentYear;
+            echo '</option>';
         }
-        $currentYear = $currentYear- 1;
+        $currentYear = $currentYear - 1;
     }
+}
 
-   
-// echo '
-//     <option value="1">100 Level</option>
-//     <option value="2">200 Level</option>
-//     <option value="3">300 Level</option>
-//     <option value="4">400 Level</option>
-//     <option value="5">500 Level</option>
-//     <option value="6">600 Level</option>
-//     <option value="7">Other</option>
+function processNewExam($formstream)
+{
+
+    extract($formstream);
+
+    if (isset($submit)) {
+
+        $data_missing = [];
+
+        if (empty($exam_year)) {
+            $data_missing['Exam_Year'] = "Missing Exam Year";
+        } else {
+            if ($exam_year < 2010 || $exam_year > 2099) {
+                $data_missing['Exam_Year'] = "Invalid Exam Year";
+            } else {
+                $exam_year = trim(Sanitize($exam_year));
+            }
+        }
+
+        if (empty($semester)) {
+            $data_missing['Semester'] = "Missing semester";
+        } else {
+            if ($semester < 1 || $semester > 2) {
+                $data_missing['Semester'] = "Invalid semester";
+            } else {
+                $semester = trim(Sanitize($semester));
+            }
+        }
+
+        if (empty($obj_thr)) {
+            $data_missing['obj_or_thr'] = "Missing Exam format";
+        } else {
+            if ($obj_thr < 1 || $obj_thr > 2) {
+                $data_missing['obj_or_thr'] = "Invalid Exam format";
+            } else {
+                $obj_thr = trim(Sanitize($obj_thr));
+            }
+        }
+
+        if (empty($no_questions)) {
+            $data_missing['Number_of_questions'] = "Missing number of questions";
+        } else {
+            if ($no_questions < 1 || $no_questions > 200) {
+                $data_missing['Number_of_questions'] = "Invalid number of questions";
+            } else {
+                $no_questions = trim(Sanitize($no_questions));
+            }
+        }
+
+
+        if (empty($lecturer)) {
+            $data_missing['Lecturer Incharge'] = "Missing lecturer";
+        } else {
+            $lecturer = trim(Sanitize($lecturer));
+        }
+
+
+        if (empty($duration)) {
+            $data_missing['Exam duration'] = "Missing Exam duration";
+        } else {
+            $duration = trim(Sanitize($duration));
+        }
+
+
+        if (empty($data_missing)) {
+          $_SESSION['new_exam_set']   = 'true';
+            header('location:workshop.php');
+        }else{
+           return $data_missing;
+        }
+    }
+}
+
+function showDataMissing($data_missing){
     
-//     ';
-
+    foreach ($data_missing[0] as $miss) {
+        echo '<p class="text-danger">';
+        echo $miss;
+        echo '</p>';
+    }
 }

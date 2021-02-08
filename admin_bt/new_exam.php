@@ -6,6 +6,9 @@ if (!isset($_SESSION['log'])) {
     header('location:login.php');
     exit();
 }
+
+$dataMissing[] = processNewExam($_POST);
+//print_r($dataMissing);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +18,14 @@ if (!isset($_SESSION['log'])) {
     <?php
     require_once("includes/head.php");
     ?>
-    <title><?php echo $_GET['coursename'] ?></title>
+    <title> <?php
+            if (isset($_GET['coursename'])) {
+                echo $_GET['coursename'];
+                $_SESSION['coursename'] = $_GET['coursename'];
+            } else {
+                echo $_SESSION['coursename'];
+            }
+            ?></title>
 </head>
 
 <body id="page-top">
@@ -50,7 +60,13 @@ if (!isset($_SESSION['log'])) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">
-                            <?php echo $_GET['coursename'] ?></h1>
+                            <?php if (isset($_GET['coursename'])) {
+                                echo $_GET['coursename'];
+                                $_SESSION['coursename'] = $_GET['coursename'];
+                            } else {
+                                echo $_SESSION['coursename'];
+                            }
+                            ?></h1>
                     </div>
 
 
@@ -64,8 +80,11 @@ if (!isset($_SESSION['log'])) {
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Add New Exam</h6>
                                 </div>
+                               
                                 <div class="card-body">
-
+                                <?php
+                                showDataMissing($dataMissing);
+                                ?>
                                     <div class="container-lg">
                                         <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
                                             <div class="form-group">
@@ -106,13 +125,7 @@ if (!isset($_SESSION['log'])) {
                                                 <input type="text" class="form-control" name="duration" id="duration">
                                             </div>
 
-                                            <?php
-                                            //processNewCourse($_POST);
-                                            ?>
-
-                                            <a href="workshop.php" class="btn btn-primary btn-user">
-                                               Next
-                                            </a>
+                                            <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
 
 
                                         </form>
