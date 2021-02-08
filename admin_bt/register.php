@@ -2,9 +2,10 @@
 require_once "../config/connect.php";
 require_once "../functions/functions.php";
 
-if(isset($_SESSION['rege'])){
-header('location:login.php');
-exit();}
+if (isset($_SESSION['rege'])) {
+    header('location:login.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -90,8 +91,8 @@ exit();}
     </div>
 
     <?php
-require_once("includes/js_includes.php");
-?>
+    require_once("includes/js_includes.php");
+    ?>
 
 </body>
 

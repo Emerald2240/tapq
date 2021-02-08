@@ -135,12 +135,12 @@ function processRegister($formstream)
             //     // echo"</pre>";
             //     return false;
             // }
-        }else{
-        foreach ($data_missing as $miss) {
-            echo '<p class="danger">';
-            echo "$miss";
-            echo '</p>';
-        }
+        } else {
+            foreach ($data_missing as $miss) {
+                echo '<p class="danger">';
+                echo "$miss";
+                echo '</p>';
+            }
         }
     }
 }
@@ -271,14 +271,14 @@ function processNewCourse($formstream)
 
         if (empty($data_missing)) {
             AddNewCourse($code, $title, $faculty, $credit, $level, $semester);
-        }else{
-        foreach ($data_missing as $miss) {
-            echo '<p class="danger">';
-            echo "$miss";
-            echo '</p>';
+        } else {
+            foreach ($data_missing as $miss) {
+                echo '<p class="danger">';
+                echo "$miss";
+                echo '</p>';
+            }
         }
     }
-}
 }
 
 function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
@@ -453,16 +453,17 @@ function processNewExam($formstream)
 
 
         if (empty($data_missing)) {
-          $_SESSION['new_exam_set']   = 'true';
+            $_SESSION['new_exam_set']   = 'true';
             header('location:workshop.php');
-        }else{
-           return $data_missing;
+        } else {
+            return $data_missing;
         }
     }
 }
 
-function showDataMissing($data_missing){
-    
+function showDataMissing($data_missing)
+{
+
     foreach ($data_missing[0] as $miss) {
         echo '<p class="text-danger">';
         echo $miss;
