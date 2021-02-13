@@ -464,9 +464,11 @@ function processNewExam($formstream)
 function showDataMissing($data_missing)
 {
 
+    if(isset($data_missing[0])){
     foreach ($data_missing[0] as $miss) {
         echo '<p class="text-danger">';
         echo $miss;
         echo '</p>';
     }
+}
 }
