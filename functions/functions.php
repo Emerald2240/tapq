@@ -272,11 +272,12 @@ function processNewCourse($formstream)
         if (empty($data_missing)) {
             AddNewCourse($code, $title, $faculty, $credit, $level, $semester);
         } else {
-            foreach ($data_missing as $miss) {
-                echo '<p class="danger">';
-                echo "$miss";
-                echo '</p>';
-            }
+            return $data_missing;
+            // foreach ($data_missing as $miss) {
+            //     echo '<p class="danger">';
+            //     echo "$miss";
+            //     echo '</p>';
+            // }
         }
     }
 }

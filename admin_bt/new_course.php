@@ -6,6 +6,8 @@ if (!isset($_SESSION['log'])) {
     header('location:login.php');
     exit();
 }
+
+$dataMissing[] = processNewExam($_POST);
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +51,9 @@ if (!isset($_SESSION['log'])) {
                     <div class="row">
 
                         <div class="container-lg">
+                        <?php
+                                showDataMissing($dataMissing);
+                                ?>
                             <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="code">Course Code</label>
@@ -101,7 +106,7 @@ if (!isset($_SESSION['log'])) {
                                 </div>
 
                                 <?php
-                            processNewCourse($_POST);
+                           
                             ?>
 
                     <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
