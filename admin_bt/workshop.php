@@ -7,6 +7,9 @@ if (!isset($_SESSION['log'])) {
     exit();
 }
 
+//echo '<pre>';
+//print_r($_SESSION);
+
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +22,10 @@ if (!isset($_SESSION['log'])) {
         //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
         if (isset($_GET['coursename'])) {
             echo $_GET['coursename'];
-            $_SESSION['coursename'] = $_GET['coursename'];
-            $_SESSION['courseid'] = $_GET['courseid'];
+            $_SESSION['course_name'] = $_GET['coursename'];
+            $_SESSION['course_id'] = $_GET['id'];
         } else {
-            echo $_SESSION['coursename'];
+            echo $_SESSION['course_name'];
         }
         ?>
         Workshop
@@ -59,10 +62,10 @@ if (!isset($_SESSION['log'])) {
                         //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
                         if (isset($_GET['coursename'])) {
                             echo $_GET['coursename'];
-                            $_SESSION['coursename'] = $_GET['coursename'];
-                            $_SESSION['courseid'] = $_GET['courseid'];
+                            $_SESSION['course_name'] = $_GET['coursename'];
+                            $_SESSION['course_id'] = $_GET['id'];
                         } else {
-                            echo $_SESSION['coursename'];
+                            echo $_SESSION['course_name'] . ' Questions and Answers';
                         }
                         ?></h1>
 
@@ -82,67 +85,72 @@ if (!isset($_SESSION['log'])) {
                                 <?php
                                 //.showDataMissing($dataMissing);
                                 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                 <div class="container-lg">
+
+
+
+
                                     <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
+
+
                                         <div class="form-group"></div>
+                                        <?php
+                                        createQuestionAndAnswerBoxes($_SESSION['exam']['number_of_questions']);
+                                        ?>
+
+
+
+
                                     </form>
+
+
+
+
                                 </div>
 
-                                <div id="paging_container1" class="container">
-                                    <h2>Vanilla</h2>
-                                    <div class="page_navigation"></div>
 
-                                    <ul class="content">
-                                        <li>
-                                            <p>One</p>
-                                        </li>
-                                        <li>
-                                            <p>Two</p>
-                                        </li>
-                                        <li>
-                                            <p>Three</p>
-                                        </li>
-                                        <li>
-                                            <p>Four</p>
-                                        </li>
-                                        <li>
-                                            <p>Five</p>
-                                        </li>
-                                        <li>
-                                            <p>Six</p>
-                                        </li>
-                                        <li>
-                                            <p>Seven</p>
-                                        </li>
-                                        <li>
-                                            <p>Eight</p>
-                                        </li>
-                                        <li>
-                                            <p>Nine</p>
-                                        </li>
-                                        <li>
-                                            <p>Ten</p>
-                                        </li>
-                                        <li>
-                                            <p>Eleven</p>
-                                        </li>
-                                        <li>
-                                            <p>Twelve</p>
-                                        </li>
-                                        <li>
-                                            <p>Thirteen</p>
-                                        </li>
-                                        <li>
-                                            <p>Fourteen</p>
-                                        </li>
-                                        <li>
-                                            <p>Fifteen</p>
-                                        </li>
-                                        <li>
-                                            <p>Sixteen</p>
-                                        </li>
-                                    </ul>
-                                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             </div>
 
 

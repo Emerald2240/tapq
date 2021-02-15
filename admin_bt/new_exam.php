@@ -20,17 +20,17 @@ $dataMissing[] = processNewExam($_POST);
     require_once("includes/head.php");
     ?>
     <title>
-         <?php
-    //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
-            if (isset($_GET['coursename'])) {
-                echo $_GET['coursename'];
-                $_SESSION['coursename'] = $_GET['coursename'];
-                $_SESSION['courseid'] = $_GET['courseid'];
-            } else {
-                echo $_SESSION['coursename'];
-            }
-            ?>
-             Add Exam</title>
+        <?php
+        //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
+        if (isset($_GET['coursename'])) {
+            echo $_GET['coursename'];
+            $_SESSION['course_name'] = $_GET['coursename'];
+            $_SESSION['course_id'] = $_GET['id'];
+        } else {
+            echo $_SESSION['course_name'];
+        }
+        ?>
+        Add Exam</title>
 </head>
 
 <body id="page-top">
@@ -65,11 +65,15 @@ $dataMissing[] = processNewExam($_POST);
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">
-                            <?php if (isset($_GET['coursename'])) {
+                            <?php
+                                    //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
+                            if (isset($_GET['coursename'])) {
                                 echo $_GET['coursename'];
-                                $_SESSION['coursename'] = $_GET['coursename'];
+                                $_SESSION['course_name'] = $_GET['coursename'];
+                            } elseif (isset($_SESSION['course_name'])) {
+                                echo $_SESSION['course_name'];
                             } else {
-                                echo $_SESSION['coursename'];
+                                die;
                             }
                             ?></h1>
                     </div>
@@ -85,11 +89,11 @@ $dataMissing[] = processNewExam($_POST);
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Add New Exam</h6>
                                 </div>
-                               
+
                                 <div class="card-body">
-                                <?php
-                                showDataMissing($dataMissing);
-                                ?>
+                                    <?php
+                                    showDataMissing($dataMissing);
+                                    ?>
                                     <div class="container-lg">
                                         <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
                                             <div class="form-group">

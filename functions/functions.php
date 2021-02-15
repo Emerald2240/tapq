@@ -182,7 +182,7 @@ function processLogin($formstream)
             $_SESSION['firstname'] = $result['firstname'];
             $_SESSION['lastname'] = $result['lastname'];
             //$_SESSION['datejoined'] = $result['datejoined'];
-            $_SESSION['email'] = $result['emailaddress'];
+            $_SESSION['email'] = $result['email'];
             $_SESSION['phone'] = $result['phone'];
             // $_SESSION['profilepic'] = $result['profilepic'];
 
@@ -458,6 +458,13 @@ function processNewExam($formstream)
 
         if (empty($data_missing)) {
             $_SESSION['new_exam_set']   = 'true';
+            $_SESSION['exam']['year']   = $exam_year;
+            $_SESSION['exam']['semester']   = $semester;
+            $_SESSION['exam']['format']   = $obj_thr;
+            $_SESSION['exam']['number_of_questions']   = $no_questions;
+            $_SESSION['exam']['lecturer']   = $lecturer;
+            $_SESSION['exam']['duration']   = $duration;
+
             header('location:workshop.php');
         } else {
             return $data_missing;
@@ -478,5 +485,24 @@ function showDataMissing($data_missing)
         //     echo '<p class="text-success">';
         //     echo "Success";
         //     echo '</p>';
+    }
+}
+
+function createQuestionAndAnswerBoxes($num){
+    for($i = 1; $i <= $num; $i++){
+
+        echo'Number '. $i;
+        echo '<hr>';
+        echo '
+        <div class="form-group container-fluid shadow">
+        
+            <label for="question">Question</label>
+            <textarea class="form-control" name="question" id="question"></textarea>
+
+          
+            <label for="question">Answer</label>
+            <textarea class="form-control" name="answer" id="answer"></textarea>
+        </div>';
+
     }
 }

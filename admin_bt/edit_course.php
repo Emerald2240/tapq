@@ -20,9 +20,12 @@ if (!isset($_SESSION['log'])) {
         //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
         if (isset($_GET['coursename'])) {
             echo $_GET['coursename'];
-            $_SESSION['coursename'] = $_GET['coursename'];
-        } else {
-            echo $_SESSION['coursename'];
+            $_SESSION['course_name'] = $_GET['coursename'];
+        } elseif(isset($_SESSION['course_name'])) {
+            echo $_SESSION['course_name'];
+        }else{
+           
+            die;
         }
         ?>
     </title>
@@ -57,10 +60,10 @@ if (!isset($_SESSION['log'])) {
                             //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
                             if (isset($_GET['coursename'])) {
                                 echo $_GET['coursename'];
-                                $_SESSION['coursename'] = $_GET['coursename'];
-                                $_SESSION['courseid'] = $_GET['id'];
+                                $_SESSION['course_name'] = $_GET['coursename'];
+                                $_SESSION['course_id'] = $_GET['id'];
                             } else {
-                                echo $_SESSION['coursename'];
+                                echo $_SESSION['course_name'];
                             }
                             ?>
                         </h1>
