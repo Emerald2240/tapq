@@ -12,10 +12,20 @@ if (!isset($_SESSION['log'])) {
 <html lang="en">
 
 <head>
-<?php
+    <?php
     require_once("includes/head.php");
     ?>
-    <title><?php echo $_GET['coursename'] ?></title>
+    <title>
+        <?php
+        //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
+        if (isset($_GET['coursename'])) {
+            echo $_GET['coursename'];
+            $_SESSION['coursename'] = $_GET['coursename'];
+        } else {
+            echo $_SESSION['coursename'];
+        }
+        ?>
+    </title>
 </head>
 
 <body id="page-top">
@@ -42,7 +52,18 @@ if (!isset($_SESSION['log'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800"><?php echo $_GET['coursename']; ?></h1>
+                        <h1 class="h3 mb-0 text-gray-800">
+                            <?php
+                            //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
+                            if (isset($_GET['coursename'])) {
+                                echo $_GET['coursename'];
+                                $_SESSION['coursename'] = $_GET['coursename'];
+                                $_SESSION['courseid'] = $_GET['id'];
+                            } else {
+                                echo $_SESSION['coursename'];
+                            }
+                            ?>
+                        </h1>
                     </div>
 
                     <!-- Content Row -->
@@ -59,7 +80,7 @@ if (!isset($_SESSION['log'])) {
                                 <!-- <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                                 </div> -->
-                            
+
                             </div>
 
                         </div>

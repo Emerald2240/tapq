@@ -290,7 +290,10 @@ function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
 
     if (mysqli_query($db, $sql)) {
 
+        //echo "Course Saved";
+        echo '<p class="text-success">';
         echo "Course Saved";
+        echo '</p>';
         //header("location:login.php");
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
@@ -465,11 +468,15 @@ function processNewExam($formstream)
 function showDataMissing($data_missing)
 {
 
-    if(isset($data_missing[0])){
-    foreach ($data_missing[0] as $miss) {
-        echo '<p class="text-danger">';
-        echo $miss;
-        echo '</p>';
+    if (isset($data_missing[0])) {
+        foreach ($data_missing[0] as $miss) {
+            echo '<p class="text-danger">';
+            echo $miss;
+            echo '</p>';
+        }
+        // } else {
+        //     echo '<p class="text-success">';
+        //     echo "Success";
+        //     echo '</p>';
     }
-}
 }

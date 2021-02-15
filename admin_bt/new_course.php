@@ -7,14 +7,14 @@ if (!isset($_SESSION['log'])) {
     exit();
 }
 
-$dataMissing[] = processNewExam($_POST);
+$dataMissing[] = processNewCourse($_POST);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<?php
+    <?php
     require_once("includes/head.php");
     ?>
     <title>Add New Course</title>
@@ -51,15 +51,16 @@ $dataMissing[] = processNewExam($_POST);
                     <div class="row">
 
                         <div class="container-lg">
-                        <?php
-                                showDataMissing($dataMissing);
-                                ?>
+                            <?php
+                            $dataMissing[] = processNewCourse($_POST);
+                            showDataMissing($dataMissing);
+                            ?>
                             <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="code">Course Code</label>
                                     <input type="text" class="form-control" name="code" id="code">
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="title">Course Title</label>
                                     <input type="text" class="form-control" name="title" id="title">
@@ -106,12 +107,12 @@ $dataMissing[] = processNewExam($_POST);
                                 </div>
 
                                 <?php
-                           
-                            ?>
 
-                    <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
-            
-                                
+                                ?>
+
+                                <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
+
+
                             </form>
                         </div>
                     </div>
@@ -122,9 +123,9 @@ $dataMissing[] = processNewExam($_POST);
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <?php 
-           require_once("includes/footer.php");
-           ?>
+            <?php
+            require_once("includes/footer.php");
+            ?>
             <!-- End of Footer -->
 
         </div>

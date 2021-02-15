@@ -45,6 +45,29 @@ if (!isset($_SESSION['log'])) {
                 </div>
                 <!-- /.container-fluid -->
 
+                <div class="row">
+                        <div class="container-fluid">
+
+                            <!-- DataTales Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Add New Exam</h6>
+                                </div>
+                               
+                                <div class="card-body">
+                                <?php
+                                //.showDataMissing($dataMissing);
+                                ?>
+                                    <div class="container-lg">
+                                        <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
+                                            <div class="form-group"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
             </div>
             <!-- End of Main Content -->
 

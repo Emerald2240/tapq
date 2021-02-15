@@ -7,6 +7,7 @@ if (!isset($_SESSION['log'])) {
     exit();
 }
 
+//This code snippet initializes the datamissing variable with the missing items, so the showDataMissing function can display them
 $dataMissing[] = processNewExam($_POST);
 //print_r($dataMissing);
 ?>
@@ -18,14 +19,18 @@ $dataMissing[] = processNewExam($_POST);
     <?php
     require_once("includes/head.php");
     ?>
-    <title> <?php
+    <title>
+         <?php
+    //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
             if (isset($_GET['coursename'])) {
                 echo $_GET['coursename'];
                 $_SESSION['coursename'] = $_GET['coursename'];
+                $_SESSION['courseid'] = $_GET['courseid'];
             } else {
                 echo $_SESSION['coursename'];
             }
-            ?></title>
+            ?>
+             Add Exam</title>
 </head>
 
 <body id="page-top">
