@@ -489,19 +489,23 @@ function showDataMissing($data_missing)
 }
 
 function createQuestionAndAnswerBoxes($num){
+    
     for($i = 1; $i <= $num; $i++){
 
-        echo'Number '. $i;
-        echo '<hr>';
-        echo '
-        <div class="form-group container-fluid shadow">
+       
+        echo '<div class="form-group p-5 container-fluid shadow page-mimi" id="container-pagnation'.$i.'">';
         
-            <label for="question">Question</label>
-            <textarea class="form-control" name="question" id="question"></textarea>
+        // echo'Number '. $i;
+
+        echo '<h6 class="m-0 font-weight-bold">Number '.$i.'</h6>';
+        echo '<hr>';
+
+          echo  '<label for="question">Question</label>
+            <textarea class="form-control" name="question" id="question" required></textarea>
 
           
             <label for="question">Answer</label>
-            <textarea class="form-control" name="answer" id="answer"></textarea>
+            <textarea class="form-control" name="answer" id="answer" required></textarea>
         </div>';
 
     }

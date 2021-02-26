@@ -121,17 +121,17 @@ $dataMissing[] = processNewExam($_POST);
 
                                             <div class="form-group">
                                                 <label for="no_questions">Number Of Questions</label>
-                                                <input type="number" class="form-control" name="no_questions" id="no_questions">
+                                                <input type="number" class="form-control" name="no_questions" id="no_questions" value="10">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="lecturer">Lecturer Incharge</label>
-                                                <input type="text" class="form-control" name="lecturer" id="lecturer">
+                                                <input type="text" class="form-control" name="lecturer" id="lecturer" value="Mr Lecturer">
                                             </div>
 
                                             <div class="form-group">
                                                 <label for="duration">Exam Duration</label>
-                                                <input type="text" class="form-control" name="duration" id="duration">
+                                                <input type="text" class="form-control" name="duration" id="duration" value="2 Hours">
                                             </div>
 
                                             <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>

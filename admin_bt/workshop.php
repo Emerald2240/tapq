@@ -17,6 +17,7 @@ if (!isset($_SESSION['log'])) {
 
 <head>
     <?php require_once("includes/head.php") ?>
+
     <title>
         <?php
         //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
@@ -31,7 +32,32 @@ if (!isset($_SESSION['log'])) {
         Workshop
     </title>
 
-    <?php require_once("includes/pajinate_includes.php") ?>
+    <!-- <link rel="stylesheet" href="luckmoshy-bootstrap-pagination/bootstrapmin.css"> -->
+
+    <style>
+        /* body { } */
+        .page-mimi {
+            display: none;
+        }
+
+        .page-active {
+            display: block;
+        }
+
+        .jumbotron {
+            height: 400px;
+        }
+
+        #question {
+            height: 100px;
+            background-color: pink;
+        }
+
+        #answer {
+            height: 60px;background-color: gray;
+            color: white;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -65,7 +91,7 @@ if (!isset($_SESSION['log'])) {
                             $_SESSION['course_name'] = $_GET['coursename'];
                             $_SESSION['course_id'] = $_GET['id'];
                         } else {
-                            echo $_SESSION['course_name'] . ' Questions and Answers';
+                            echo $_SESSION['course_name'] . ' -> 2019/2020 -> First Semester';
                         }
                         ?></h1>
 
@@ -82,77 +108,19 @@ if (!isset($_SESSION['log'])) {
                             </div>
 
                             <div class="card-body">
-                                <?php
-                                //.showDataMissing($dataMissing);
-                                ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 <div class="container-lg">
-
-
-
-
                                     <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
-
-
                                         <div class="form-group"></div>
                                         <?php
                                         createQuestionAndAnswerBoxes($_SESSION['exam']['number_of_questions']);
                                         ?>
-
-
-
-
+                                        <ul id="luckmoshy" class="pagination justify-content-center pagination-md"></ul>
+                                        <textarea class="form-control mb-4" name="json" id="json" required></textarea>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button>
                                     </form>
-
-
-
-
+                                
                                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             </div>
-
 
                         </div>
                     </div>
@@ -182,6 +150,10 @@ if (!isset($_SESSION['log'])) {
     <?php require_once("includes/logout_modal.php") ?>
 
     <?php require_once("includes/js_includes.php") ?>
+    <?php require_once("includes/luckymoshy.php") ?>
+
+
+
 
 </body>
 
