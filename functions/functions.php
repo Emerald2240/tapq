@@ -501,11 +501,11 @@ function createQuestionAndAnswerBoxes($num){
         echo '<hr>';
 
           echo  '<label for="question">Question</label>
-            <textarea class="form-control" name="question" id="question" required></textarea>
+            <textarea class="form-control question'.$i.'" name="question'.$i.'" id="question'.$i.'" required></textarea>
 
           
             <label for="question">Answer</label>
-            <textarea class="form-control" name="answer" id="answer" required></textarea>
+            <textarea class="form-control answer'.$i.'" name="answer'.$i.'" id="answer'.$i.'" required></textarea>
         </div>';
 
     }

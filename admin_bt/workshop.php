@@ -54,10 +54,17 @@ if (!isset($_SESSION['log'])) {
         }
 
         #answer {
-            height: 60px;background-color: gray;
+            height: 60px;
+            background-color: gray;
             color: white;
         }
+
+        #jsonta {
+            height: 500px;
+        }
     </style>
+
+
 </head>
 
 <body id="page-top">
@@ -109,16 +116,23 @@ if (!isset($_SESSION['log'])) {
 
                             <div class="card-body">
                                 <div class="container-lg">
-                                    <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
+                                    <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data" class="json" id="json">
                                         <div class="form-group"></div>
                                         <?php
                                         createQuestionAndAnswerBoxes($_SESSION['exam']['number_of_questions']);
                                         ?>
                                         <ul id="luckmoshy" class="pagination justify-content-center pagination-md"></ul>
-                                        <textarea class="form-control mb-4" name="json" id="json" required></textarea>
-                                        <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button>
+
+                                        <div class="form-group m-4">
+                                            <label for="jsonta">Click to Preview</label>
+                                            <textarea onclick="validateNewExamForm(<?php echo $_SESSION['exam']['number_of_questions'] ?>)" class="form-control jsonta" readonly name="jsonta" id="jsonta" required></textarea>
+                                        </div>
+
+
+                                        <button type="submit" onclick="validateNewExamForm(<?php echo $_SESSION['exam']['number_of_questions'] ?>)" class="btn btn-danger btn-user btn-block" id="submit" name="submit">Submit</button>
+                                        <!-- <button type="submit" onclick="validateNewExamForm(10)" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button> -->
                                     </form>
-                                
+
                                 </div>
                             </div>
 
@@ -152,6 +166,42 @@ if (!isset($_SESSION['log'])) {
     <?php require_once("includes/js_includes.php") ?>
     <?php require_once("includes/luckymoshy.php") ?>
 
+    <!-- <script>
+        function validateNewExamForm(numOfquestions) {
+            var qfields = [];
+            var afields = [];
+            qtxtAreaName = 'question';
+            atxtAreaName = 'answer';
+
+            //var json = document.getElementById("json");
+
+            //json.preventDefault(); //Stops the form from doing its default action of refreshing the page
+
+            for (var i = 0; i <= numOfquestions; i++) {
+                qfields[i] = qtxtAreaName + i;
+                afields[i] = atxtAreaName + i;
+            }
+
+            var i, j = qfields.length,
+                fieldname;
+
+            for (i = 1; i <= numOfquestions; i++) {
+                qfieldname = qfields[i];
+                afieldname = afields[i];
+
+                if (document.getElementById(qfieldname).value === "" || document.getElementById(afieldname).value === "") {
+                    console.log("Scream!!!!");
+                } else {
+                    console.log("Doing well!")
+                }
+            }
+
+        }
+
+        function shout() {
+            console.log("Scream!!!!");
+        }
+    </script> -->
 
 
 
