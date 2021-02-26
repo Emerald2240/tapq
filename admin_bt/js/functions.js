@@ -56,7 +56,7 @@ function validateNewExamForm(numOfquestions) {
             qs_and_as.push(q_and_a);
             
         }
-        jsonta.innerHTML = JSON.stringify(qs_and_as, 't', 1);
+        jsonta.innerHTML = JSON.stringify(qs_and_as, 't', 2);
     }
 
 }
