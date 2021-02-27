@@ -1,5 +1,17 @@
-function validateNewExamForm(numOfquestions) {
+function validateNewExamForm(numOfquestions, obj_or_theory) {
+
     var jsonta = document.getElementById("jsonta");
+    var missing_num = document.getElementById("missing_num");
+
+
+    if(obj_or_theory == 1){
+
+
+
+
+
+        
+    }else{
     let qs_and_as = [];
 
     //arrays for holding question and answer textarea id's
@@ -34,10 +46,14 @@ function validateNewExamForm(numOfquestions) {
         }
     }
 
+    jsonta.innerHTML = "";
+    missing_num.innerHTML = "";
     if (missingNums.length > 0) {
-        jsonta.innerHTML = "";
+       
+        
         for (var j = 0; j < missingNums.length; j++) {
-            jsonta.innerHTML += 'Missing Number ' + missingNums[j] + '\n';
+           // missing_num.innerHTML += 'Missing Number ' + missingNums[j] + '\n';
+           missing_num.innerHTML += 'Missing Num ' + missingNums[j] + ', ';
         }
     } else {
         for (i = 1; i <= numOfquestions; i++) {
@@ -60,3 +76,5 @@ function validateNewExamForm(numOfquestions) {
     }
 
 }
+
+}//end of obj or theory if statement

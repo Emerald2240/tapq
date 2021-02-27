@@ -67,9 +67,10 @@ $dataMissing[] = processNewExam($_POST);
                         <h1 class="h3 mb-0 text-gray-800">
                             <?php
                                     //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
-                            if (isset($_GET['coursename'])) {
+                            if (isset($_GET['coursename']) && isset($_GET['id'])) {
                                 echo $_GET['coursename'];
                                 $_SESSION['course_name'] = $_GET['coursename'];
+                                $_SESSION['course_id'] = $_GET['id'];
                             } elseif (isset($_SESSION['course_name'])) {
                                 echo $_SESSION['course_name'];
                             } else {

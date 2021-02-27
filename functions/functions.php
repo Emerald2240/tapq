@@ -181,6 +181,8 @@ function processLogin($formstream)
             $_SESSION['username'] = ucwords(strtolower($result['firstname'])) . " " . ucwords(strtolower($result['lastname']));
             $_SESSION['firstname'] = $result['firstname'];
             $_SESSION['lastname'] = $result['lastname'];
+            $_SESSION['admin_id'] = $result['id'];
+
             //$_SESSION['datejoined'] = $result['datejoined'];
             $_SESSION['email'] = $result['email'];
             $_SESSION['phone'] = $result['phone'];
@@ -457,13 +459,13 @@ function processNewExam($formstream)
 
 
         if (empty($data_missing)) {
-            $_SESSION['new_exam_set']   = 'true';
-            $_SESSION['exam']['year']   = $exam_year;
-            $_SESSION['exam']['semester']   = $semester;
-            $_SESSION['exam']['format']   = $obj_thr;
+            $_SESSION['new_exam_set']                  = 'true';
+            $_SESSION['exam']['year']                  = $exam_year;
+            $_SESSION['exam']['semester']              = $semester;
+            $_SESSION['exam']['format']                = $obj_thr;
             $_SESSION['exam']['number_of_questions']   = $no_questions;
-            $_SESSION['exam']['lecturer']   = $lecturer;
-            $_SESSION['exam']['duration']   = $duration;
+            $_SESSION['exam']['lecturer']              = $lecturer;
+            $_SESSION['exam']['duration']              = $duration;
 
             header('location:workshop.php');
         } else {
@@ -488,25 +490,70 @@ function showDataMissing($data_missing)
     }
 }
 
-function createQuestionAndAnswerBoxes($num){
-    
-    for($i = 1; $i <= $num; $i++){
+function createQuestionAndAnswerBoxes($num)
+{
 
-       
-        echo '<div class="form-group p-5 container-fluid shadow page-mimi" id="container-pagnation'.$i.'">';
-        
+    for ($i = 1; $i <= $num; $i++) {
+
+
+        echo '<div class="form-group p-5 container-fluid shadow page-mimi" id="container-pagnation' . $i . '">';
+
         // echo'Number '. $i;
 
-        echo '<h6 class="m-0 font-weight-bold">Number '.$i.'</h6>';
+        echo '<h6 class="m-0 font-weight-bold">Number ' . $i . '</h6>';
         echo '<hr>';
 
-          echo  '<label for="question">Question</label>
-            <textarea class="form-control question'.$i.'" name="question'.$i.'" id="question'.$i.'" required></textarea>
+        echo  '<label for="question">Question</label>
+            <textarea class="form-control question' . $i . '" name="question' . $i . '" id="question' . $i . '" required></textarea>
 
           
             <label for="question">Answer</label>
-            <textarea class="form-control answer'.$i.'" name="answer'.$i.'" id="answer'.$i.'" required></textarea>
+            <textarea class="form-control answer' . $i . '" name="answer' . $i . '" id="answer' . $i . '" required></textarea>
         </div>';
-
     }
+}
+
+function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $semester, $number_of_questions, $lecturers, $obj_or_theory, $duration_in_minutes)
+{
+
+extract($q_and_a_formstream);
+
+    if (isset($submit)) {
+
+        $data_missing = [];
+
+        if (empty($jsonta)) {
+            $data_missing['Q_and_A'] = "Missing questions and answer box";
+        } else {
+            $jsonta = trim(Sanitize($jsonta));
+        }
+        
+        
+        
+         //This simply adds the filtered and cleansed data into the database 
+    global $db;
+    $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year, 	semester, 	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time  ) VALUES ('$course_id', '$admin_id', '$year', '$semester', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes')";
+
+    if (mysqli_query($db, $sql)) {
+
+        echo "Exam Saved";
+        // echo '<p class="text-success">';
+        // echo "Course Saved";
+        // echo '</p>';
+        header("location:new_exam.php");
+    } else {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    mysqli_close($db);
+        
+        
+} else {
+    //header("location:new_exam.php");
+        }
+    
+
+
+
+
+   
 }

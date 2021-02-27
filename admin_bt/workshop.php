@@ -10,6 +10,7 @@ if (!isset($_SESSION['log'])) {
 //echo '<pre>';
 //print_r($_SESSION);
 
+processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION['exam']['year'], $_SESSION['exam']['semester'],  $_SESSION['exam']['number_of_questions'],  $_SESSION['exam']['lecturer'], $_SESSION['exam']['format'],  $_SESSION['exam']['duration']);
 ?>
 
 <!DOCTYPE html>
@@ -122,6 +123,8 @@ if (!isset($_SESSION['log'])) {
                                         createQuestionAndAnswerBoxes($_SESSION['exam']['number_of_questions']);
                                         ?>
                                         <ul id="luckmoshy" class="pagination justify-content-center pagination-md"></ul>
+
+                                        <p class="missing_num text-danger" id="missing_num"></p>
 
                                         <div class="form-group m-4">
                                             <label for="jsonta">Click to Preview</label>
