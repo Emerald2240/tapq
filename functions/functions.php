@@ -235,6 +235,7 @@ function processNewCourse($formstream)
             $data_missing['Course_level'] = "Missing Course Level";
         } else {
 
+
             if ($level > 7 || $level < 1) {
                 $data_missing['Course_level'] = "Invalid Course Level";
             } else {
@@ -284,6 +285,84 @@ function processNewCourse($formstream)
     }
 }
 
+function processEditCourse($formstream)
+{
+    extract($formstream);
+
+    if (isset($submit)) {
+
+        $data_missing = [];
+
+        if (empty($code)) {
+            $data_missing['Course_code'] = "Missing Course Code";
+        } else {
+            if (strlen($code) == 6) {
+                $code = trim(Sanitize($code));
+            } else {
+                $data_missing['Course_code'] = "Course code is not 6 characters";
+            }
+        }
+
+        if (empty($title)) {
+            $data_missing['Course_title'] = "Missing Course Title";
+        } else {
+            $title = trim(Sanitize($title));
+        }
+
+        if (empty($level)) {
+            $data_missing['Course_level'] = "Missing Course Level";
+        } else {
+
+
+            if ($level > 7 || $level < 1) {
+                $data_missing['Course_level'] = "Invalid Course Level";
+            } else {
+                $level = trim(Sanitize($level));
+            }
+        }
+
+        if (empty($credit)) {
+            $data_missing['Course_Credit'] = "Missing Course Credit";
+        } else {
+
+            if ($credit > 8 || $credit < 1) {
+                $data_missing['Course_Credit'] = "Invalid Course Credit";
+            } else {
+                $credit = trim(Sanitize($credit));
+            }
+        }
+
+        if (empty($semester)) {
+            $data_missing['Course_semester'] = "Missing Course semester";
+        } else {
+
+            if ($semester > 2 || $semester < 1) {
+                $data_missing['Course_semester'] = "Invalid Course semester";
+            } else {
+                $semester = trim(Sanitize($semester));
+            }
+        }
+
+        if (empty($faculty)) {
+            $data_missing['Course_faculty'] = "Missing Course Faculty";
+        } else {
+            $faculty = trim(Sanitize($faculty));
+        }
+
+
+        if (empty($data_missing)) {
+            UpdateCourse($code, $title, $faculty, $credit, $level, $semester);
+        } else {
+            return $data_missing;
+            // foreach ($data_missing as $miss) {
+            //     echo '<p class="danger">';
+            //     echo "$miss";
+            //     echo '</p>';
+            // }
+        }
+    }
+}
+
 function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
 {
     //This simply adds the filtered and cleansed data into the database 
@@ -296,7 +375,27 @@ function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
         echo '<p class="text-success">';
         echo "Course Saved";
         echo '</p>';
-        //header("location:login.php");
+        header("location:courses.php");
+    } else {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    mysqli_close($db);
+}
+
+function UpdateCourse($cd, $tit, $fac, $cred, $lvl, $sem)
+{
+    //This simply adds the filtered and cleansed data into the database 
+    global $db;
+    $id = $_SESSION['course_id'];
+    $sql = " UPDATE courses SET code = '$cd', title = '$tit', faculty = '$fac', credit = '$cred', level = '$lvl', semester ='$sem' WHERE courses.id = '$id' ";
+
+    if (mysqli_query($db, $sql)) {
+
+        //echo "Course Saved";
+        echo '<p class="text-success">';
+        echo "Course Saved";
+        echo '</p>';
+        header("location:courses.php");
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
@@ -305,6 +404,7 @@ function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
 
 function loadCourses()
 {
+    //This loads up all the courses available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
     global $db;
     $user = "Admin";
     if (!empty($user)) {
@@ -320,10 +420,22 @@ function loadCourses()
                 echo '</td>';
 
                 echo  '<td>';
-                echo '<a href="edit_course.php?id=';
+                echo '<a href="course_detail.php?id=';
                 echo $row['id'];
                 echo '&coursename=';
                 echo ucwords(strtolower($row['title']));
+                // echo '&creditload=';
+                // echo ucwords(strtolower($row['credit']));
+                // echo '&faculty=';
+                // echo ucwords(strtolower($row['faculty']));
+                // echo '&level=';
+                // echo ucwords(strtolower($row['level']));
+                // echo '&semester=';
+                // echo ucwords(strtolower($row['semester']));
+                // echo '&code=';
+                // echo ucwords(strtoupper($row['code']));
+                // echo '&edit=1';
+
                 echo '"> ';
                 echo ucwords(strtolower($row['title']));
                 echo '</a></td>';
@@ -349,6 +461,18 @@ function loadCourses()
                 echo $row['id'];
                 echo '&coursename=';
                 echo ucwords(strtolower($row['title']));
+                echo '&creditload=';
+                echo ucwords(strtolower($row['credit']));
+                echo '&faculty=';
+                echo ucwords(strtolower($row['faculty']));
+                echo '&level=';
+                echo ucwords(strtolower($row['level']));
+                echo '&semester=';
+                echo ucwords(strtolower($row['semester']));
+                echo '&code=';
+                echo ucwords(strtoupper($row['code']));
+                echo '&edit=1';
+
                 echo '">';
                 echo '<i class="fa fa-edit"></i></a></td>';
 
@@ -359,10 +483,11 @@ function loadCourses()
                 echo ucwords(strtolower($row['title']));
                 echo '"><i class="fa fa-plus"></i></a></td>';
 
-                echo '<td>';
-                echo '<a href="delete_course.php?id=';
+                echo '<td><a href="delete_course.php?id=';
                 echo $row['id'];
-                echo '"><i class="fa fa-trash"></i></a></td>';
+                echo '"';
+                echo 'data-toggle="modal" data-target="#deleteModal"';
+                echo '><i class="fa fa-trash"></i></a></td>';
 
                 echo '</tr>';
             }
@@ -374,6 +499,7 @@ function loadCourses()
 
 function loadTenyears()
 {
+    //This function checks through the database for previous exam years created under a particular topic and makes sure an option for that year does not exist, so to avoid duplicate years. this is checked for ten years from the current one
     global $db;
     $currentYear = date('Y');
 
@@ -396,7 +522,7 @@ function loadTenyears()
 
 function processNewExam($formstream)
 {
-
+//This function looks through all the items collected and checks if everything is in order
     extract($formstream);
 
     if (isset($submit)) {
@@ -476,7 +602,7 @@ function processNewExam($formstream)
 
 function showDataMissing($data_missing)
 {
-
+    //this function checks if the datamissing array passed in is empty. if it isnt it prints out all of its contents. if it is empty nothing happens
     if (isset($data_missing[0])) {
         foreach ($data_missing[0] as $miss) {
             echo '<p class="text-danger">';
@@ -493,6 +619,7 @@ function showDataMissing($data_missing)
 function createQuestionAndAnswerBoxes($num)
 {
 
+    //This function creates question and answer boxes for the number of questions available. its id's are given so its arranged perfectly with luckyMoshy
     for ($i = 1; $i <= $num; $i++) {
 
 
@@ -513,47 +640,62 @@ function createQuestionAndAnswerBoxes($num)
     }
 }
 
+
+//Look into this function later. it has an unresolved issue
 function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $semester, $number_of_questions, $lecturers, $obj_or_theory, $duration_in_minutes)
 {
 
-extract($q_and_a_formstream);
+    extract($q_and_a_formstream);
 
     if (isset($submit)) {
 
         $data_missing = [];
 
+        //the next 5 lines of code are useless and shouldnt be here. especially considering the data is directly added into the database
         if (empty($jsonta)) {
             $data_missing['Q_and_A'] = "Missing questions and answer box";
         } else {
             $jsonta = trim(Sanitize($jsonta));
         }
-        
-        
-        
-         //This simply adds the filtered and cleansed data into the database 
-    global $db;
-    $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year, 	semester, 	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time  ) VALUES ('$course_id', '$admin_id', '$year', '$semester', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes')";
 
+
+
+        //This simply adds the filtered and cleansed data into the database (questions and answers)
+        global $db;
+        $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year, 	semester, 	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time  ) VALUES ('$course_id', '$admin_id', '$year', '$semester', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes')";
+
+        if (mysqli_query($db, $sql)) {
+
+            echo "Exam Saved";
+            // echo '<p class="text-success">';
+            // echo "Course Saved";
+            // echo '</p>';
+            header("location:courses.php");
+        } else {
+            echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        }
+        mysqli_close($db);
+    } else {
+        //header("location:new_exam.php");
+    }
+}
+
+function deleteCourse()
+{
+    global $db;
+    $id = $_SESSION['course_id'];
+
+    //This sql statement deletes the course with the mentioned id
+    $sql = "DELETE FROM `courses`  WHERE courses.id = '$id' ";
     if (mysqli_query($db, $sql)) {
 
-        echo "Exam Saved";
-        // echo '<p class="text-success">';
-        // echo "Course Saved";
-        // echo '</p>';
-        header("location:new_exam.php");
+        //echo "Course Saved";
+        echo '<p class="text-success">';
+        echo "Course Saved";
+        echo '</p>';
+        header("location:courses.php");
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
-        
-        
-} else {
-    //header("location:new_exam.php");
-        }
-    
-
-
-
-
-   
 }

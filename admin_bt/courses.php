@@ -142,6 +142,8 @@ if (!isset($_SESSION['log'])) {
     <!-- Logout Modal-->
     <?php
     require_once("includes/logout_modal.php");
+    require_once("includes/delete_modal.php");
+
     
     ?>
 

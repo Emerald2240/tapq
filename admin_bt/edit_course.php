@@ -6,6 +6,8 @@ if (!isset($_SESSION['log'])) {
     header('location:login.php');
     exit();
 }
+
+$dataMissing[] = processEditCourse($_POST);
 ?>
 
 <!DOCTYPE html>
@@ -17,14 +19,14 @@ if (!isset($_SESSION['log'])) {
     ?>
     <title>
         <?php
-        //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
+        //this code snippet sets the coursename, id, faculty, credit load, semester, and level variables to the session global array, this is so the data is retained even when the page is refreshed
         if (isset($_GET['coursename'])) {
             echo $_GET['coursename'];
             $_SESSION['course_name'] = $_GET['coursename'];
-        } elseif(isset($_SESSION['course_name'])) {
+        } elseif (isset($_SESSION['course_name'])) {
             echo $_SESSION['course_name'];
-        }else{
-           
+        } else {
+
             die;
         }
         ?>
@@ -71,21 +73,113 @@ if (!isset($_SESSION['log'])) {
 
                     <!-- Content Row -->
                     <div class="row">
-                        <div class="container-fluid">
 
-                            <!-- Page Heading -->
-                            <!-- <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                            <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                                For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p> -->
+                        <div class="container-lg">
+                            <?php
+                            $dataMissing[] = processNewCourse($_POST);
+                            showDataMissing($dataMissing);
+                            ?>
+                            <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="code">Course Code</label>
+                                    <input type="text" class="form-control" name="code" id="code" value="<?php
+                                                                                                            if (isset($_GET['code'])) {
+                                                                                                                echo $_GET['code'];
+                                                                                                                $_SESSION['code'] = $_GET['code'];
+                                                                                                            } else {
+                                                                                                                echo $_SESSION['code'];
+                                                                                                            }
+                                                                                                            ?>">
+                                </div>
 
-                            <!-- DataTales Example -->
-                            <div class="card shadow mb-4">
-                                <!-- <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                                </div> -->
+                                <div class="form-group">
+                                    <label for="title">Course Title</label>
+                                    <input type="text" class="form-control" name="title" id="title" value="<?php
+                                                                                                            if (isset($_GET['coursename'])) {
+                                                                                                                echo $_GET['coursename'];
+                                                                                                                $_SESSION['coursename'] = $_GET['coursename'];
+                                                                                                            } else {
+                                                                                                                echo $_SESSION['coursename'];
+                                                                                                            }
+                                                                                                            ?>">
+                                </div>
 
-                            </div>
+                                <div class="form-group">
+                                    <label for="credit">Credit Load. Formerly(<?php
+                                                                if (isset($_GET['creditload'])) {
+                                                                    echo $_GET['creditload'];
+                                                                    $_SESSION['creditload'] = $_GET['creditload'];
+                                                                } else {
+                                                                    echo $_SESSION['creditload'];
+                                                                }
+                                                                ?>)</label>
+                                    <select class="form-control" name="credit" id="credit">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">Other</option>
+                                        <option value="8">Volatile</option>
+                                    </select>
+                                </div>
 
+                                <div class="form-group">
+                                    <label for="semester">Semester. Formerly(<?php
+                                                                if (isset($_GET['semester'])) {
+                                                                    echo $_GET['semester'];
+                                                                    $_SESSION['semester'] = $_GET['semester'];
+                                                                } else {
+                                                                    echo $_SESSION['semester'];
+                                                                }
+                                                                ?>)</label>
+                                    <select class="form-control" name="semester" id="semester">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="faculty">Course Faculty</label>
+                                    <input type="tel" name="faculty" class="form-control" id="faculty" value="<?php
+                                                                                                                if (isset($_GET['faculty'])) {
+                                                                                                                    echo $_GET['faculty'];
+                                                                                                                    $_SESSION['faculty'] = $_GET['faculty'];
+                                                                                                                } else {
+                                                                                                                    echo $_SESSION['faculty'];
+                                                                                                                }
+                                                                                                                ?>">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="level">Level Offering. Formerly(<?php
+                                                                if (isset($_GET['level'])) {
+                                                                    echo $_GET['level'].'00';
+                                                                    $_SESSION['level'] = $_GET['level'];
+                                                                } else {
+                                                                    echo $_SESSION['level'].'00';
+                                                                }
+                                                                ?>)</label>
+                                    <select class="form-control" name="level" id="level">
+                                        <option value="1">100 Level</option>
+                                        <option value="2">200 Level</option>
+                                        <option value="3">300 Level</option>
+                                        <option value="4">400 Level</option>
+                                        <option value="5">500 Level</option>
+                                        <option value="6">600 Level</option>
+                                        <option value="7">Other</option>
+                                    </select>
+                                </div>
+
+                                <?php
+
+                                ?>
+
+                                <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
+
+
+                            </form>
                         </div>
                     </div>
                 </div>
