@@ -522,7 +522,7 @@ function loadTenyears()
 
 function processNewExam($formstream)
 {
-//This function looks through all the items collected and checks if everything is in order
+    //This function looks through all the items collected and checks if everything is in order
     extract($formstream);
 
     if (isset($submit)) {
