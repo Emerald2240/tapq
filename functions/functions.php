@@ -108,6 +108,8 @@ function processRegister($formstream)
             // $_SESSION['rege'] = "true";
             // AddRegistered($firstname, $lastname, $phone, $email, $username, $password, $job, $twitter, $facebook,  $linkedin, $instagram, $uniqueimagename);
             AddRegistered($firstname, $lastname, $phone, $email, $password);
+            header('location:login.php');
+            exit;
             //echo '<br>';
             // echo("Everything entered Succesfully");
             //echo '<br>';
@@ -136,11 +138,12 @@ function processRegister($formstream)
             //     return false;
             // }
         } else {
-            foreach ($data_missing as $miss) {
-                echo '<p class="danger">';
-                echo "$miss";
-                echo '</p>';
-            }
+            // foreach ($data_missing as $miss) {
+            //     echo '<p class="danger">';
+            //     echo "$miss";
+            //     echo '</p>';
+            // }
+            return $data_missing;
         }
     }
 }
@@ -406,13 +409,13 @@ function loadCourses()
 {
     //This loads up all the courses available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
     global $db;
-    $user = "Admin";
+    $user = $_SESSION['username'];
     if (!empty($user)) {
         $query = "SELECT id, code, title, faculty, credit, level, semester FROM courses ORDER BY `id` DESC ";
         $response = @mysqli_query($db, $query);
         if ($response) {
             while ($row = mysqli_fetch_array($response)) {
-                $_SESSION['course_id'] =  $row['id'];
+               
                 //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
 
                 echo '<tr><td>';
@@ -493,6 +496,77 @@ function loadCourses()
             }
         } else {
             echo 'No Posts Yet';
+        }
+    }
+}
+
+function loadAdmins()
+{
+    //This loads up all the courses available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
+    global $db;
+    $user = $_SESSION['username'];
+    if (!empty($user)) {
+        $query = "SELECT id, firstname, lastname, phone, email, date_joined FROM admins ORDER BY `id` DESC ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                
+                //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
+
+                echo '<tr><td>';
+                echo $row['id'];
+                echo '</td>';
+
+                echo  '<td>';
+                echo '<a href="admin_details.php?id=';
+                echo $row['id'];
+                echo '"> ';
+                echo ucwords(strtolower($row['firstname']));
+                echo '</a></td>';
+
+                echo '<td>';
+                echo ucwords(strtolower($row['lastname']));
+                echo '</td>';
+
+                echo '<td>';
+                echo $row['phone'];
+                echo '</td>';
+
+                echo '<td>';
+                echo ucwords(strtolower($row['email']));
+                echo '</td>';
+
+                echo '<td>';
+                echo $row['date_joined'];
+                echo '</td>';
+
+               
+
+
+                // echo '<td><a href="new_exam.php?id=';
+                // echo $row['id'];
+                // echo '&coursename=';
+                // echo ucwords(strtolower($row['title']));
+                // echo '"><i class="fa fa-plus"></i></a></td>';
+
+                echo '<td><a href="edit_admin.php?id=';
+                echo $row['id'];
+                echo '"';
+                echo 'data-toggle="modal" data-target="#deleteModal"';
+                echo '>';
+                echo '<i class="fa fa-edit"></i></a></td>';
+
+
+                echo '<td><a href="delete_admin.php?id=';
+                echo $row['id'];
+                echo '"';
+                echo 'data-toggle="modal" data-target="#deleteModal"';
+                echo '><i class="fa fa-trash"></i></a></td>';
+
+                echo '</tr>';
+            }
+        } else {
+            echo 'Though Impossible, there are no admins Yet';
         }
     }
 }
@@ -616,6 +690,22 @@ function showDataMissing($data_missing)
     }
 }
 
+function showDataMissing2($data_missing)
+{
+    //this function checks if the datamissing array passed in is empty. if it isnt it prints out all of its contents. if it is empty nothing happens
+    if (isset($data_missing)) {
+        foreach ($data_missing as $miss) {
+            echo '<p class="text-danger">';
+            echo $miss;
+            echo '</p>';
+        }
+        // } else {
+        //     echo '<p class="text-success">';
+        //     echo "Success";
+        //     echo '</p>';
+    }
+}
+
 function createQuestionAndAnswerBoxes($num)
 {
 
@@ -639,7 +729,6 @@ function createQuestionAndAnswerBoxes($num)
         </div>';
     }
 }
-
 
 //Look into this function later. it has an unresolved issue
 function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $semester, $number_of_questions, $lecturers, $obj_or_theory, $duration_in_minutes)

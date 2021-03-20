@@ -2,10 +2,13 @@
 require_once "../config/connect.php";
 require_once "../functions/functions.php";
 
-if (isset($_SESSION['rege'])) {
-    header('location:login.php');
-    exit();
-}
+// if (isset($_SESSION['rege'])) {
+//     header('location:login.php');
+//     exit();
+// }
+
+processRegister($_POST);
+
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +36,7 @@ if (isset($_SESSION['rege'])) {
                                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                             </div>
                             <?php
-                            processRegister($_POST);
+                            showDataMissing2(processRegister($_POST));
                             ?>
                             <form class="user" action=<?= $_SERVER["PHP_SELF"]; ?> method="post">
                                 <div class="form-group row">
