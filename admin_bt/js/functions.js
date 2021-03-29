@@ -63,19 +63,52 @@ function validateNewExamForm(numOfquestions, obj_or_theory) {
 
 
                 //example: {id:159223019, title, 'Deadpool', year:2015}
+// var qdata = CKEDITOR.instances.qfieldname.getData();
+// var adata = CKEDITOR.instances.afieldname.getData();
 
                 let q_and_a = {
                     number: i,
                     question: document.getElementById(qfieldname).value,
                     answer: document.getElementById(afieldname).value
+                    // question: appEditorQ.getData(),
+                    // answer: appEditorA.getData()
                 }
 
                 qs_and_as.push(q_and_a);
 
             }
             jsonta.innerHTML = JSON.stringify(qs_and_as, 't', 2);
+           
         }
 
     }
 
 }//end of obj or theory if statement
+
+function addSpecialChar(){
+    var TA = document.getElementById("question1");
+    //var spc = document.createTextNode("&OElig;");
+
+   // TA.appendChild(spc);
+   //TA.textContent += " &gt;";
+
+   TA.innerHTML += " &OElig;" ;
+}
+
+// function createCkQuestion(size){
+//     var num = 1;
+// do{
+// 	ClassicEditor
+// 		.create( document.querySelector( '#question'+num ), {
+// 			//toolbar: [ 'heading', '|', 'bold', 'italic', /*'link',*/ 'specialCharacters' ]
+// 		} )
+// 		.then( editor => {
+// 			window.editor = editor;
+// 		} )
+// 		.catch( err => {
+// 			console.error( err.stack );
+// 		} )
+// num++;
+// 	}
+// 	while(num <= size);
+// }

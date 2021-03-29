@@ -1,14 +1,19 @@
-<script src="ckeditor.js"></script>
+<script src="ckeditor5-build-classic/ckeditor.js"></script>
 
-<script>
+<!-- <script>
+   var num = 1;
+do{
 	ClassicEditor
-		.create( document.querySelector( '#editor' ), {
-			toolbar: [ 'heading', '|', 'bold', 'italic', /*'link',*/ 'specialCharacters' ]
+		.create( document.querySelector( '#question'+num ), {
+			//toolbar: [ 'heading', '|', 'bold', 'italic', /*'link',*/ 'specialCharacters' ]
 		} )
 		.then( editor => {
 			window.editor = editor;
 		} )
 		.catch( err => {
 			console.error( err.stack );
-		} );
-</script>
+		} )
+num++;
+	}
+	while(num <= size);
+</script> -->

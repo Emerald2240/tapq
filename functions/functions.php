@@ -193,6 +193,23 @@ function processLogin($formstream)
 
             $_SESSION['log'] = "true";
 
+            //This is the line of code for saving cookies AKA remember me
+            // if(isset($remember)){
+            //     setcookie("mem_mail",  $_SESSION['email'], time()+(10 * 365 * 24 * 60 * 60));
+            //     setcookie("mem_pass", $password, time()+(10 * 365 * 24 * 60 * 60));
+            //     setcookie("mem_sele",  $_SESSION['admin_id'], time()+(10 * 365 * 24 * 60 * 60));
+            // }else{
+            //     if(isset($_COOKIE['mem_log'])){
+            //         setcookie('mem_log', '');
+            //     }
+            // }
+
+            setcookie("mem_mail",  $_SESSION['email'], time() + (10 * 365 * 24 * 60 * 60));
+
+            // echo "<pre>";
+            // print_r($_COOKIE);
+            // die;
+
             echo "<br>";
             echo 'Logged In';
             echo "<pre>";
@@ -415,7 +432,7 @@ function loadCourses()
         $response = @mysqli_query($db, $query);
         if ($response) {
             while ($row = mysqli_fetch_array($response)) {
-               
+
                 //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
 
                 echo '<tr><td>';
@@ -510,7 +527,7 @@ function loadAdmins()
         $response = @mysqli_query($db, $query);
         if ($response) {
             while ($row = mysqli_fetch_array($response)) {
-                
+
                 //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
 
                 echo '<tr><td>';
@@ -540,7 +557,7 @@ function loadAdmins()
                 echo $row['date_joined'];
                 echo '</td>';
 
-               
+
 
 
                 // echo '<td><a href="new_exam.php?id=';
@@ -717,16 +734,28 @@ function createQuestionAndAnswerBoxes($num)
 
         // echo'Number '. $i;
 
+
         echo '<h6 class="m-0 font-weight-bold">Number ' . $i . '</h6>';
         echo '<hr>';
 
+        // echo '<div class="space">';
+        // echo '<p>Question</p>';
+        // echo '<div id="question'.$i.'"></div>';
+        // echo '</div>';
+
+        // echo '<div class="space">';
+        // echo '<p>Answer</p>';
+        // echo '<div id="answer'.$i.'"></div>';
+        // echo '</div>';
+
         echo  '<label for="question">Question</label>
             <textarea class="form-control question' . $i . '" name="question' . $i . '" id="question' . $i . '" required></textarea>
-
           
             <label for="question">Answer</label>
-            <textarea class="form-control answer' . $i . '" name="answer' . $i . '" id="answer' . $i . '" required></textarea>
+            <textarea class="form-control answer' . $i . '" name="answer' . $i . '" id="answer' . $i . '" required>2 &gt; 1</textarea>
         </div>';
+        echo '</div>';
+
     }
 }
 

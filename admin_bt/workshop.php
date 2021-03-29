@@ -49,7 +49,12 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
             height: 400px;
         }
 
-        #question {
+        .space {
+            margin: 10px;
+            padding: 10px;
+        }
+
+        /* #question {
             height: 100px;
             background-color: pink;
         }
@@ -58,7 +63,7 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
             height: 60px;
             background-color: gray;
             color: white;
-        }
+        } */
 
         #jsonta {
             height: 500px;
@@ -115,6 +120,10 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
                                 <h6 class="m-0 font-weight-bold text-primary">Add New Exam</h6>
                             </div>
 
+                            <!-- <div id="editor">
+                               
+                            </div> -->
+
                             <div class="card-body">
                                 <div class="container-lg">
                                     <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data" class="json" id="json">
@@ -128,7 +137,8 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
 
                                         <div class="form-group m-4">
                                             <label for="jsonta">Click to Preview</label>
-                                            <textarea onclick="validateNewExamForm(<?php echo $_SESSION['exam']['number_of_questions'] ?>)" class="form-control jsonta" readonly name="jsonta" id="jsonta" required></textarea>
+                                            <textarea onclick="validateNewExamForm(<?php echo $_SESSION['exam']['number_of_questions'] ?>), addSpecialChar()" class="form-control jsonta" readonly name="jsonta" id="jsonta" required></textarea>
+
                                         </div>
 
 
@@ -168,45 +178,49 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
 
     <?php require_once("includes/js_includes.php") ?>
     <?php require_once("includes/luckymoshy.php") ?>
+    <!-- <?php require("includes/ck_editor.php") ?> -->
 
     <!-- <script>
-        function validateNewExamForm(numOfquestions) {
-            var qfields = [];
-            var afields = [];
-            qtxtAreaName = 'question';
-            atxtAreaName = 'answer';
-
-            //var json = document.getElementById("json");
-
-            //json.preventDefault(); //Stops the form from doing its default action of refreshing the page
-
-            for (var i = 0; i <= numOfquestions; i++) {
-                qfields[i] = qtxtAreaName + i;
-                afields[i] = atxtAreaName + i;
-            }
-
-            var i, j = qfields.length,
-                fieldname;
-
-            for (i = 1; i <= numOfquestions; i++) {
-                qfieldname = qfields[i];
-                afieldname = afields[i];
-
-                if (document.getElementById(qfieldname).value === "" || document.getElementById(afieldname).value === "") {
-                    console.log("Scream!!!!");
-                } else {
-                    console.log("Doing well!")
-                }
-            }
-
+        var size = <?php echo $_SESSION['exam']['number_of_questions'] ?>;
+        var num = 1;
+        let appEditorQ;
+        do {
+            ClassicEditor
+                .create(document.querySelector('#question' + num), {
+                    //toolbar: [ 'heading', '|', 'bold', 'italic', /*'link',*/ 'specialCharacters' ]
+                })
+                .then(editor => {
+                    window.editor = editor;
+                    appEditorQ = editor;
+                })
+                .catch(err => {
+                    console.error(err.stack);
+                })
+            num++;
         }
-
-        function shout() {
-            console.log("Scream!!!!");
-        }
+        while (num <= size);
     </script> -->
 
-
+    <!-- <script>
+        var size = <?php echo $_SESSION['exam']['number_of_questions'] ?>;
+        var num = 1;
+        let appEditorA;
+        do {
+            ClassicEditor
+                .create(document.querySelector('#answer' + num), {
+                    //toolbar: [ 'heading', '|', 'bold', 'italic', /*'link',*/ 'specialCharacters' ]
+                })
+                .then(editor => {
+                    window.editor = editor;
+                    appEditorA = editor;
+                })
+                .catch(err => {
+                    console.error(err.stack);
+                })
+            num++;
+        }
+        while (num <= size);
+    </script> -->
 
 </body>
 

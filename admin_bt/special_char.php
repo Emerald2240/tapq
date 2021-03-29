@@ -17,18 +17,7 @@ if (!isset($_SESSION['log'])) {
     require_once("includes/head.php");
     ?>
     <title>
-        <?php
-        //this code snippet sets the coursename, id, faculty, credit load, semester, and level variables to the session global array, this is so the data is retained even when the page is refreshed
-        if (isset($_GET['coursename'])) {
-            echo $_GET['coursename'];
-            $_SESSION['course_name'] = $_GET['coursename'];
-        } elseif (isset($_SESSION['course_name'])) {
-            echo $_SESSION['course_name'];
-        } else {
-
-            die;
-        }
-        ?>
+        HTML Special Characters Page
     </title>
 </head>
 
@@ -57,16 +46,7 @@ if (!isset($_SESSION['log'])) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">
-                            <?php
-                            //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
-                            if (isset($_GET['coursename'])) {
-                                echo $_GET['coursename'];
-                                $_SESSION['course_name'] = $_GET['coursename'];
-                                $_SESSION['course_id'] = $_GET['id'];
-                            } else {
-                                echo $_SESSION['course_name'];
-                            }
-                            ?>
+                            SPECIAL CHARACTERS
                         </h1>
                     </div>
 
@@ -132,176 +112,8 @@ if (!isset($_SESSION['log'])) {
 
 
                         <div class="table-responsive">
+                            <h4>Common Special Characters</h4>
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                            <thead>
-                                    <tr>
-                                        <th>Symbol</th>
-                                        <th>HTML Code</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-
-                                <tfoot>
-                                    <tr>
-                                        <th>Symbol</th>
-                                        <th>HTML Code</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody>
-
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td>&amp;nbsp;</td>
-                                        <td>Space</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>&amp;</td>
-                                        <td>&amp;amp;</td>
-                                        <td>Ampersand</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&copy;</td>
-                                        <td>&amp;copy;</td>
-                                        <td>Copyright</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&reg;</td>
-                                        <td>&amp;reg;</td>
-                                        <td>Registered Trademark</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&trade;</td>
-                                        <td>&amp;trade;</td>
-                                        <td>Trademark</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&deg;</td>
-                                        <td>&amp;deg;</td>
-                                        <td>Degree</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&prime;</td>
-                                        <td>&amp;prime;</td>
-                                        <td>Minutes</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&Prime;</td>
-                                        <td>&amp;Prime;</td>
-                                        <td>Seconds</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&quot;</td>
-                                        <td>&amp;quot;</td>
-                                        <td>Quotation</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&hellip;</td>
-                                        <td>&amp;hellip;</td>
-                                        <td>Elipses</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&lsquo;</td>
-                                        <td>&amp;lsquo;</td>
-                                        <td>Opening Single Quote</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&rsquo;</td>
-                                        <td>&amp;rsquo;</td>
-                                        <td>Closing Single Quote</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&sbquo;</td>
-                                        <td>&amp;sbquo;</td>
-                                        <td>Low Single Quote</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&ldquo;</td>
-                                        <td>&amp;ldquo;</td>
-                                        <td>Opening Double Quote</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&rdquo;</td>
-                                        <td>&amp;rdquo;</td>
-                                        <td>Closing Double Quote</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&bdquo;</td>
-                                        <td>&amp;bdquo;</td>
-                                        <td>Low Double Quote</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&bull;</td>
-                                        <td>&amp;bull;</td>
-                                        <td>Bullet</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&ndash;</td>
-                                        <td>&amp;ndash;</td>
-                                        <td>Short Dash</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&mdash;</td>
-                                        <td>&amp;mdash;</td>
-                                        <td>Long Dash</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&oline;</td>
-                                        <td>&amp;oline;</td>
-                                        <td>Overscore</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&brvbar;</td>
-                                        <td>&amp;brvbar;</td>
-                                        <td>Broken Vertical Bar</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&middot;</td>
-                                        <td>&amp;middot;</td>
-                                        <td>Middle Dot</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&lsaquo;</td>
-                                        <td>&amp;lsaquo;</td>
-                                        <td>Single Left Angle Quotation</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&rsaquo;</td>
-                                        <td>&amp;rsaquo;</td>
-                                        <td>Single Right Angle Quotation</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&laquo;</td>
-                                        <td>&amp;laquo;</td>
-                                        <td>Double Left Angle Quotation / Guillemet</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&raquo;</td>
-                                        <td>&amp;raquo;</td>
-                                        <td>Double Right Angle Quotation / Guillemet</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                                <!-- <tr>
-                                            <th colspan="3">HTML COMMON SPECIAL CHARACTERS IN WEB DESIGN</th>
-                                        </tr> -->
 
                                 <thead>
                                     <tr>
@@ -318,14 +130,14 @@ if (!isset($_SESSION['log'])) {
                                         <th>Description</th>
                                     </tr>
                                 </tfoot>
-
                                 <tbody>
+
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td>&amp;nbsp;</td>
                                         <td>Space</td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <td>&amp;</td>
                                         <td>&amp;amp;</td>
@@ -361,6 +173,7 @@ if (!isset($_SESSION['log'])) {
                                         <td>&amp;Prime;</td>
                                         <td>Seconds</td>
                                     </tr>
+
                                     <tr>
                                         <td>&quot;</td>
                                         <td>&amp;quot;</td>
@@ -451,306 +264,273 @@ if (!isset($_SESSION['log'])) {
                                         <td>&amp;raquo;</td>
                                         <td>Double Right Angle Quotation / Guillemet</td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
 
-                        <!--                                             
-                                            <tr>
-                                                <td colspan="3">&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <th colspan="3">HTML Currency Symbols in Web Design</th>
-                                            </tr> -->
-                        <!-- <tr>
-<th class="thsub">Symbol</th>
-<th class="thsub">HTML Code</th>
-<th class="thsub">Description</th>
-</tr> -->
-                        <tr>
-                            <td>&euro;</td>
-                            <td>&amp;euro;</td>
-                            <td>Euro</td>
-                        </tr>
-                        <tr>
-                            <td>&pound;</td>
-                            <td>&amp;pound;</td>
-                            <td>Pound</td>
-                        </tr>
-                        <tr>
-                            <td>&yen;</td>
-                            <td>&amp;yen;</td>
-                            <td>Yen</td>
-                        </tr>
-                        <tr>
-                            <td>&cent;</td>
-                            <td>&amp;cent;</td>
-                            <td>Cents</td>
-                        </tr>
-                        <tr>
-                            <td>&curren;</td>
-                            <td>&amp;curren;</td>
-                            <td>General Currency Sign</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3">HTML Maths Symbols in Web Design</th>
-                        </tr>
-                        <!-- <tr>
-<th class="thsub">Symbol</th>
-<th class="thsub">HTML Code</th>
-<th class="thsub">Description</th>
-</tr> -->
-                        <tr>
-                            <td>&frac14;</td>
-                            <td>&amp;frac14;</td>
-                            <td>Quarter</td>
-                        </tr>
-                        <tr>
-                            <td>&frac12;</td>
-                            <td>&amp;frac12;</td>
-                            <td>Half</td>
-                        </tr>
-                        <tr>
-                            <td>&frac34;</td>
-                            <td>&amp;frac34;</td>
-                            <td>Three Quarters</td>
-                        </tr>
-                        <tr>
-                            <td>&sup1;</td>
-                            <td>&amp;sup1;</td>
-                            <td>Superscript 1</td>
-                        </tr>
-                        <tr>
-                            <td>&sup2;</td>
-                            <td>&amp;sup2;</td>
-                            <td>Superscript 2 / Squared</td>
-                        </tr>
-                        <tr>
-                            <td>&sup3;</td>
-                            <td>&amp;sup3;</td>
-                            <td>Superscript 3 / Cubed</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                << /td>
-                            <td>&amp;lt;</td>
-                            <td>Lesser Than</td>
-                        </tr>
-                        <tr>
-                            <td>></td>
-                            <td>&amp;gt;</td>
-                            <td>Greater Than</td>
-                        </tr>
-                        <tr>
-                            <td>&le;</td>
-                            <td>&amp;le;</td>
-                            <td>Less or equal</td>
-                        </tr>
-                        <tr>
-                            <td>&ge;</td>
-                            <td>&amp;ge;</td>
-                            <td>Greater or equal</td>
-                        </tr>
-                        <tr>
-                            <td>&plusmn;</td>
-                            <td>&amp;plusmn;</td>
-                            <td>Plus Minus</td>
-                        </tr>
-                        <tr>
-                            <td>&divide;</td>
-                            <td>&amp;divide;</td>
-                            <td>Division Sign</td>
-                        </tr>
-                        <tr>
-                            <td>&times;</td>
-                            <td>&amp;times;</td>
-                            <td>Multiplication sign</td>
-                        </tr>
-                        <tr>
-                            <td>&minus;</td>
-                            <td>&amp;minus;</td>
-                            <td>minus Sign</td>
-                        </tr>
-                        <tr>
-                            <td>&permil;</td>
-                            <td>&amp;permil;</td>
-                            <td>Per Mille</td>
-                        </tr>
-                        <tr>
-                            <td>&infin;</td>
-                            <td>&amp;infin;</td>
-                            <td>Infinity</td>
-                        </tr>
-                        <tr>
-                            <td>&forall;</td>
-                            <td>&amp;forall;</td>
-                            <td>For All</td>
-                        </tr>
-                        <tr>
-                            <td>&part;</td>
-                            <td>&amp;part;</td>
-                            <td>Part</td>
-                        </tr>
-                        <tr>
-                            <td>&exist;</td>
-                            <td>&amp;exist;</td>
-                            <td>Exists</td>
-                        </tr>
-                        <tr>
-                            <td>&empty;</td>
-                            <td>&amp;empty;</td>
-                            <td>Empty</td>
-                        </tr>
-                        <tr>
-                            <td>&nabla;</td>
-                            <td>&amp;nabla;</td>
-                            <td>Nabla</td>
-                        </tr>
-                        <tr>
-                            <td>&isin;</td>
-                            <td>&amp;isin;</td>
-                            <td>Isin</td>
-                        </tr>
-                        <tr>
-                            <td>&notin;</td>
-                            <td>&amp;notin;</td>
-                            <td>Notin</td>
-                        </tr>
-                        <tr>
-                            <td>&ni;</td>
-                            <td>&amp;ni;</td>
-                            <td>Ni</td>
-                        </tr>
-                        <tr>
-                            <td>&prod;</td>
-                            <td>&amp;prod;</td>
-                            <td>prod</td>
-                        </tr>
-                        <tr>
-                            <td>&sum;</td>
-                            <td>&amp;sum;</td>
-                            <td>Sum</td>
-                        </tr>
-                        <tr>
-                            <td>&lowast;</td>
-                            <td>&amp;lowast;</td>
-                            <td>Lowast</td>
-                        </tr>
-                        <tr>
-                            <td>&radic;</td>
-                            <td>&amp;radic;</td>
-                            <td>Square Root</td>
-                        </tr>
-                        <tr>
-                            <td>&prop;</td>
-                            <td>&amp;prop;</td>
-                            <td>Proportional To</td>
-                        </tr>
-                        <tr>
-                            <td>&ang;</td>
-                            <td>&amp;ang;</td>
-                            <td>Angle</td>
-                        </tr>
-                        <tr>
-                            <td>&and;</td>
-                            <td>&amp;and;</td>
-                            <td>And</td>
-                        </tr>
-                        <tr>
-                            <td>&or;</td>
-                            <td>&amp;or;</td>
-                            <td>Or</td>
-                        </tr>
-                        <tr>
-                            <td>&cap;</td>
-                            <td>&amp;cap;</td>
-                            <td>Cap</td>
-                        </tr>
-                        <tr>
-                            <td>&cup;</td>
-                            <td>&amp;cup;</td>
-                            <td>Cup</td>
-                        </tr>
-                        <tr>
-                            <td>&int;</td>
-                            <td>&amp;int;</td>
-                            <td>Integral</td>
-                        </tr>
-                        <tr>
-                            <td>&there4;</td>
-                            <td>&amp;there4;</td>
-                            <td>Therefore</td>
-                        </tr>
-                        <tr>
-                            <td>&sim;</td>
-                            <td>&amp;sim;</td>
-                            <td>Similar to</td>
-                        </tr>
-                        <tr>
-                            <td>&cong;</td>
-                            <td>&amp;cong;</td>
-                            <td>Congruent to</td>
-                        </tr>
-                        <tr>
-                            <td>&asymp;</td>
-                            <td>&amp;asymp;</td>
-                            <td>Almost Equal</td>
-                        </tr>
-                        <tr>
-                            <td>&ne;</td>
-                            <td>&amp;ne;</td>
-                            <td>Not Equal</td>
-                        </tr>
-                        <tr>
-                            <td>&equiv;</td>
-                            <td>&amp;equiv;</td>
-                            <td>Equivalent</td>
-                        </tr>
-                        <tr>
-                            <td>&sub;</td>
-                            <td>&amp;sub;</td>
-                            <td>Subset of</td>
-                        </tr>
-                        <tr>
-                            <td>&sup;</td>
-                            <td>&amp;sup;</td>
-                            <td>superset of</td>
-                        </tr>
-                        <tr>
-                            <td>&oplus;</td>
-                            <td>&amp;oplus;</td>
-                            <td>Circled Plus</td>
-                        </tr>
-                        <tr>
-                            <td>&otimes;</td>
-                            <td>&amp;otimes;</td>
-                            <td>Circled Times</td>
-                        </tr>
-                        <tr>
-                            <td>&perp;</td>
-                            <td>&amp;perp;</td>
-                            <td>Perpendicular</td>
-                        </tr>
-                        <tr>
-                            <td>&sdot;</td>
-                            <td>&amp;sdot;</td>
-                            <td>Dot Operator</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3">HTML Miscellaneous Symbols in Web Design</th>
-                        </tr>
-                        <!-- <tr>
-<th class="thsub">Symbol</th>
-<th class="thsub">HTML Code</th>
-<th class="thsub">Description</th>
-</tr> -->
-                        <tr>
+                                    <!-- Currency symbols -->
+                                    <tr>
+                                        <td>&euro;</td>
+                                        <td>&amp;euro;</td>
+                                        <td>Euro</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&pound;</td>
+                                        <td>&amp;pound;</td>
+                                        <td>Pound</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&yen;</td>
+                                        <td>&amp;yen;</td>
+                                        <td>Yen</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&cent;</td>
+                                        <td>&amp;cent;</td>
+                                        <td>Cents</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&curren;</td>
+                                        <td>&amp;curren;</td>
+                                        <td>General Currency Sign</td>
+                                    </tr>
+
+                                    <!-- Math Symbols -->
+                                    <tr>
+                                        <td>&frac14;</td>
+                                        <td>&amp;frac14;</td>
+                                        <td>Quarter</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&frac12;</td>
+                                        <td>&amp;frac12;</td>
+                                        <td>Half</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&frac34;</td>
+                                        <td>&amp;frac34;</td>
+                                        <td>Three Quarters</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&sup1;</td>
+                                        <td>&amp;sup1;</td>
+                                        <td>Superscript 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&sup2;</td>
+                                        <td>&amp;sup2;</td>
+                                        <td>Superscript 2 / Squared</td>
+=                                    <tr>
+                                        <td>&sup3;</td>
+                                        <td>&amp;sup3;</td>
+                                        <td>Superscript 3 / Cubed</td>
+                                    </tr>
+                                    <tr>
+                                        <td><</td>
+                                        <td>&amp;lt;</td>
+                                        <td>Lesser Than</td>
+                                    </tr>
+                                    <tr>
+                                        <td>></td>
+                                        <td>&amp;gt;</td>
+                                        <td>Greater Than</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&le;</td>
+                                        <td>&amp;le;</td>
+                                        <td>Less or equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&ge;</td>
+                                        <td>&amp;ge;</td>
+                                        <td>Greater or equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&plusmn;</td>
+                                        <td>&amp;plusmn;</td>
+                                        <td>Plus Minus</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&divide;</td>
+                                        <td>&amp;divide;</td>
+                                        <td>Division Sign</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&times;</td>
+                                        <td>&amp;times;</td>
+                                        <td>Multiplication sign</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&minus;</td>
+                                        <td>&amp;minus;</td>
+                                        <td>minus Sign</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&permil;</td>
+                                        <td>&amp;permil;</td>
+                                        <td>Per Mille</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&infin;</td>
+                                        <td>&amp;infin;</td>
+                                        <td>Infinity</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&forall;</td>
+                                        <td>&amp;forall;</td>
+                                        <td>For All</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&part;</td>
+                                        <td>&amp;part;</td>
+                                        <td>Part</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&exist;</td>
+                                        <td>&amp;exist;</td>
+                                        <td>Exists</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&empty;</td>
+                                        <td>&amp;empty;</td>
+                                        <td>Empty</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nabla;</td>
+                                        <td>&amp;nabla;</td>
+                                        <td>Nabla</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&isin;</td>
+                                        <td>&amp;isin;</td>
+                                        <td>Isin</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&notin;</td>
+                                        <td>&amp;notin;</td>
+                                        <td>Notin</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&ni;</td>
+                                        <td>&amp;ni;</td>
+                                        <td>Ni</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&prod;</td>
+                                        <td>&amp;prod;</td>
+                                        <td>prod</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&sum;</td>
+                                        <td>&amp;sum;</td>
+                                        <td>Sum</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&lowast;</td>
+                                        <td>&amp;lowast;</td>
+                                        <td>Lowast</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&radic;</td>
+                                        <td>&amp;radic;</td>
+                                        <td>Square Root</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&prop;</td>
+                                        <td>&amp;prop;</td>
+                                        <td>Proportional To</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&ang;</td>
+                                        <td>&amp;ang;</td>
+                                        <td>Angle</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&and;</td>
+                                        <td>&amp;and;</td>
+                                        <td>And</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&or;</td>
+                                        <td>&amp;or;</td>
+                                        <td>Or</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&cap;</td>
+                                        <td>&amp;cap;</td>
+                                        <td>Cap</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&cup;</td>
+                                        <td>&amp;cup;</td>
+                                        <td>Cup</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&int;</td>
+                                        <td>&amp;int;</td>
+                                        <td>Integral</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&there4;</td>
+                                        <td>&amp;there4;</td>
+                                        <td>Therefore</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&sim;</td>
+                                        <td>&amp;sim;</td>
+                                        <td>Similar to</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&cong;</td>
+                                        <td>&amp;cong;</td>
+                                        <td>Congruent to</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&asymp;</td>
+                                        <td>&amp;asymp;</td>
+                                        <td>Almost Equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&ne;</td>
+                                        <td>&amp;ne;</td>
+                                        <td>Not Equal</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&equiv;</td>
+                                        <td>&amp;equiv;</td>
+                                        <td>Equivalent</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&sub;</td>
+                                        <td>&amp;sub;</td>
+                                        <td>Subset of</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&sup;</td>
+                                        <td>&amp;sup;</td>
+                                        <td>superset of</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&oplus;</td>
+                                        <td>&amp;oplus;</td>
+                                        <td>Circled Plus</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&otimes;</td>
+                                        <td>&amp;otimes;</td>
+                                        <td>Circled Times</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&perp;</td>
+                                        <td>&amp;perp;</td>
+                                        <td>Perpendicular</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&sdot;</td>
+                                        <td>&amp;sdot;</td>
+                                        <td>Dot Operator</td>
+                                    </tr>
+
+                                    <!-- Miscallenous Symbols -->
+
+                                    <tr>
                             <td>&iexcl;</td>
                             <td>&amp;iexcl;</td>
                             <td>Inverted Exclamation Mark</td>
@@ -900,17 +680,9 @@ if (!isset($_SESSION['log'])) {
                             <td>&amp;diams;</td>
                             <td>Diamonds</td>
                         </tr>
-                        <tr>
-                            <td colspan="3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3">HTML <b>Foreign&nbsp; Characters in Web Design</b></th>
-                        </tr>
-                        <!-- <tr>
-<th class="thsub">Symbol</th>
-<th class="thsub">HTML Code</th>
-<th class="thsub">Description</th>
-</tr> -->
+
+                        <!-- Foreign Characters -->
+
                         <tr>
                             <td>&Agrave;</td>
                             <td>&amp;Agrave;</td>
@@ -1196,17 +968,9 @@ if (!isset($_SESSION['log'])) {
                             <td>&amp;yacute;</td>
                             <td>Acute accented small y</td>
                         </tr>
-                        <tr>
-                            <td colspan="3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3">HTML <b>Latin&nbsp; Characters in Web Design</b></th>
-                        </tr>
-                        <!-- <tr>
-<th class="thsub">Symbol</th>
-<th class="thsub">HTML Code</th>
-<th class="thsub">Description</th>
-</tr> -->
+
+                        <!-- Latin Characters -->
+
                         <tr>
                             <td>&OElig;</td>
                             <td>&amp;OElig;</td>
@@ -1232,17 +996,9 @@ if (!isset($_SESSION['log'])) {
                             <td>&amp;scaron;</td>
                             <td>Latin small letter s with caron</td>
                         </tr>
-                        <tr>
-                            <td colspan="3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3">HTML <b>Icelandic&nbsp; Characters in Web Design</b></th>
-                        </tr>
-                        <!-- <tr>
-<th class="thsub">Symbol</th>
-<th class="thsub">HTML Code</th>
-<th class="thsub">Description</th>
-</tr> -->
+
+                        <!-- Icelandic Characters -->
+
                         <tr>
                             <td>&ETH;</td>
                             <td>&amp;ETH;</td>
@@ -1263,33 +1019,17 @@ if (!isset($_SESSION['log'])) {
                             <td>&amp;thorn;</td>
                             <td>Small thorn</td>
                         </tr>
-                        <tr>
-                            <td colspan="3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3">HTML <b>German&nbsp; Characters in Web Design</b></th>
-                        </tr>
-                        <!-- <tr>
-<th class="thsub">Symbol</th>
-<th class="thsub">HTML Code</th>
-<th class="thsub">Description</th>
-</tr> -->
+
+<!-- German Characters -->
+
                         <tr>
                             <td>&szlig;</td>
                             <td>&amp;szlig;</td>
                             <td>Small sharp s</td>
                         </tr>
-                        <tr>
-                            <td colspan="3">&nbsp;</td>
-                        </tr>
-                        <tr>
-                            <th colspan="3">HTML <b>Greek&nbsp; Characters in Web Design</b></th>
-                        </tr>
-                        <!-- <tr>
-<th class="thsub">Symbol</th>
-<th class="thsub">HTML Code</th>
-<th class="thsub">Description</th>
-</tr> -->
+
+                        <!-- Greek Characters -->
+
                         <tr>
                             <td>&Alpha;</td>
                             <td>&amp;Alpha;</td>
@@ -1550,11 +1290,20 @@ if (!isset($_SESSION['log'])) {
                             <td>&amp;piv;</td>
                             <td>Pi Symbol</td>
                         </tr>
-                        <tr>
-                            <!-- <td colspan="3">&nbsp;</td> -->
-                        </tr>
-                        </tbody>
-                        </table>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+
+
+
+
+
+
+
 
 
                     </div>

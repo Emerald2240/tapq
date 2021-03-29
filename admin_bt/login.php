@@ -7,7 +7,7 @@ require_once "../functions/functions.php";
 <html lang="en">
 
 <head>
-<?php
+    <?php
     require_once("includes/head.php");
     ?>
     <title>SB Admin 2 - Login</title>
@@ -34,12 +34,12 @@ require_once "../functions/functions.php";
                                     </div>
 
                                     <form class="user" action=<?= $_SERVER["PHP_SELF"]; ?> method="post">
-                                      
+
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" name="email" placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" name="email" value="<?php if (isset($_COOKIE['mem_mail'])) { echo $_COOKIE['mem_mail'];} ?>" placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" name="password" id="password" value="1"  placeholder="Password">
                                         </div>
                                         <?php
                                         processLogin($_POST);
@@ -49,18 +49,18 @@ require_once "../functions/functions.php";
                                             exit();
                                         }
                                         ?>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input type="checkbox" class="" id="remember">
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
-                                        </div>
-                                       
+                                        </div> -->
+
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button>
                                         <hr>
-                                        
+
 
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
