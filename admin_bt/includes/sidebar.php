@@ -48,6 +48,7 @@
             <a class="collapse-item" href="forgot-password.html">Forgot Password</a> -->
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">Other Pages:</h6>
+                <a class="collapse-item" href="special_char.php">Special Character Page</a>
                 <a class="collapse-item" href="404.php">404 Page</a>
                 <a class="collapse-item" href="blank.php">Blank Page</a>
             </div>
@@ -87,9 +88,9 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item  <?php
-                            if (strpos($_SERVER["PHP_SELF"], "index.php")) {
-                                echo 'active';
-                            }
+                            // if (strpos($_SERVER["PHP_SELF"], "index.php")) {
+                            //     echo 'active';
+                            // }
                             ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>

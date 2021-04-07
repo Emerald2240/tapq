@@ -63,8 +63,8 @@ function validateNewExamForm(numOfquestions, obj_or_theory) {
 
 
                 //example: {id:159223019, title, 'Deadpool', year:2015}
-// var qdata = CKEDITOR.instances.qfieldname.getData();
-// var adata = CKEDITOR.instances.afieldname.getData();
+                // var qdata = CKEDITOR.instances.qfieldname.getData();
+                // var adata = CKEDITOR.instances.afieldname.getData();
 
                 let q_and_a = {
                     number: i,
@@ -78,22 +78,105 @@ function validateNewExamForm(numOfquestions, obj_or_theory) {
 
             }
             jsonta.innerHTML = JSON.stringify(qs_and_as, 't', 2);
-           
+
         }
 
     }
 
 }//end of obj or theory if statement
 
-function addSpecialChar(){
+var focusedEle = "";
+
+function setLastFocusedElement(elementId) {
+    focusedEle = elementId;
+   // console.log(focusedEle);
+}
+
+function setBluredElement() {
+    focusedEle = "empty";
+    //console.log(focusedEle);
+
+}
+
+function addSpecialChar() {
     var TA = document.getElementById("question1");
     //var spc = document.createTextNode("&OElig;");
 
-   // TA.appendChild(spc);
-   //TA.textContent += " &gt;";
+    // TA.appendChild(spc);
+    //TA.textContent += " &gt;";
 
-   TA.innerHTML += " &OElig;" ;
+    TA.innerHTML += " &OElig;";
 }
+
+
+document.querySelector('#dataTable').onclick = function (ev) {
+    var index = ev.target.parentElement.rowIndex;
+    var row = document.getElementById("dataTable").rows[index].cells[0].innerHTML;
+
+    if (focusedEle == "") { } else {
+        var TA = document.getElementById(focusedEle);
+        TA.innerHTML += row;
+    }
+
+    // console.log(row);
+
+    // alert(index);
+}
+
+$(document).ready(
+    function () {
+        // nav bar toggle
+        $("#special_bar").click(function () {
+            $("#dataTb").slideToggle();
+        })
+
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function insertChar() {
+//     var TA = document.getElementById("question1");
+//     // //var spc = document.createTextNode("&OElig;");
+
+//     // // TA.appendChild(spc);
+//     // //TA.textContent += " &gt;";
+//     //     var ev =  document.getElementById("dataTable");
+//     // var tableRow = ev.target.parentElement.rowIndex;
+//     //     TA.innerHTML +=  document.getElementById("dataTable").rows[tableRow].innerHTML;
+
+//     //alert(document.getElementById("table").rows[0].innerHTML);
+
+// }
+
 
 // function createCkQuestion(size){
 //     var num = 1;
@@ -112,3 +195,4 @@ function addSpecialChar(){
 // 	}
 // 	while(num <= size);
 // }
+

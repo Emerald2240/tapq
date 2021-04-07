@@ -725,6 +725,10 @@ function showDataMissing2($data_missing)
 
 function createQuestionAndAnswerBoxes($num)
 {
+    echo '<div class="special_char" >';
+    echo '<i id="special_bar" style="display:inline-block; text-align:right; width:100%; font-size:20px;" class="fa fa-chevron-down">&$/</i>';
+    require("includes/special_char_table.php");
+    echo '</div>';
 
     //This function creates question and answer boxes for the number of questions available. its id's are given so its arranged perfectly with luckyMoshy
     for ($i = 1; $i <= $num; $i++) {
@@ -748,14 +752,15 @@ function createQuestionAndAnswerBoxes($num)
         // echo '<div id="answer'.$i.'"></div>';
         // echo '</div>';
 
-        echo  '<label for="question">Question</label>
-            <textarea class="form-control question' . $i . '" name="question' . $i . '" id="question' . $i . '" required></textarea>
-          
-            <label for="question">Answer</label>
-            <textarea class="form-control answer' . $i . '" name="answer' . $i . '" id="answer' . $i . '" required>2 &gt; 1</textarea>
-        </div>';
-        echo '</div>';
+        
 
+        echo  '<label for="question">Question</label>';
+        echo '<textarea  onfocus="setLastFocusedElement(\'question' . $i . '\')" class="form-control question' . $i . '" name="question' . $i . '" id="question' . $i . '" required></textarea>';
+
+        echo '<label for="question">Answer</label>';
+        echo '<textarea  onfocus="setLastFocusedElement(\'answer' . $i . '\')" class="form-control answer' . $i . '" name="answer' . $i . '" id="answer' . $i . '" required></textarea>';
+
+        echo '</div>';
     }
 }
 

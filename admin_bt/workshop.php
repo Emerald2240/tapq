@@ -137,7 +137,7 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
 
                                         <div class="form-group m-4">
                                             <label for="jsonta">Click to Preview</label>
-                                            <textarea onclick="validateNewExamForm(<?php echo $_SESSION['exam']['number_of_questions'] ?>), addSpecialChar()" class="form-control jsonta" readonly name="jsonta" id="jsonta" required></textarea>
+                                            <textarea onclick="validateNewExamForm(<?php echo $_SESSION['exam']['number_of_questions'] ?>)" class="form-control jsonta" readonly name="jsonta" id="jsonta" required></textarea>
 
                                         </div>
 
@@ -176,9 +176,12 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
     <!-- Logout Modal-->
     <?php require_once("includes/logout_modal.php") ?>
 
-    <?php require_once("includes/js_includes.php") ?>
+
     <?php require_once("includes/luckymoshy.php") ?>
     <!-- <?php require("includes/ck_editor.php") ?> -->
+    <?php require_once("includes/js_includes.php") ?>
+    <?php require_once("includes/data_tables.php"); ?>
+
 
     <!-- <script>
         var size = <?php echo $_SESSION['exam']['number_of_questions'] ?>;

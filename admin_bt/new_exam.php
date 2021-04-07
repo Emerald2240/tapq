@@ -122,7 +122,7 @@ $dataMissing[] = processNewExam($_POST);
 
                                             <div class="form-group">
                                                 <label for="no_questions">Number Of Questions</label>
-                                                <input type="number" class="form-control" name="no_questions" id="no_questions" value="3">
+                                                <input  type="number" class="form-control" name="no_questions" id="no_questions" value="3">
                                             </div>
 
                                             <div class="form-group">
