@@ -111,7 +111,7 @@ if (!isset($_SESSION['log'])) {
 
 
 
-                        <?php require_once("includes/special_char_table.php"); ?>
+                        <?php require_once("includes/special_char_table_Read_Only.php"); ?>
 
 
 

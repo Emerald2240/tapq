@@ -104,13 +104,6 @@ $dataMissing[] = processNewExam($_POST);
                                                 </select>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label for="semester">Exam Semester</label>
-                                                <select class="form-control" name="semester" id="semester">
-                                                    <option value="1">First</option>
-                                                    <option value="2">Second</option>
-                                                </select>
-                                            </div>
 
                                             <div class="form-group">
                                                 <label for="obj_thr">Exam Format</label>

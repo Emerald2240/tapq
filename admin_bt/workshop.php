@@ -10,7 +10,7 @@ if (!isset($_SESSION['log'])) {
 //echo '<pre>';
 //print_r($_SESSION);
 
-processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION['exam']['year'], $_SESSION['exam']['semester'],  $_SESSION['exam']['number_of_questions'],  $_SESSION['exam']['lecturer'], $_SESSION['exam']['format'],  $_SESSION['exam']['duration']);
+processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION['exam']['year'],   $_SESSION['exam']['number_of_questions'],  $_SESSION['exam']['lecturer'], $_SESSION['exam']['format'],  $_SESSION['exam']['duration']);
 ?>
 
 <!DOCTYPE html>

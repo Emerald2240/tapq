@@ -630,15 +630,6 @@ function processNewExam($formstream)
             }
         }
 
-        if (empty($semester)) {
-            $data_missing['Semester'] = "Missing semester";
-        } else {
-            if ($semester < 1 || $semester > 2) {
-                $data_missing['Semester'] = "Invalid semester";
-            } else {
-                $semester = trim(Sanitize($semester));
-            }
-        }
 
         if (empty($obj_thr)) {
             $data_missing['obj_or_thr'] = "Missing Exam format";
@@ -678,7 +669,6 @@ function processNewExam($formstream)
         if (empty($data_missing)) {
             $_SESSION['new_exam_set']                  = 'true';
             $_SESSION['exam']['year']                  = $exam_year;
-            $_SESSION['exam']['semester']              = $semester;
             $_SESSION['exam']['format']                = $obj_thr;
             $_SESSION['exam']['number_of_questions']   = $no_questions;
             $_SESSION['exam']['lecturer']              = $lecturer;
@@ -764,8 +754,8 @@ function createQuestionAndAnswerBoxes($num)
     }
 }
 
-//Look into this function later. it has an unresolved issue
-function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $semester, $number_of_questions, $lecturers, $obj_or_theory, $duration_in_minutes)
+//Look into this function later. it has an unresolved issue.
+function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number_of_questions, $lecturers, $obj_or_theory, $duration_in_minutes)
 {
 
     extract($q_and_a_formstream);
@@ -785,7 +775,7 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $semest
 
         //This simply adds the filtered and cleansed data into the database (questions and answers)
         global $db;
-        $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year, 	semester, 	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time  ) VALUES ('$course_id', '$admin_id', '$year', '$semester', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes')";
+        $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time  ) VALUES ('$course_id', '$admin_id', '$year', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes')";
 
         if (mysqli_query($db, $sql)) {
 

@@ -98,16 +98,6 @@ function setBluredElement() {
 
 }
 
-function addSpecialChar() {
-    var TA = document.getElementById("question1");
-    //var spc = document.createTextNode("&OElig;");
-
-    // TA.appendChild(spc);
-    //TA.textContent += " &gt;";
-
-    TA.innerHTML += " &OElig;";
-}
-
 
 document.querySelector('#dataTable').onclick = function (ev) {
     var index = ev.target.parentElement.rowIndex;
@@ -115,7 +105,13 @@ document.querySelector('#dataTable').onclick = function (ev) {
 
     if (focusedEle == "") { } else {
         var TA = document.getElementById(focusedEle);
-        TA.innerHTML += row;
+        //var currentText = TA.textContent;
+//currentText += row;
+//TA.innerHTML = currentText;
+        //TA.innerHTML += row;   
+        TA.value += row;
+        TA.focus();
+        TA.selectionEnd;   
     }
 
     // console.log(row);

@@ -1,4 +1,4 @@
-<div style="display:none; padding:2px 50px; width: 100%; height:197px; border: orange solid 3px;" class="table-responsive" id="dataTb">
+<div style="display:block; padding:2px 50px; width: 100%;" class="table-responsive" id="dataTb">
     <!-- <h4>Common Special Characters</h4> -->
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
