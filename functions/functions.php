@@ -457,7 +457,7 @@ function loadCourses()
                 // echo '&edit=1';
 
                 echo '"> ';
-                echo ucwords(strtolower($row['title']));
+                echo ucwords(strtoupper($row['title']));
                 echo '</a></td>';
 
                 echo '<td>';
@@ -658,6 +658,12 @@ function processNewExam($formstream)
             $lecturer = trim(Sanitize($lecturer));
         }
 
+        if (empty($instructions)) {
+            $data_missing['Exam Instructions'] = "Missing Instructions";
+        } else {
+            $instructions = trim(Sanitize($instructions));
+        }
+
 
         if (empty($duration)) {
             $data_missing['Exam duration'] = "Missing Exam duration";
@@ -673,6 +679,7 @@ function processNewExam($formstream)
             $_SESSION['exam']['number_of_questions']   = $no_questions;
             $_SESSION['exam']['lecturer']              = $lecturer;
             $_SESSION['exam']['duration']              = $duration;
+            $_SESSION['exam']['instructions']              = $instructions;
 
             header('location:workshop.php');
         } else {
@@ -742,7 +749,7 @@ function createQuestionAndAnswerBoxes($num)
         // echo '<div id="answer'.$i.'"></div>';
         // echo '</div>';
 
-        
+
 
         echo  '<label for="question">Question</label>';
         echo '<textarea  onfocus="setLastFocusedElement(\'question' . $i . '\')" class="form-control question' . $i . '" name="question' . $i . '" id="question' . $i . '" required></textarea>';
@@ -755,7 +762,7 @@ function createQuestionAndAnswerBoxes($num)
 }
 
 //Look into this function later. it has an unresolved issue.
-function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number_of_questions, $lecturers, $obj_or_theory, $duration_in_minutes)
+function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number_of_questions, $lecturers, $obj_or_theory, $duration_in_minutes, $instructions)
 {
 
     extract($q_and_a_formstream);
@@ -768,18 +775,18 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
         if (empty($jsonta)) {
             $data_missing['Q_and_A'] = "Missing questions and answer box";
         } else {
-            $jsonta = trim(Sanitize($jsonta));
+            $jsonta = trim(($jsonta));
         }
 
 
 
         //This simply adds the filtered and cleansed data into the database (questions and answers)
         global $db;
-        $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time  ) VALUES ('$course_id', '$admin_id', '$year', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes')";
+        $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time, instructions  ) VALUES ('$course_id', '$admin_id', '$year', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes', '$instructions')";
 
         if (mysqli_query($db, $sql)) {
 
-            echo "Exam Saved";
+            //echo "Exam Saved";
             // echo '<p class="text-success">';
             // echo "Course Saved";
             // echo '</p>';
@@ -811,4 +818,134 @@ function deleteCourse()
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
+}
+
+
+
+
+//FRONTEND//
+
+function loadLevelExamQuestions($level)
+{
+    global $db;
+    $query = "SELECT id, code, title, faculty, credit, level, semester FROM courses  WHERE courses.level = '$level'  ORDER BY `code` ASC ";
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+
+        while ($row = mysqli_fetch_array($response)) {
+            echo  '<td>';
+            echo '<a class="course" href="';
+            echo 'course_exams.php?course_id=';
+            echo $row['id'];
+            echo '&course_code=';
+            echo $row['code'];
+            echo '">';
+
+            echo '<ul class="list-group list-group-horizontal">';
+
+            echo '<li class="list-group-item">';
+            echo ucwords(($row['code']));
+            echo '</li>';
+
+            echo '<li class="list-group-item">';
+            echo ucwords(($row['title']));
+            echo '</li>';
+
+            echo '<li class="list-group-item">';
+            echo ucwords(strtolower($row['faculty']));
+            echo '</li>';
+
+            echo '</ul>';
+            echo '</a>';
+        }
+    } else {
+        echo 'No Posts Yet';
+    }
+}
+
+function loadCourseExamYears($course_id)
+{
+    global $db;
+
+    $query = "SELECT id, course_id,	admin_id,	year,	num_questions,	questions_and_answers,	lecturers, time,	obj_thr FROM q_and_a WHERE q_and_a.course_id = '$course_id'  ORDER BY `year` ASC ";
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+
+        while ($row = mysqli_fetch_array($response)) {
+            echo  '<td>';
+            echo '<a class="course" href="';
+            echo 'exam_questions.php?course_id=';
+            echo $row['course_id'];
+            echo '&exam_year=';
+            echo $row['year'];
+            echo '&exam_id=';
+            echo $row['id'];
+            echo '">';
+
+            echo '<ul class="list-group list-group-horizontal">';
+
+            echo '<li class="list-group-item">';
+            echo ucwords(($row['year']));
+            echo '</li>';
+
+            echo '<li class="list-group-item">';
+            if ($row['obj_thr'] == 2) {
+                echo ucwords(strtolower('theory'));
+            } else {
+                echo ucwords(strtolower('objective'));
+            }
+            echo '</li>';
+
+            echo '<li class="list-group-item">';
+            echo ucwords(strtolower($row['num_questions'] . ' questions'));
+            echo '</li>';
+
+            echo '</ul>';
+            echo '</a>';
+        }
+    } else {
+        echo 'No Posts Yet';
+    }
+}
+
+function loadQandA($exam_id)
+{
+    global $db;
+    $count = 0;
+
+
+    $query = "SELECT id, course_id,	admin_id, year,	num_questions,	questions_and_answers,	lecturers, time, obj_thr FROM q_and_a WHERE q_and_a.id = '$exam_id' ";
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+
+        while ($row = mysqli_fetch_array($response)) {
+            $json = $row['questions_and_answers'];
+            $json_dec = json_decode($json);
+            //echo $json;
+            echo "<br>";
+
+            //echo $row['questions_and_answers'];
+
+            if (!is_array($json)) {
+                //echo "This is a json array";
+                //echo "<br><br>";
+                for ($count = 0; $count < count($json_dec); $count++) {
+                    if (is_array($json[$count])) {
+                        loadQandA($json[$count]);
+                    } else {
+                        $arr = json_decode($json, true);
+                        // print_r($arr);
+                        echo $arr[$count]["number"];
+                        echo "] ";
+                        echo $arr[$count]["question"];
+                        echo "<br>";
+                        echo $arr[$count]["answer"];
+                        echo "<br><br>";
+                    }
+                }
+            }
+        }
+    } else {
+        echo 'No Posts Yet';
+    }
 }

@@ -50,6 +50,7 @@
                                                 <a href="level4.php" class="dropdown-item">400 level</a>
                                                 <a href="level5.php" class="dropdown-item">500 level</a>
                                                 <a href="level6.php" class="dropdown-item">600 level</a>
+                                                <a href="level0.php" class="dropdown-item">Other levels</a>
                                             </div>
                                         </div>
                                         <a href="#" class="btn">Login</a>

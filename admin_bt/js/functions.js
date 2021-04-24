@@ -128,6 +128,12 @@ $(document).ready(
 
     })
 
+    function parseJsonQandA(jsonqa){
+var obj = JSON.parse(jsonqa);
+document.write(obj[1]+"<br>");
+console.log(jsonqa);
+    }
+
 
 
 

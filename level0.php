@@ -3,6 +3,7 @@ require_once "config/connect.php";
 require_once "functions/functions.php";
 //session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +11,7 @@ require_once "functions/functions.php";
     <?php
     require_once "includes/head.php";
     ?>
-    <title>TA Past Questions 500 Level Page</title>
+    <title>TA Past Questions 100 Level Page</title>
 </head>
 
 <body>
@@ -27,7 +28,7 @@ require_once "functions/functions.php";
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2>Fifth Year</h2>
+                        <h2>Other Years</h2>
                     </div>
 
                 </div>
@@ -69,10 +70,8 @@ require_once "functions/functions.php";
                         <li class="page-item disabled">
                             <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                         </li>
-                        <li class="page-item active"><a class="page-link" href="#">A</a></li>
-                        <li class="page-item" aria-current="page">
-                            <a class="page-link" href="#">B <span class="sr-only">(current)</span></a>
-                        </li>
+                        <li class="page-item"><a class="page-link" href="#">A</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">B</a></li>
                         <li class="page-item"><a class="page-link" href="#">C</a></li>
                         <li class="page-item"><a class="page-link" href="#">D</a></li>
                         <li class="page-item"><a class="page-link" href="#">E</a></li>
@@ -82,13 +81,14 @@ require_once "functions/functions.php";
                         <li class="page-item">
                             <a class="page-link" href="#">Next</a>
                         </li>
+
                     </ul>
                 </nav>
             </div> -->
 
             <div class="container-lg">
                 <?php
-                loadLevelExamQuestions(5);
+                loadLevelExamQuestions(1);
                 ?>
             </div>
 
