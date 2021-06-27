@@ -844,7 +844,7 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
         if (empty($jsonta)) {
             $data_missing['Q_and_A'] = "Missing questions and answer box";
         } else {
-           $jsonta = trim($jsonta);
+            $jsonta = trim($jsonta);
             //$jsonta = utf8_encode($jsonta), ENT_QUOTES);
         }
 
@@ -1019,7 +1019,7 @@ function loadQandA($exam_id)
 
         while ($row = mysqli_fetch_array($response)) {
             $json = $row['questions_and_answers'];
-            $json_dec = json_decode($json);
+
             //echo $json;
             echo "<br>";
 
@@ -1047,50 +1047,56 @@ function loadQandA($exam_id)
             // }
 
 
-            if (!is_array($json)) {
-                //echo "This is a json array";
-                //echo "<br><br>";
-                for ($count = 0; $count < count($json_dec); $count++) {
-                    if (is_array($json[$count])) {
-                        loadQandA($json[$count]);
-                    } else {
-                        $arr = json_decode($json, true);
-                        echo ' <div class="question">'; //start of question div
-                        echo '<span class="num">';
-                        echo $arr[$count]["number"];
-                        echo '</span>';
-                        echo '<i class="fa fa-chart-bar fachart" id=""></i>';
-                        echo '<div class="q">';
-                        echo $arr[$count]["question"];
-                        echo '</div><br>';
-                        echo ' <div class="topics">';
-
-                        $topicsArray = $arr[$count]["topic"];
-                        $splitedTopicsArray = explode(";", $topicsArray);
-                        foreach ($splitedTopicsArray as $topic) {
-                            echo '<span class="item">';
-                            echo $topic;
-                            echo '</span>';
-                        }
-                    
-                        echo '</div>'; //end of topic div
-
-                        echo '<i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer(';
-                        echo "'#answer";
-                        echo $arr[$count]["number"] . "'";
-                        echo ')"></i>';
-                        echo '<div class="a container-lg" id="answer' . $arr[$count]["number"] . '">';
-                        echo '<hr>';
-                        echo $arr[$count]["answer"];
-                        echo '</div>';
-                        echo '<div class="feedback container-lg"></div>';
-                        echo '</div>';//end of question div
-                    }
-                }
-            }
+            decodeJSON($json);
         }
     } else {
         echo 'No Posts Yet';
+    }
+}
+
+function decodeJSON($json)
+{
+    $json_dec = json_decode($json);
+    if (!is_array($json)) {
+        //echo "This is a json array";
+        //echo "<br><br>";
+        for ($count = 0; $count < count($json_dec); $count++) {
+            if (is_array($json[$count])) {
+                decodeJSON($json[$count], $json_dec);
+            } else {
+                $arr = json_decode($json, true);
+                echo ' <div class="question">'; //start of question div
+                echo '<span class="num">';
+                echo $arr[$count]["number"];
+                echo '</span>';
+                echo '<i class="fa fa-chart-bar fachart" id=""></i>';
+                echo '<div class="q">';
+                echo $arr[$count]["question"];
+                echo '</div><br>';
+                echo ' <div class="topics">';
+
+                $topicsArray = $arr[$count]["topic"];
+                $splitedTopicsArray = explode(";", $topicsArray);
+                foreach ($splitedTopicsArray as $topic) {
+                    echo '<span class="item">';
+                    echo $topic;
+                    echo '</span>';
+                }
+
+                echo '</div>'; //end of topic div
+
+                echo '<i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer(';
+                echo "'#answer";
+                echo $arr[$count]["number"] . "'";
+                echo ')"></i>';
+                echo '<div class="a container-lg" id="answer' . $arr[$count]["number"] . '">';
+                echo '<hr>';
+                echo $arr[$count]["answer"];
+                echo '</div>';
+                echo '<div class="feedback container-lg"></div>';
+                echo '</div>'; //end of question div
+            }
+        }
     }
 }
 
@@ -1101,18 +1107,63 @@ function yearSlashYear($year)
     echo $year;
 }
 
-function getExamInstructions($exam_id){
+function getExamInstructions($exam_id)
+{
     global $db;
-   
+
     $sql = "SELECT `instructions` FROM `q_and_a`  WHERE q_and_a.id = '$exam_id' ";
-        $response = @mysqli_query($db, $sql);
+    $response = @mysqli_query($db, $sql);
     if ($response) {
         while ($row = mysqli_fetch_array($response)) {
-        echo $row['instructions'];
+            echo $row['instructions'];
+        }
     }
 }
 
+function generateCQAPSL($course_id)
+{
+    //Cumulative Question Appearance Score List
+
+    $questions = [];
+    global $db;
+
+    $query = "SELECT id, course_id,	admin_id,	year,	num_questions,	questions_and_answers,	lecturers, time,	obj_thr FROM q_and_a WHERE q_and_a.course_id = '$course_id'  ORDER BY `year` ASC ";
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+
+        while ($row = mysqli_fetch_array($response)) {
+            $json = $row['questions_and_answers'];
+           $questions += decodeJSONMini($json, $questions);
+        }
+    } else {
+        echo 'No Posts Yet';
+    }
+    echo '<pre>';
+    print_r($questions);
+    die;
+}
 
 
+function decodeJSONMini($json, $questions)
+{
+    
+    $innerquestion = [];
 
+    $json_dec = json_decode($json);
+
+    if (!is_array($json)) {
+
+        for ($count = 0; $count < count($json_dec); $count++) {
+            if (is_array($json[$count])) {
+                decodeJSONMini($json[$count], $questions);//This line might have issues later, because "questions"  is not locally initialised here
+            } else {
+                $arr = json_decode($json, true);
+                
+                array_push($questions, $arr[$count]["question"]);
+            }
+        }
+    }
+    //    echo '<pre>';
+    //     print_r($innerquestion);
+    return $questions;
 }
