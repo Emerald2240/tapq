@@ -83,7 +83,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Format</th>
                                                     <th>Lecturer</th>
                                                     <th>Time</th>
-                                                    <th>Admin</th>
+                                                    <th>Admin</th>  
                                                     <th>Recreate</th>
                                                     <th>Delete</th>
                                                 </tr>

@@ -1059,6 +1059,7 @@ function loadQandA($exam_id)
                         echo '<span class="num">';
                         echo $arr[$count]["number"];
                         echo '</span>';
+                        echo '<i class="fa fa-chart-bar fachart" id=""></i>';
                         echo '<div class="q">';
                         echo $arr[$count]["question"];
                         echo '</div><br>';
@@ -1110,5 +1111,8 @@ function getExamInstructions($exam_id){
         echo $row['instructions'];
     }
 }
+
+
+
 
 }

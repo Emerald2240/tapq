@@ -34,6 +34,7 @@ require_once "functions/functions.php";
         <?php
         require_once "includes/header.php";
         ?>
+        
         <!-- Header End -->
 
 
@@ -99,8 +100,9 @@ require_once "functions/functions.php";
 
                             <?php loadQandA($_SESSION['exam_id']); ?>
 
-                            <!-- <div class="question">
+                            <div class="question">
                                 <span class="num">1</span>
+                                <i class="fa fa-chart-bar fachart" id="mobile_bar"></i>
                                 <div class="q">Who invented the first computer and when?</div>
                                 <div class="topics">
                                     <span class="item">Basics of Computer Science</span>
@@ -118,117 +120,7 @@ require_once "functions/functions.php";
                                 <div class="feedback container-lg"></div>
                             </div>
 
-                            <div class="question">
-                                <span class="num">2</span>
-                                <div class="q">Describe the execution cycle of a CPU</div>
-                                <div class="topics">
-                                    <span class="item">Advanced Computer Science</span>
-                                </div>
-
-                                <i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer('#answer')"></i>
-                                <div class="a container-lg" id="answer">
-                                      <hr>
-                                    Charles Babbage in 1985
-                                </div>
-                                <div class="feedback container-lg"></div>
-                            </div>
-
-                            <div class="question">
-                                <span class="num">3</span>
-                                <div class="q">What is the full meaning of CPU?</div>
-                                <div class="topics">
-                                    <span class="item">Basics of Computer Science</span>
-                                </div>
-
-                                <i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer('#answer')"></i>
-                                <div class="a container-lg" id="answer">
-                                      <hr>
-                                    Charles Babbage in 1985
-                                </div>
-                                <div class="feedback container-lg"></div>
-                            </div>
-
-                            <div class="question">
-                                <span class="num">4</span>
-                                <div class="q">Who is Jeff Bezos?</div>
-                                <div class="topics">
-                                    <span class="item">Apps and Software</span>
-                                    <span class="item">Amazon</span>
-                                </div>
-
-                                <i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer('#answer')"></i>
-                                <div class="a container-lg" id="answer">
-                                      <hr>
-                                    Charles Babbage in 1985
-                                </div>
-                                <div class="feedback container-lg"></div>
-                            </div>
-
-                            <div class="question">
-                                <span class="num">5</span>
-                                <div class="q">What was the first computer game ever created?</div>
-                                <div class="topics">
-                                    <span class="item">Video Games</span>
-                                </div>
-
-                                <i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer('#answer')"></i>
-                                <div class="a container-lg" id="answer">
-                                      <hr>
-                                    Charles Babbage in 1985
-                                </div>
-                                <div class="feedback container-lg"></div>
-                            </div>
-
-                            <div class="question">
-                                <span class="num">6</span>
-                                <div class="q">What is the world's best selling game to date?</div>
-                                <div class="topics">
-                                    <span class="item">Video Games</span>
-                                </div>
-
-                                <i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer('#answer')"></i>
-                                <div class="a container-lg" id="answer">
-                                      <hr>
-                                    Charles Babbage in 1985
-                                </div>
-                                <div class="feedback container-lg"></div>
-                            </div>
-
-                            <div class="question">
-                                <span class="num">7</span>
-                                <div class="q">Who are the mascots for Sega, Nintendo, and Atari?</div>
-                                <div class="topics">
-                                    <span class="item">Video Games</span>
-                                    <span class="item">Sega</span>
-                                    <span class="item">Nintendo</span>
-                                    <span class="item">Atari</span>
-
-                                </div>
-                                <i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer('#answer')"></i>
-                                <div class="a container-lg" id="answer">
-                                      <hr>
-                                    Charles Babbage in 1985
-                                </div>
-                                <div class="feedback container-lg"></div>
-                            </div>
-
-                            <div class="question">
-                                <span class="num">8</span>
-                                <div class="q">Three PC manufacturers you know</div>
-                                <div class="topics">
-                                    <span class="item">Personal Computer</span>
-                                </div>
-
-                                <i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer('#answer')"></i>
-                                <div class="a container-lg" id="answer">
-                                      <hr>
-                                    Charles Babbage in 1985
-                                </div>
-                                <div class="feedback container-lg"></div>
-                            </div> -->
-
-
-
+                
                         </div>
 
 
