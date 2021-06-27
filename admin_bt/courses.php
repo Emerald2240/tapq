@@ -12,7 +12,7 @@ if (!isset($_SESSION['log'])) {
 <html lang="en">
 
 <head>
-<?php
+    <?php
     require_once("includes/head.php");
     ?>
     <title>Courses</title>
@@ -44,8 +44,8 @@ if (!isset($_SESSION['log'])) {
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Courses</h1>
                         <a href="new_course.php" class="btn btn-primary btn-user">
-                                            <i class="fa fa-plus fa-fw"></i>
-                                        </a>
+                            <i class="fa fa-plus fa-fw"></i>
+                        </a>
                     </div>
 
                     <!-- Content Row -->
@@ -66,8 +66,8 @@ if (!isset($_SESSION['log'])) {
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
-                                    
-                                            <tr>
+
+                                                <tr>
                                                     <th>Course Code</th>
                                                     <th>Course Title</th>
                                                     <th>Faculty</th>
@@ -81,7 +81,7 @@ if (!isset($_SESSION['log'])) {
                                             </thead>
                                             <tfoot>
                                                 <tr>
-                                                <th>Course Code</th>
+                                                    <th>Course Code</th>
                                                     <th>Course Title</th>
                                                     <th>Faculty</th>
                                                     <th>Level</th>
@@ -94,20 +94,9 @@ if (!isset($_SESSION['log'])) {
                                             </tfoot>
                                             <tbody>
 
-                                            <?php loadCourses();?>
+                                                <?php loadCourses(); ?>
 
 
-
-
-
-
-
-
-
-
-
-                                            
-                                               
                                             </tbody>
                                         </table>
                                     </div>
@@ -143,8 +132,6 @@ if (!isset($_SESSION['log'])) {
     <?php
     require_once("includes/logout_modal.php");
     require_once("includes/delete_modal.php");
-
-    
     ?>
 
     <?php

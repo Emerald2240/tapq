@@ -517,6 +517,72 @@ function loadCourses()
     }
 }
 
+function loadCourseExams($course_id)
+{
+    //This loads up all the exams available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
+    global $db;
+    $user = $_SESSION['username'];
+    if (!empty($user)) {
+        $query = "SELECT id, course_id, admin_id, year, num_questions, questions_and_answers, lecturers, obj_thr, time, instructions  FROM q_and_a ORDER BY `year` DESC ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+
+                //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
+
+                echo '<tr>';
+                echo  '<td>';
+                echo '<a href="#';
+                echo '"> ';
+                echo ucwords(strtoupper($row['year']));
+                echo '</a></td>';
+
+                echo  '<td>';
+                echo $row['num_questions'];
+                echo '</td>';
+
+                echo '<td>';
+                if ($row['obj_thr'] == 1) {
+                    echo ucwords(strtolower("Objective"));
+                } else {
+                    echo ucwords(strtolower("Theory"));
+                }
+
+                echo '</td>';
+
+                echo '<td>';
+                echo ucwords(strtolower($row['lecturers']));
+                echo '</td>';
+
+                echo '<td>';
+                echo $row['time'] / 60;
+                echo " Hour(s)";
+                echo '</td>';
+
+                echo '<td>';
+                echo $row['admin_id'];
+                echo '</td>';
+
+                echo '<td><a  href="delete_exam.php?exam_id=';
+                echo $row['id'];
+                echo '&refresh=1"';
+                // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
+                echo '><i class="fa fa-recycle"></i></a></td>';
+
+                echo '<td><a  href="delete_exam.php?exam_id=';
+                echo $row['id'];
+                echo '"';
+                // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
+                echo '><i class="fa fa-trash"></i></a></td>';
+
+                echo '</tr>';
+            }
+        } else {
+            echo 'No Posts Yet';
+        }
+    }
+}
+
 function loadAdmins()
 {
     //This loads up all the courses available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
@@ -569,7 +635,7 @@ function loadAdmins()
                 echo '<td><a href="edit_admin.php?id=';
                 echo $row['id'];
                 echo '"';
-                echo 'data-toggle="modal" data-target="#deleteModal"';
+                //echo 'data-toggle="modal" data-target="#deleteModal"';
                 echo '>';
                 echo '<i class="fa fa-edit"></i></a></td>';
 
@@ -577,7 +643,7 @@ function loadAdmins()
                 echo '<td><a href="delete_admin.php?id=';
                 echo $row['id'];
                 echo '"';
-                echo 'data-toggle="modal" data-target="#deleteModal"';
+                // echo 'data-toggle="modal" data-target="#deleteModal"';
                 echo '><i class="fa fa-trash"></i></a></td>';
 
                 echo '</tr>';
@@ -757,6 +823,9 @@ function createQuestionAndAnswerBoxes($num)
         echo '<label for="question">Answer</label>';
         echo '<textarea  onfocus="setLastFocusedElement(\'answer' . $i . '\')" class="form-control answer' . $i . '" name="answer' . $i . '" id="answer' . $i . '" required></textarea>';
 
+        echo '<label for="topic">Topic</label>';
+        echo '<textarea style="height:35px;" onfocus="setLastFocusedElement(\'topic' . $i . '\')" class="form-control topic' . $i . '" name="topic' . $i . '" id="topic' . $i . '" required></textarea>';
+
         echo '</div>';
     }
 }
@@ -775,7 +844,8 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
         if (empty($jsonta)) {
             $data_missing['Q_and_A'] = "Missing questions and answer box";
         } else {
-            $jsonta = trim(($jsonta));
+           $jsonta = trim($jsonta);
+            //$jsonta = utf8_encode($jsonta), ENT_QUOTES);
         }
 
 
@@ -820,6 +890,30 @@ function deleteCourse()
     mysqli_close($db);
 }
 
+function deleteExam($ref = null)
+{
+    global $db;
+    $id = $_SESSION['exam_id'];
+
+    //This sql statement deletes the course with the mentioned id
+    $sql = "DELETE FROM `q_and_a`  WHERE q_and_a.id = '$id' ";
+    if (mysqli_query($db, $sql)) {
+
+        //echo "Course Saved";
+        echo '<p class="text-success">';
+        echo "Course Saved";
+        echo '</p>';
+        if ($ref == 1) {
+            //this should head to the new_exam page where the user will set up everything afresh for the exam, but it will be delayed for now.
+            header("location:courses.php");
+        } else {
+            header("location:course_detail.php");
+        }
+    } else {
+        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    }
+    mysqli_close($db);
+}
 
 
 
@@ -832,6 +926,7 @@ function loadLevelExamQuestions($level)
     $response = @mysqli_query($db, $query);
     if ($response) {
 
+
         while ($row = mysqli_fetch_array($response)) {
             echo  '<td>';
             echo '<a class="course" href="';
@@ -839,6 +934,10 @@ function loadLevelExamQuestions($level)
             echo $row['id'];
             echo '&course_code=';
             echo $row['code'];
+            echo '&course_title=';
+            echo $row['title'];
+            echo '&course_semester=';
+            echo $row['semester'];
             echo '">';
 
             echo '<ul class="list-group list-group-horizontal">';
@@ -926,6 +1025,28 @@ function loadQandA($exam_id)
 
             //echo $row['questions_and_answers'];
 
+            // if (!is_array($json)) {
+            //     //echo "This is a json array";
+            //     //echo "<br><br>";
+            //     for ($count = 0; $count < count($json_dec); $count++) {
+            //         if (is_array($json[$count])) {
+            //             loadQandA($json[$count]);
+            //         } else {
+            //             $arr = json_decode($json, true);
+            //             // print_r($arr);
+            //             echo $arr[$count]["number"];
+            //             echo "] ";
+            //             echo $arr[$count]["question"];
+            //             echo "<br>";
+            //             echo $arr[$count]["answer"];
+            //             echo "<br>";
+            //             echo $arr[$count]["topic"];
+            //             echo "<br><br>";
+            //         }
+            //     }
+            // }
+
+
             if (!is_array($json)) {
                 //echo "This is a json array";
                 //echo "<br><br>";
@@ -934,13 +1055,35 @@ function loadQandA($exam_id)
                         loadQandA($json[$count]);
                     } else {
                         $arr = json_decode($json, true);
-                        // print_r($arr);
+                        echo ' <div class="question">'; //start of question div
+                        echo '<span class="num">';
                         echo $arr[$count]["number"];
-                        echo "] ";
+                        echo '</span>';
+                        echo '<div class="q">';
                         echo $arr[$count]["question"];
-                        echo "<br>";
+                        echo '</div><br>';
+                        echo ' <div class="topics">';
+
+                        $topicsArray = $arr[$count]["topic"];
+                        $splitedTopicsArray = explode(";", $topicsArray);
+                        foreach ($splitedTopicsArray as $topic) {
+                            echo '<span class="item">';
+                            echo $topic;
+                            echo '</span>';
+                        }
+                    
+                        echo '</div>'; //end of topic div
+
+                        echo '<i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer(';
+                        echo "'#answer";
+                        echo $arr[$count]["number"] . "'";
+                        echo ')"></i>';
+                        echo '<div class="a container-lg" id="answer' . $arr[$count]["number"] . '">';
+                        echo '<hr>';
                         echo $arr[$count]["answer"];
-                        echo "<br><br>";
+                        echo '</div>';
+                        echo '<div class="feedback container-lg"></div>';
+                        echo '</div>';//end of question div
                     }
                 }
             }
@@ -948,4 +1091,24 @@ function loadQandA($exam_id)
     } else {
         echo 'No Posts Yet';
     }
+}
+
+function yearSlashYear($year)
+{
+    echo $year - 1;
+    echo "/";
+    echo $year;
+}
+
+function getExamInstructions($exam_id){
+    global $db;
+   
+    $sql = "SELECT `instructions` FROM `q_and_a`  WHERE q_and_a.id = '$exam_id' ";
+        $response = @mysqli_query($db, $sql);
+    if ($response) {
+        while ($row = mysqli_fetch_array($response)) {
+        echo $row['instructions'];
+    }
+}
+
 }

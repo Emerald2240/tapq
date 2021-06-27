@@ -53,7 +53,7 @@
                                                 <a href="level0.php" class="dropdown-item">Other levels</a>
                                             </div>
                                         </div>
-                                        <a href="#" class="btn">Login</a>
+                                        <!-- <a href="#" class="btn">Login</a> -->
                                     </div>
                                 </div>
                             </div>

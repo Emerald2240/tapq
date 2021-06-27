@@ -70,3 +70,18 @@
     
 })(jQuery);
 
+
+// $(document).ready(
+//     function(){
+//  // nav bar toggle
+//  $("#mobile_bar").click(function(){
+//      $("#answer").slideToggle();
+// })
+
+// })
+
+
+function showAnswer(element){
+    $(element).slideToggle();
+}
+

@@ -44,6 +44,8 @@ require_once "functions/functions.php";
                                 echo $_GET['course_code'];
                                 $_SESSION['course_code'] = $_GET['course_code'];
                                 $_SESSION['course_id'] = $_GET['course_id'];
+                                $_SESSION['course_title'] = $_GET['course_title'];
+                                $_SESSION['course_semester'] = $_GET['course_semester'];
                             } elseif (isset($_SESSION['course_code'])) {
                                 echo $_SESSION['course_code'];
                             } else {
