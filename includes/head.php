@@ -47,4 +47,4 @@
         <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="../css/style.css?v=<?php echo time(); ?>" rel="stylesheet">
+        <!-- <link href="../css/style.css?v=<?php echo time(); ?>" rel="stylesheet"> -->

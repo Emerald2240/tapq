@@ -8,6 +8,8 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
+<script src="js/acecashStrSimilarity.js"></script>
+<script src="js/functionsFront.js"></script>
     <?php
     require_once "includes/head.php";
     ?>
@@ -28,13 +30,14 @@ require_once "functions/functions.php";
         <?php echo $_GET['exam_year']; ?> Exam Page</title>
 </head>
 
-<body>
+<body onload="generateCQAPSL(<?php if ( $_SESSION['exam_id'] == 0) {generateCQAPSL($_SESSION['course_id']);}?> )">
+
     <div class="wrapper">
         <!-- Header Start -->
         <?php
         require_once "includes/header.php";
         ?>
-        
+
         <!-- Header End -->
 
 
@@ -55,7 +58,7 @@ require_once "functions/functions.php";
                         } else {
                             die;
                         } ?>
-                        
+
 
                         <h2>ESUT</h2>
 
@@ -67,10 +70,14 @@ require_once "functions/functions.php";
                             }
                             yearSlashYear($_SESSION['exam_year']) ?>
                         </h2>
-                        <h2><?php echo $_SESSION['course_code'];
+                        <h2>
+                            <?php echo $_SESSION['course_code'];
                             echo ":";
-                            echo $_SESSION['course_title']; ?></h2>
-                            <h2>INSTRUCTION(S): <?php getExamInstructions( $_SESSION['exam_id']) ?></h2>
+                            echo $_SESSION['course_title']; ?>
+                        </h2>
+                        <h2>INSTRUCTION(S):
+                            <?php getExamInstructions($_SESSION['exam_id']) ?>
+                        </h2>
                     </div>
 
                 </div>
@@ -84,23 +91,23 @@ require_once "functions/functions.php";
 
             <div class="row">
                 <div class="container-fluid">
-                    <!-- 
-                    <h1>ENUGU STATE UNIVERSITY OF SCIENCE AND TECHNOLOGY</h1>
-                    <h1>FIRST SEMESTER EXAMINATIONS <?php yearSlashYear($_SESSION['exam_year']) ?></h1>
-                    <h1><?php echo $_SESSION['course_code'];
-                        echo ":";
-                        echo $_SESSION['course_title']; ?></h1> -->
-
-
 
                     <div class="container-lg qpaper">
                         <!--  -->
 
                         <div class="qabox container-lg">
+                            <?php if ($_SESSION['exam_id'] == 0) {
+                                generateCQAPSL($_SESSION['course_id']);
+                            } else {
+                                loadQandA($_SESSION['exam_id']);
+                            } ?>
 
-                            <?php loadQandA($_SESSION['exam_id']); ?>
+                            <script>
+                              generateCQAPSL(<?php if ( $_SESSION['exam_id'] == 0) {generateCQAPSL($_SESSION['course_id']);}?>);
+                              
+                            </script>
 
-                            <div class="question">
+                            <!-- <div class="question">
                                 <span class="num">1</span>
                                 <i class="fa fa-chart-bar fachart" id="mobile_bar"></i>
                                 <div class="q">Who invented the first computer and when?</div>
@@ -118,9 +125,9 @@ require_once "functions/functions.php";
                                     Charles Babbage in 1985
                                 </div>
                                 <div class="feedback container-lg"></div>
-                            </div>
+                            </div> -->
 
-                
+
                         </div>
 
 

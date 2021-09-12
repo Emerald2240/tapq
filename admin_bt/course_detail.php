@@ -16,11 +16,11 @@ if (!isset($_SESSION['log'])) {
     require_once("includes/head.php");
     ?>
 
-    <title> <?php if (isset($_GET['exam_id'])) {
-                $_SESSION['exam_id'] = $_GET['exam_id'];
+    <title> <?php if (isset($_GET['id'])) {
+                $_SESSION['exam_id'] = $_GET['id'];
                 $_SESSION['course_title'] = $_GET['coursename'];
-               
-            }
+    }
+
             echo  ucwords(strtolower($_SESSION['course_title']));
             echo " Exams"
             ?></title>
@@ -102,10 +102,7 @@ if (!isset($_SESSION['log'])) {
                                             </tfoot>
                                             <tbody>
 
-                                                <?php if (isset($_GET['exam_id'])) {
-                                                    $_SESSION['exam_id'] = $_GET['exam_id'];
-                                                    echo  $_SESSION['exam_id'];
-                                                } ?>
+                                               
                                                 <?php loadCourseExams($_SESSION['exam_id']); ?>
 
 

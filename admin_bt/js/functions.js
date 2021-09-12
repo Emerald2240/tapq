@@ -13,7 +13,8 @@ function htmlEntities(str) {
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+        .replace(/"/g, '&quot;')
+    .replace(/\n/g, "<br>").replace(/\r/g, "\\\\r").replace(/\t/g, "\\\\t");
 }
 
 function validateNewExamForm(numOfquestions, obj_or_theory) {
@@ -116,6 +117,18 @@ function setLastFocusedElement(elementId) {
 function setBluredElement() {
     focusedEle = "empty";
     //console.log(focusedEle);
+
+}
+
+function generateCQAPSL(originalArray) {
+    console.log("Function Working");
+    var generatedArray = [];
+    for (var i = 0; i < originalArray.length; i++) {
+        var mainStr = originalArray[0];
+        originalArray.shift();
+
+        console.log(stringSimilarity.findBestMatch(mainStr, originalArray));
+    }
 
 }
 

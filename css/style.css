@@ -8,6 +8,14 @@ body {
     font-weight: 400;
 }
 
+.hybrid{
+    color:#00539C;
+}
+
+.hybrid:hover{
+    color: red;
+}
+
 h1,
 h2, 
 h3, 

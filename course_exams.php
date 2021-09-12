@@ -2,7 +2,7 @@
 require_once "config/connect.php";
 require_once "functions/functions.php";
 //session_start();
-generateCQAPSL($_GET['course_id']);
+//generateCQAPSL($_GET['course_id']);
 ?>
 
 <!DOCTYPE html>
@@ -12,17 +12,17 @@ generateCQAPSL($_GET['course_id']);
     <?php
     require_once "includes/head.php";
     ?>
-    <title><?php  
-                         //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
-                            if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
-                                echo $_GET['course_code'];
-                                $_SESSION['course_code'] = $_GET['course_code'];
-                                $_SESSION['course_id'] = $_GET['course_id'];
-                            } elseif (isset($_SESSION['course_code'])) {
-                                echo $_SESSION['course_code'];
-                            } else {
-                                die;
-                            } ?> Exams Page</title>
+    <title><?php
+            //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
+            if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+                echo $_GET['course_code'];
+                $_SESSION['course_code'] = $_GET['course_code'];
+                $_SESSION['course_id'] = $_GET['course_id'];
+            } elseif (isset($_SESSION['course_code'])) {
+                echo $_SESSION['course_code'];
+            } else {
+                die;
+            } ?> Exams Page</title>
 </head>
 
 <body>
@@ -39,8 +39,8 @@ generateCQAPSL($_GET['course_id']);
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <h2><?php  
-                         //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
+                        <h2><?php
+                            //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
                             if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
                                 echo $_GET['course_code'];
                                 $_SESSION['course_code'] = $_GET['course_code'];
@@ -82,7 +82,7 @@ generateCQAPSL($_GET['course_id']);
             </div>
 
         </div>
-     
+
         <!-- Footer Start -->
         <?php
         require_once "includes/footer.php";

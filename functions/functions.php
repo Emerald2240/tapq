@@ -506,8 +506,10 @@ function loadCourses()
                 echo '<td><a href="delete_course.php?id=';
                 echo $row['id'];
                 echo '"';
-                echo 'data-toggle="modal" data-target="#deleteModal"';
+                //echo 'data-toggle="modal" data-target="#deleteModal"';
+                //echo '><i class="fa fa-trash"></i></a></td>';
                 echo '><i class="fa fa-trash"></i></a></td>';
+
 
                 echo '</tr>';
             }
@@ -523,7 +525,7 @@ function loadCourseExams($course_id)
     global $db;
     $user = $_SESSION['username'];
     if (!empty($user)) {
-        $query = "SELECT id, course_id, admin_id, year, num_questions, questions_and_answers, lecturers, obj_thr, time, instructions  FROM q_and_a ORDER BY `year` DESC ";
+        $query = "SELECT id, course_id, admin_id, year, num_questions, questions_and_answers, lecturers, obj_thr, time, instructions FROM q_and_a WHERE course_id = '$course_id' ORDER BY `year` DESC ";
         $response = @mysqli_query($db, $query);
         if ($response) {
             while ($row = mysqli_fetch_array($response)) {
@@ -870,10 +872,9 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
     }
 }
 
-function deleteCourse()
+function deleteCourse($id)
 {
     global $db;
-    $id = $_SESSION['course_id'];
 
     //This sql statement deletes the course with the mentioned id
     $sql = "DELETE FROM `courses`  WHERE courses.id = '$id' ";
@@ -881,9 +882,9 @@ function deleteCourse()
 
         //echo "Course Saved";
         echo '<p class="text-success">';
-        echo "Course Saved";
+        echo "Course deleted";
         echo '</p>';
-        header("location:courses.php");
+       // header("location:courses.php");
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
@@ -894,6 +895,7 @@ function deleteExam($ref = null)
 {
     global $db;
     $id = $_SESSION['exam_id'];
+    //$course = $_SESSION['course_title'];
 
     //This sql statement deletes the course with the mentioned id
     $sql = "DELETE FROM `q_and_a`  WHERE q_and_a.id = '$id' ";
@@ -907,7 +909,9 @@ function deleteExam($ref = null)
             //this should head to the new_exam page where the user will set up everything afresh for the exam, but it will be delayed for now.
             header("location:courses.php");
         } else {
-            header("location:course_detail.php");
+            //header("location:course_detail.php?exam_id=$id&coursename=$course");
+            header("location:courses.php");
+            
         }
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
@@ -966,9 +970,69 @@ function loadCourseExamYears($course_id)
 {
     global $db;
 
-    $query = "SELECT id, course_id,	admin_id,	year,	num_questions,	questions_and_answers,	lecturers, time,	obj_thr FROM q_and_a WHERE q_and_a.course_id = '$course_id'  ORDER BY `year` ASC ";
+    $query = "SELECT id, course_id,	admin_id,	year,	num_questions,	questions_and_answers,	lecturers, time,	obj_thr FROM q_and_a WHERE q_and_a.course_id = '$course_id'  ORDER BY `year` DESC ";
+    $response = @mysqli_query($db, $query);
+    $response2 = @mysqli_query($db, $query);
+    if ($response) {
+
+        $row0 =  mysqli_fetch_array($response);
+
+        if($row0){
+        $year2 = $row0['year'] += 1;
+        $objorthr2 = $row0['obj_thr'];
+        
+
+        if (!empty($year2)) {
+            loadCQASLColumn($course_id, $year2, $objorthr2);
+        }} else {
+            echo 'No Posts Yet';
+        }
+    
+
+        while ($row = mysqli_fetch_array($response2)) {
+            echo  '<td>';
+            echo '<a class="course" href="';
+            echo 'exam_questions.php?course_id=';
+            echo $row['course_id'];
+            echo '&exam_year=';
+            echo $row['year'];
+            echo '&exam_id=';
+            echo $row['id'];
+            echo '">';
+
+            echo '<ul class="list-group list-group-horizontal">';
+
+            echo '<li class="list-group-item">';
+            echo ucwords(($row['year']));
+            echo '</li>';
+
+            echo '<li class="list-group-item">';
+            if ($row['obj_thr'] == 2) {
+                echo ucwords(strtolower('theory'));
+            } else {
+                echo ucwords(strtolower('objective'));
+            }
+            echo '</li>';
+
+            echo '<li class="list-group-item">';
+            echo ucwords(strtolower($row['num_questions'] . ' questions'));
+            echo '</li>';
+
+            echo '</ul>';
+            echo '</a>';
+        }
+    }
+}
+
+function loadCourseExamYearsDatabase($course_id)
+{
+    global $db;
+
+    $query = "SELECT id, course_id,	admin_id,	year,	num_questions,	questions_and_answers,	lecturers, time,	obj_thr FROM q_and_a WHERE q_and_a.course_id = '$course_id'  ORDER BY `year` DESC ";
     $response = @mysqli_query($db, $query);
     if ($response) {
+
+       
 
         while ($row = mysqli_fetch_array($response)) {
             echo  '<td>';
@@ -1002,9 +1066,44 @@ function loadCourseExamYears($course_id)
             echo '</ul>';
             echo '</a>';
         }
-    } else {
-        echo 'No Posts Yet';
     }
+}
+
+function loadCQASLColumn($course_id, $year, $obj_thr)
+{
+
+    echo  '<td>';
+    echo '<a class="course hybrid" href="';
+    echo 'exam_questions.php?course_id=';
+    echo $course_id;
+    echo '&exam_year=';
+    echo $year;
+    echo '&exam_id=';
+    echo 0;
+    echo '">';
+
+    echo '<ul class="list-group list-group-horizontal">';
+
+    echo '<li class="list-group-item">';
+    echo ucwords(($year));
+    echo '</li>';
+
+    echo '<li class="list-group-item">';
+
+    echo ucwords(strtolower('Hybrid'));
+
+    echo '</li>';
+
+    echo '<li class="list-group-item">';
+    if ($obj_thr == 1) {
+        echo ucwords(strtolower(50 . ' questions'));
+    } else {
+        echo ucwords(strtolower(10 . ' questions'));
+    }
+    echo '</li>';
+
+    echo '</ul>';
+    echo '</a>';
 }
 
 function loadQandA($exam_id)
@@ -1133,20 +1232,19 @@ function generateCQAPSL($course_id)
 
         while ($row = mysqli_fetch_array($response)) {
             $json = $row['questions_and_answers'];
-           $questions += decodeJSONMini($json, $questions);
+            $questions += decodeJSONMini($json, $questions);
         }
     } else {
         echo 'No Posts Yet';
     }
-    echo '<pre>';
-    print_r($questions);
-    die;
+
+    echo json_encode($questions);
 }
 
 
 function decodeJSONMini($json, $questions)
 {
-    
+
     $innerquestion = [];
 
     $json_dec = json_decode($json);
@@ -1155,10 +1253,9 @@ function decodeJSONMini($json, $questions)
 
         for ($count = 0; $count < count($json_dec); $count++) {
             if (is_array($json[$count])) {
-                decodeJSONMini($json[$count], $questions);//This line might have issues later, because "questions"  is not locally initialised here
+                decodeJSONMini($json[$count], $questions); //This line might have issues later, because "questions"  is not locally initialised here
             } else {
                 $arr = json_decode($json, true);
-                
                 array_push($questions, $arr[$count]["question"]);
             }
         }
