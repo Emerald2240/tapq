@@ -102,10 +102,9 @@ require_once "functions/functions.php";
                                 loadQandA($_SESSION['exam_id']);
                             } ?>
 
-                            <script>
-                              generateCQAPSL(<?php if ( $_SESSION['exam_id'] == 0) {generateCQAPSL($_SESSION['course_id']);}?>);
-                              
-                            </script>
+                            <script>generateCQAPSL(
+                                <?php if ( $_SESSION['exam_id'] == 0) {generateCQAPSL($_SESSION['course_id']);}?>
+                                );</script>
 
                             <!-- <div class="question">
                                 <span class="num">1</span>

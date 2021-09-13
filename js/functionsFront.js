@@ -1,4 +1,5 @@
 function generateCQAPSL(originalArray) {
+
     console.log("Function Working");
     var generatedArray = [];
 
@@ -30,6 +31,7 @@ function generateCQAPSL(originalArray) {
     generatedArray.sort();
     generatedArray.reverse();
     console.log(generatedArray);
+    return generatedArray;
 }
 
 function returnhtmlEntities(str) {

@@ -1168,7 +1168,7 @@ function decodeJSON($json)
                 echo '<span class="num">';
                 echo $arr[$count]["number"];
                 echo '</span>';
-                echo '<i class="fa fa-chart-bar fachart" id=""></i>';
+                // echo '<i class="fa fa-chart-bar fachart" id=""></i>';
                 echo '<div class="q">';
                 echo $arr[$count]["question"];
                 echo '</div><br>';
@@ -1176,18 +1176,18 @@ function decodeJSON($json)
 
                 $topicsArray = $arr[$count]["topic"];
                 $splitedTopicsArray = explode(";", $topicsArray);
-                foreach ($splitedTopicsArray as $topic) {
-                    echo '<span class="item">';
-                    echo $topic;
-                    echo '</span>';
-                }
+                // foreach ($splitedTopicsArray as $topic) {
+                //     echo '<span class="item">';
+                //     echo $topic;
+                //     echo '</span>';
+                // }
 
                 echo '</div>'; //end of topic div
 
-                echo '<i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer(';
-                echo "'#answer";
-                echo $arr[$count]["number"] . "'";
-                echo ')"></i>';
+                // echo '<i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer(';
+                // echo "'#answer";
+                // echo $arr[$count]["number"] . "'";
+                // echo ')"></i>';
                 echo '<div class="a container-lg" id="answer' . $arr[$count]["number"] . '">';
                 echo '<hr>';
                 echo $arr[$count]["answer"];
