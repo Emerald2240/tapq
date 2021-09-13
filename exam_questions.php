@@ -30,7 +30,7 @@ require_once "functions/functions.php";
         <?php echo $_GET['exam_year']; ?> Exam Page</title>
 </head>
 
-<body onload="generateCQAPSL(<?php if ( $_SESSION['exam_id'] == 0) {generateCQAPSL($_SESSION['course_id']);}?> )">
+<body onload="">
 
     <div class="wrapper">
         <!-- Header Start -->
@@ -95,16 +95,14 @@ require_once "functions/functions.php";
                     <div class="container-lg qpaper">
                         <!--  -->
 
-                        <div class="qabox container-lg">
+                        <div class="qabox container-lg" id="qabox">
                             <?php if ($_SESSION['exam_id'] == 0) {
                                 generateCQAPSL($_SESSION['course_id']);
                             } else {
                                 loadQandA($_SESSION['exam_id']);
                             } ?>
 
-                            <script>generateCQAPSL(
-                                <?php if ( $_SESSION['exam_id'] == 0) {generateCQAPSL($_SESSION['course_id']);}?>
-                                );</script>
+                           
 
                             <!-- <div class="question">
                                 <span class="num">1</span>

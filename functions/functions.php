@@ -884,7 +884,7 @@ function deleteCourse($id)
         echo '<p class="text-success">';
         echo "Course deleted";
         echo '</p>';
-       // header("location:courses.php");
+        // header("location:courses.php");
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
@@ -911,7 +911,6 @@ function deleteExam($ref = null)
         } else {
             //header("location:course_detail.php?exam_id=$id&coursename=$course");
             header("location:courses.php");
-            
         }
     } else {
         echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
@@ -977,17 +976,18 @@ function loadCourseExamYears($course_id)
 
         $row0 =  mysqli_fetch_array($response);
 
-        if($row0){
-        $year2 = $row0['year'] += 1;
-        $objorthr2 = $row0['obj_thr'];
-        
+        if ($row0) {
+            $year2 = $row0['year'] += 1;
+            $objorthr2 = $row0['obj_thr'];
 
-        if (!empty($year2)) {
-            loadCQASLColumn($course_id, $year2, $objorthr2);
-        }} else {
+
+            if (!empty($year2)) {
+                loadCQASLColumn($course_id, $year2, $objorthr2);
+            }
+        } else {
             echo 'No Posts Yet';
         }
-    
+
 
         while ($row = mysqli_fetch_array($response2)) {
             echo  '<td>';
@@ -1032,7 +1032,7 @@ function loadCourseExamYearsDatabase($course_id)
     $response = @mysqli_query($db, $query);
     if ($response) {
 
-       
+
 
         while ($row = mysqli_fetch_array($response)) {
             echo  '<td>';
@@ -1172,8 +1172,8 @@ function decodeJSON($json)
                 echo '<div class="q">';
                 echo $arr[$count]["question"];
                 echo '</div><br>';
-                echo ' <div class="topics">';
 
+                //echo ' <div class="topics">';
                 $topicsArray = $arr[$count]["topic"];
                 $splitedTopicsArray = explode(";", $topicsArray);
                 // foreach ($splitedTopicsArray as $topic) {
@@ -1181,8 +1181,7 @@ function decodeJSON($json)
                 //     echo $topic;
                 //     echo '</span>';
                 // }
-
-                echo '</div>'; //end of topic div
+                //echo '</div>'; //end of topic div
 
                 // echo '<i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer(';
                 // echo "'#answer";
@@ -1238,7 +1237,8 @@ function generateCQAPSL($course_id)
         echo 'No Posts Yet';
     }
 
-    echo json_encode($questions);
+    $questions = json_encode($questions);
+    echo "<script>generateCQAPSL($questions);</script>";
 }
 
 
