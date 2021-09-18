@@ -8,8 +8,8 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
-<script src="js/acecashStrSimilarity.js"></script>
-<script src="js/functionsFront.js"></script>
+    <script src="js/acecashStrSimilarity.js"></script>
+    <script src="js/functionsFront.js"></script>
     <?php
     require_once "includes/head.php";
     ?>
@@ -102,7 +102,7 @@ require_once "functions/functions.php";
                                 loadQandA($_SESSION['exam_id']);
                             } ?>
 
-                           
+
 
                             <!-- <div class="question">
                                 <span class="num">1</span>

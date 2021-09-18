@@ -38,9 +38,9 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="footer-form">
-                            <h2>Stay Updated</h2>
+                            <h2>Mail Us</h2>
                             <p>
-                                Lorem ipsum dolor sit amet, adipiscing elit. Etiam accumsan lacus eget velit
+                               Send us any recommendations, ideas or tips. We really appreciate them.
                             </p>
                             <input class="form-control" placeholder="Email here">
                             <button class="btn">Submit</button>

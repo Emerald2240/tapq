@@ -1,4 +1,4 @@
-function generateCQAPSL(originalArray) {
+function generateCQAPSL(originalArray, obj_or_theory) {
 
     console.log("Function Working");
     var generatedArray = [];
@@ -37,6 +37,12 @@ function generateCQAPSL(originalArray) {
 
     var container = document.getElementById("qabox");
     var html = '';
+var limit = 0;
+    if(obj_or_theory == 1){
+limit = 49;
+    }else{
+        limit = 9;
+    }
 
     for (var i = 0; i < pjson.length; i++) {
         html += '<div class="question">'; //start of question div
@@ -46,32 +52,16 @@ function generateCQAPSL(originalArray) {
         html += '<div class="q">';
         html += pjson[i][1];
         html += '</div></div><br>';
+        if(i == limit){
+            i = pjson.length;
+        }
     }
 
-    console.log(pjson[1][1]);
+    
 
     container.innerHTML = html; 
-    document.write(pjson);
+   
 }
-
-// function showCPQL(json) {
-//     var container = document.getElementById("qabox");
-//     var html = '';
-
-//     for (var i = 0; i < json.length; i++) {
-//         html += '<div class="question">'; //start of question div
-//         html += '<span class="num">';
-//         html += [i];
-//         html += '</span>';
-//         html += '<div class="q">';
-//         html += json[i][0];
-//         html += '</div></div><br>';
-//     }
-
-//     console.log(json[1][1]);
-
-//     container.innerHTML = html; document.write(json);
-// }
 
 function returnhtmlEntities(str) {
     return str.replace("\\\\n", /\n/g).replace("\\\\r", /\r/g).replace("\\\\t", /\t/g);

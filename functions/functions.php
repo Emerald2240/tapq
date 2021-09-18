@@ -953,9 +953,9 @@ function loadLevelExamQuestions($level)
             echo ucwords(($row['title']));
             echo '</li>';
 
-            echo '<li class="list-group-item">';
-            echo ucwords(strtolower($row['faculty']));
-            echo '</li>';
+            // echo '<li class="list-group-item">';
+            // echo ucwords(strtolower($row['faculty']));
+            // echo '</li>';
 
             echo '</ul>';
             echo '</a>';
@@ -1090,7 +1090,7 @@ function loadCQASLColumn($course_id, $year, $obj_thr)
 
     echo '<li class="list-group-item">';
 
-    echo ucwords(strtolower('Hybrid'));
+    echo ucwords(strtolower('Cumulative Past Questions List'));
 
     echo '</li>';
 
@@ -1231,6 +1231,7 @@ function generateCQAPSL($course_id)
 
         while ($row = mysqli_fetch_array($response)) {
             $json = $row['questions_and_answers'];
+            $obj_thr = $row['obj_thr'];
             $questions += decodeJSONMini($json, $questions);
         }
     } else {
@@ -1238,9 +1239,8 @@ function generateCQAPSL($course_id)
     }
 
     $questions = json_encode($questions);
-    echo "<script>generateCQAPSL($questions);</script>";
+    echo "<script>generateCQAPSL($questions, $obj_thr);</script>";
 }
-
 
 function decodeJSONMini($json, $questions)
 {

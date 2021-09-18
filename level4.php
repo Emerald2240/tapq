@@ -58,34 +58,6 @@ require_once "functions/functions.php";
 
 
 
-
-
-
-
-
-            <!-- <div class="container-lg">
-                <nav aria-label="...">
-                    <ul class="pagination mt-5">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">A</a></li>
-                        <li class="page-item" aria-current="page">
-                            <a class="page-link" href="#">B <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">C</a></li>
-                        <li class="page-item"><a class="page-link" href="#">D</a></li>
-                        <li class="page-item"><a class="page-link" href="#">E</a></li>
-                        <li class="page-item"><a class="page-link" href="#">F</a></li>
-                        <li class="page-item"><a class="page-link" href="#">G</a></li>
-
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div> -->
-
             <div class="container-lg">
                 <?php
                 loadLevelExamQuestions(4);
