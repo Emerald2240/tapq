@@ -36,9 +36,9 @@
                                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                                     <div class="navbar-nav ml-auto">
                                         <a href="index.php" class="nav-item nav-link">Home</a>
-                                        <a href="about.php" class="nav-item nav-link">About</a>
+                                        <!-- <a href="about.php" class="nav-item nav-link">About</a> -->
                                     
-                                        <a href="contact.php" class="nav-item nav-link">Contact</a>
+                                        <!-- <a href="contact.php" class="nav-item nav-link">Contact</a> -->
                                         <div class="nav-item dropdown">
                                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Levels</a>
                                             <div class="dropdown-menu">

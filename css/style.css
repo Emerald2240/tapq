@@ -202,6 +202,9 @@ a:focus {
 }
 
 @media (max-width: 992px) {
+    .page-header h2 {
+        font-size: 25px;
+    }
     .header .brand {
         text-align: center;
         margin-bottom: 15px;
@@ -265,6 +268,10 @@ a:focus {
     
     .header .navbar .btn {
         display: none;
+    }
+
+    .page-header h2 {
+        font-size: 25px;
     }
 }
 
@@ -527,6 +534,10 @@ a:focus {
     .about .about-img img {
         margin-bottom: 30px;
     }
+
+    .page-header h2 {
+        font-size: 25px;
+    }
 }
 
 
@@ -654,6 +665,9 @@ a:focus {
 }
 
 @media (max-width: 767.98px) {
+    .page-header h2 {
+        font-size: 25px;
+    }
     .feature a.btn {
         margin-bottom: 45px;
     }
@@ -1250,6 +1264,9 @@ a:focus {
 }
 
 @media (max-width: 768px) {
+    .page-header h2 {
+        font-size: 25px;
+    }
     .call-to-action a {
         float: left;
         margin-top: 30px;
@@ -1681,6 +1698,9 @@ a:focus {
 }
 
 @media(max-width: 767.98px) {
+    .page-header h2 {
+        font-size: 25px;
+    }
     .contact .faqs {
         margin-bottom: 30px;
     }
@@ -1901,6 +1921,9 @@ a:focus {
 }
 
 @media (max-width: 768px) {
+    .page-header h2 {
+        font-size: 25px;
+    }
     .footer .copyright p,
     .footer .copyright .col-md-6:last-child p {
         margin: 5px 0;

@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+function gotoPage($location)
+{
+    header('location:' . $location);
+    exit();
+}
+
 function Sanitize($data, $case = null)
 {
     //This function cleanses and arranges the data about to be stored. like freeing it from any impurities like sql injection
@@ -31,6 +37,23 @@ function fetchAdmin($formData)
     }
 }
 
+function validateMailAddress($email)
+{
+    global $db;
+    $sql = "SELECT * FROM `admins` WHERE `email`='$email'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        $result = $result->fetch_assoc();
+        if ($email == isset($result['email'])) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return true;
+    }
+}
+
 function processRegister($formstream)
 {
     //This function processes what user data is being stored and checks if they are accurate or entered at all.
@@ -57,6 +80,9 @@ function processRegister($formstream)
             $data_missing['email'] = "Missing email Address";
         } else {
             $email = trim(Sanitize($email));
+            if (!validateMailAddress($email)) {
+                $data_missing['email'] = "Email already exists";
+            }
         }
 
         if (empty($phone)) {
@@ -74,10 +100,11 @@ function processRegister($formstream)
         if (empty($password1)) {
             $data_missing['confpass'] = "Missing Confirm Password";
         } else {
-            if (($formstream['password']) != ($password)) {
+            $password1 = trim(Sanitize($password1));
+            if ($password != $password1) {
                 $data_missing['confpass'] = "Password Mismatch";
             } else {
-                $password1 = trim(Sanitize($password1));
+                // $password1 = trim(Sanitize($password1));
                 $password = sha1($password);
             }
         }
@@ -432,11 +459,9 @@ function loadCourses()
         $response = @mysqli_query($db, $query);
         if ($response) {
             while ($row = mysqli_fetch_array($response)) {
-
-                //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
-
                 echo '<tr><td>';
                 echo $row['code'];
+                $checker = $row['code'];
                 echo '</td>';
 
                 echo  '<td>';
@@ -444,17 +469,7 @@ function loadCourses()
                 echo $row['id'];
                 echo '&coursename=';
                 echo ucwords(strtolower($row['title']));
-                // echo '&creditload=';
-                // echo ucwords(strtolower($row['credit']));
-                // echo '&faculty=';
-                // echo ucwords(strtolower($row['faculty']));
-                // echo '&level=';
-                // echo ucwords(strtolower($row['level']));
-                // echo '&semester=';
-                // echo ucwords(strtolower($row['semester']));
-                // echo '&code=';
-                // echo ucwords(strtoupper($row['code']));
-                // echo '&edit=1';
+
 
                 echo '"> ';
                 echo ucwords(strtoupper($row['title']));
@@ -506,15 +521,15 @@ function loadCourses()
                 echo '<td><a href="delete_course.php?id=';
                 echo $row['id'];
                 echo '"';
-                //echo 'data-toggle="modal" data-target="#deleteModal"';
-                //echo '><i class="fa fa-trash"></i></a></td>';
+
                 echo '><i class="fa fa-trash"></i></a></td>';
 
 
                 echo '</tr>';
             }
-        } else {
-            echo 'No Posts Yet';
+            if (empty($checker)) {
+                echo 'No Courses Added Yet';
+            }
         }
     }
 }
@@ -580,7 +595,7 @@ function loadCourseExams($course_id)
                 echo '</tr>';
             }
         } else {
-            echo 'No Posts Yet';
+            echo 'No Post Yet';
         }
     }
 }
@@ -942,7 +957,7 @@ function loadLevelExamQuestions($level)
             echo '&course_semester=';
             echo $row['semester'];
             echo '">';
-
+            $row2 = $row['semester'];
             echo '<ul class="list-group list-group-horizontal">';
 
             echo '<li class="list-group-item">';
@@ -960,8 +975,10 @@ function loadLevelExamQuestions($level)
             echo '</ul>';
             echo '</a>';
         }
-    } else {
-        echo 'No Posts Yet';
+
+        if (empty($row2)) {
+            echo 'No Courses Added Yet';
+        }
     }
 }
 
@@ -985,7 +1002,7 @@ function loadCourseExamYears($course_id)
                 loadCQASLColumn($course_id, $year2, $objorthr2);
             }
         } else {
-            echo 'No Posts Yet';
+            echo 'No Exams Added Yet';
         }
 
 

@@ -38,7 +38,7 @@ require_once "functions/functions.php";
 
         <!-- Service Start -->
         <div class="service">
-            <div class="container-lg">
+            <!-- <div class="container-lg">
                 <form>
                     <div class="form-group row">
                         <div class="col-sm-11 p-2">
@@ -49,7 +49,7 @@ require_once "functions/functions.php";
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> -->
 
 
 

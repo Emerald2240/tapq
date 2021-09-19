@@ -5,7 +5,8 @@ require_once "../functions/functions.php";
 if (!isset($_SESSION['log'])) {
     header('location:login.php');
     exit();
-}
+    
+}gotopage('courses.php');
 ?>
 
 <!DOCTYPE html>

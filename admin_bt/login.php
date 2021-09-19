@@ -36,10 +36,10 @@ require_once "../functions/functions.php";
                                     <form class="user" action=<?= $_SERVER["PHP_SELF"]; ?> method="post">
 
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" name="email" value="<?php if (isset($_COOKIE['mem_mail'])) { echo $_COOKIE['mem_mail'];} ?>" placeholder="Enter Email Address...">
+                                            <input type="email" class="form-control form-control-user" id="email" aria-describedby="emailHelp" name="email"  placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" name="password" id="password" value="1"  placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
                                         </div>
                                         <?php
                                         processLogin($_POST);
@@ -62,20 +62,20 @@ require_once "../functions/functions.php";
                                         <hr>
 
 
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                        <!-- <a href="index.html" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
+                                        </a> -->
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <!-- <a class="small" href="forgot-password.html">Forgot Password?</a> -->
                                     </div>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

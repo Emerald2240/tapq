@@ -39,10 +39,10 @@ require_once "functions/functions.php";
 
         <!-- Service Start -->
         <div class="service">
-            <div class="container-lg">
+            <!-- <div class="container-md">
                 <form>
                     <div class="form-group row">
-                        <div class="col-sm-11 p-2">
+                        <div class="col-sm-11 p-8">
                             <input type="text" class="form-control" type="search" placeholder="Enter Course">
                         </div>
                         <div class="col-sm-1 p-2 ">
@@ -50,7 +50,7 @@ require_once "functions/functions.php";
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> -->
 
 
 

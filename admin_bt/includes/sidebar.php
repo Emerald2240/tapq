@@ -56,7 +56,7 @@
     </li>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item  <?php
+    <!-- <li class="nav-item  <?php
                             if (strpos($_SERVER["PHP_SELF"], "charts.php")) {
                                 echo 'active';
                             }
@@ -64,10 +64,10 @@
         <a class="nav-link" href="charts.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Charts</span></a>
-    </li>
+    </li> -->
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item  <?php
+    <!-- <li class="nav-item  <?php
                             if (strpos($_SERVER["PHP_SELF"], "tables.php")) {
                                 echo 'active';
                             }
@@ -75,19 +75,19 @@
         <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
-    </li>
+    </li> -->
 
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+    <!-- <hr class="sidebar-divider"> -->
 
     <!-- Heading -->
-    <div class="sidebar-heading">
+    <!-- <div class="sidebar-heading">
         Interface
-    </div>
+    </div> -->
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item  <?php
+    <!-- <li class="nav-item  <?php
                             // if (strpos($_SERVER["PHP_SELF"], "index.php")) {
                             //     echo 'active';
                             // }
@@ -105,10 +105,10 @@
                 <a class="collapse-item" href="utilities-other.html">Other</a>
             </div>
         </div>
-    </li>
+    </li> -->
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item  <?php
+    <!-- <li class="nav-item  <?php
                             if (strpos($_SERVER["PHP_SELF"], "buttons.php") || strpos($_SERVER["PHP_SELF"], "cards.php")) {
                                 echo 'active';
                             }
@@ -124,7 +124,7 @@
                 <a class="collapse-item" href="cards.php">Cards</a>
             </div>
         </div>
-    </li>
+    </li> -->
 
 
 
