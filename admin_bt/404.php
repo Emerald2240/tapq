@@ -15,7 +15,7 @@ if (!isset($_SESSION['log'])) {
 <?php
     require_once("includes/head.php");
     ?>
-    <title>SB Admin 2 - 404</title>
+    <title>404</title>
 </head>
 
 <body id="page-top">

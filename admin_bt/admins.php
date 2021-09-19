@@ -43,9 +43,9 @@ if (!isset($_SESSION['log'])) {
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Admins</h1>
-                        <a href="register.php" class="btn btn-primary btn-user">
+                        <!-- <a href="register.php" class="btn btn-primary btn-user">
                             <i class="fa fa-plus fa-fw"></i>
-                        </a>
+                        </a> -->
                     </div>
 
                     <!-- Content Row -->
@@ -69,7 +69,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Mobile No</th>
                                                     <th>Email</th>
                                                     <th>Date Joined</th>
-                                                    <th>Edit</th>
+                                                    <!-- <th>Edit</th> -->
                                                     <th>Delete</th>
                                                 </tr>
                                             </thead>
@@ -81,7 +81,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Mobile No</th>
                                                     <th>Email</th>
                                                     <th>Date Joined</th>
-                                                    <th>Edit</th>
+                                                    <!-- <th>Edit</th> -->
                                                     <th>Delete</th>
                                                 </tr>
                                             </tfoot>

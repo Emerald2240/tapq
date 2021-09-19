@@ -186,7 +186,7 @@ function AddRegistered($fname, $lname, $ph, $em, $pass)
         echo "New record created successfully";
         //header("location:login.php");
     } else {
-        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
 }
@@ -201,7 +201,8 @@ function processLogin($formstream)
         // username and password sent from form 
 
         $myusername = Sanitize($email);
-        $mypassword = sha1($password);
+        $mypassword = trim(Sanitize($password));
+        $mypassword = sha1($mypassword);
 
         $result = mysqli_query($db, "SELECT * FROM admins WHERE email ='$myusername' AND password = '$mypassword'      ");
 
@@ -424,7 +425,7 @@ function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
         echo '</p>';
         header("location:courses.php");
     } else {
-        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
 }
@@ -444,7 +445,7 @@ function UpdateCourse($cd, $tit, $fac, $cred, $lvl, $sem)
         echo '</p>';
         header("location:courses.php");
     } else {
-        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
 }
@@ -618,11 +619,12 @@ function loadAdmins()
                 echo '</td>';
 
                 echo  '<td>';
-                echo '<a href="admin_details.php?id=';
-                echo $row['id'];
-                echo '"> ';
+                //echo '<a href="admin_details.php?id=';
+                //echo $row['id'];
+                //echo '"> ';
                 echo ucwords(strtolower($row['firstname']));
-                echo '</a></td>';
+                //echo '</a>';
+                echo '</td>';
 
                 echo '<td>';
                 echo ucwords(strtolower($row['lastname']));
@@ -649,19 +651,22 @@ function loadAdmins()
                 // echo ucwords(strtolower($row['title']));
                 // echo '"><i class="fa fa-plus"></i></a></td>';
 
-                echo '<td><a href="edit_admin.php?id=';
-                echo $row['id'];
-                echo '"';
-                //echo 'data-toggle="modal" data-target="#deleteModal"';
-                echo '>';
-                echo '<i class="fa fa-edit"></i></a></td>';
+                // echo '<td><a href="edit_admin.php?id=';
+                // echo $row['id'];
+                // echo '"';
+                // echo '>';
+                // echo '<i class="fa fa-edit"></i></a></td>';
 
 
-                echo '<td><a href="delete_admin.php?id=';
-                echo $row['id'];
-                echo '"';
-                // echo 'data-toggle="modal" data-target="#deleteModal"';
-                echo '><i class="fa fa-trash"></i></a></td>';
+                if ($row['id'] == 1) {
+                    echo '<td></td>';
+                } else {
+                    echo '<td><a href="delete_admin.php?id=';
+                    echo $row['id'];
+                    echo '"';
+                    // echo 'data-toggle="modal" data-target="#deleteModal"';
+                    echo '><i class="fa fa-trash"></i></a></td>';
+                }
 
                 echo '</tr>';
             }
@@ -879,7 +884,7 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
             // echo '</p>';
             header("location:courses.php");
         } else {
-            echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+            // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
         }
         mysqli_close($db);
     } else {
@@ -901,7 +906,7 @@ function deleteCourse($id)
         echo '</p>';
         // header("location:courses.php");
     } else {
-        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
 }
@@ -928,11 +933,28 @@ function deleteExam($ref = null)
             header("location:courses.php");
         }
     } else {
-        echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
     mysqli_close($db);
 }
 
+function deleteAdmin($id)
+{
+    global $db;
+    if ($id == 1) {
+        header("location:admins.php");
+    } else {
+        //This sql statement deletes the course with the mentioned id
+        $sql = "DELETE FROM `admins`  WHERE admins.id = '$id' ";
+        if (mysqli_query($db, $sql)) {
+            header("location:admins.php");
+        } else {
+            //header("location:course_detail.php?exam_id=$id&coursename=$course");
+            header("location:courses.php");
+        }
+    }
+    mysqli_close($db);
+}
 
 
 //FRONTEND//

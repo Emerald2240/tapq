@@ -18,7 +18,7 @@ processRegister($_POST);
     <?php
     require_once("includes/head.php");
     ?>
-    <title>SB Admin 2 - Register</title>
+    <title>TAPQ Admin Register</title>
 </head>
 
 <body class="bg-gradient-primary">
