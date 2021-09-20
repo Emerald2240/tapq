@@ -54,6 +54,23 @@ function validateMailAddress($email)
     }
 }
 
+function validateCoursecode($course_code)
+{
+    global $db;
+    $sql = "SELECT * FROM `courses` WHERE `code`='$course_code'";
+    $result = $db->query($sql);
+    if ($result->num_rows > 0) {
+        $result = $result->fetch_assoc();
+        if ($course_code == isset($result['code'])) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return true;
+    }
+}
+
 function processRegister($formstream)
 {
     //This function processes what user data is being stored and checks if they are accurate or entered at all.
@@ -267,7 +284,12 @@ function processNewCourse($formstream)
             $data_missing['Course_code'] = "Missing Course Code";
         } else {
             if (strlen($code) == 6) {
-                $code = trim(Sanitize($code));
+                if(validateCoursecode($code)){
+                    $code = trim(Sanitize($code));
+                }else{
+                    $data_missing['Course_code'] = "Course already exists";   
+                }
+                
             } else {
                 $data_missing['Course_code'] = "Course code is not 6 characters";
             }

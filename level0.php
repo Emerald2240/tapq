@@ -12,7 +12,7 @@ require_once "functions/functions.php";
     <?php
     require_once "includes/head.php";
     ?>
-    <title>TA Past Questions 100 Level Page</title>
+    <title>TA Past Questions Other Level Page</title>
 </head>
 
 <body>
@@ -60,7 +60,7 @@ require_once "functions/functions.php";
 
             <div class="container-lg course_head">
                 <?php
-                loadLevelExamQuestions(1);
+                loadLevelExamQuestions(7);
                 ?>
             </div>
 
