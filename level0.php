@@ -8,6 +8,7 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
+
     <?php
     require_once "includes/head.php";
     ?>
@@ -57,7 +58,7 @@ require_once "functions/functions.php";
 
 
 
-            <div class="container-lg">
+            <div class="container-lg course_head">
                 <?php
                 loadLevelExamQuestions(1);
                 ?>
@@ -87,7 +88,7 @@ require_once "functions/functions.php";
     </div>
 
     <!-- JavaScript Libraries -->
-    <?php
+   <?php
     require_once "includes/scripts.php";
     ?>
 </body>

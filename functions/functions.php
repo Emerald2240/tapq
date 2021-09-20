@@ -904,7 +904,7 @@ function deleteCourse($id)
         echo '<p class="text-success">';
         echo "Course deleted";
         echo '</p>';
-        // header("location:courses.php");
+         header("location:courses.php");
     } else {
         // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }

@@ -14,7 +14,8 @@ die("Error Occured".$db->connect_error);
 
 
 
-// <?php
+
+
 
 // $db = new mysqli("localhost","techctwn_TA","Emerald2240","techctwn_tapq");
 

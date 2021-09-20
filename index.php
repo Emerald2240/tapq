@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+<script src="js/filterbox.js"></script>
     <?php
     require_once "includes/head.php";
     ?>

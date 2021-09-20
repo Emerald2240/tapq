@@ -58,7 +58,7 @@ require_once "functions/functions.php";
 
 
 
-            <div class="container-lg">
+            <div class="container-lg course_head">
                 <?php
                 loadLevelExamQuestions(4);
                 ?>

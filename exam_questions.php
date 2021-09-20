@@ -8,8 +8,11 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
-    <script src="js/acecashStrSimilarity.js"></script>
-    <script src="js/functionsFront.js"></script>
+    <?php
+    require_once "includes/scripts.php";
+    ?>
+    <!-- <script src="js/acecashStrSimilarity.js"></script>
+    <script src="js/functionsFront.js"></script> -->
     <?php
     require_once "includes/head.php";
     ?>
@@ -147,9 +150,7 @@ require_once "functions/functions.php";
     </div>
 
     <!-- JavaScript Libraries -->
-    <?php
-    require_once "includes/scripts.php";
-    ?>
+
 
 
 

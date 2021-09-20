@@ -21,6 +21,7 @@
     <!-- Template Javascript(Frontend) -->
     <script src="js/main.js"></script>
     <script src="js/acecashStrSimilarity.js"></script>
+    <script src="js/filterbox.js"></script>
     <script src="js/functionsFront.js"></script>
     
     <script src="../js/main.js"></script>
