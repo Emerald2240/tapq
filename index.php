@@ -158,7 +158,7 @@
                             </div>
                             <div class="team-text">
                                 <h2>Chidera Stanley</h2>
-                                <h3>Programmer</h3>
+                                <h3>Engineer</h3>
                                 <div class="team-social">
                                     <a target="_blank" class="social-tw" href="https://twitter.com/Stanleyto20"><i class="fab fa-twitter"></i></a>
                                     <a target="_blank" class="social-fb" href="https://facebook.com/Stanley"><i class="fab fa-facebook-f"></i></a>
