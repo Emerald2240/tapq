@@ -4,7 +4,7 @@
             <div class="col-md-6 col-lg-3">
                 <div class="footer-contact">
                     <h2>Get In Touch</h2>
-                    <p><i class="fa fa-map-marker-alt"></i>3 Nnamani Nwene Street, Garriki Enugu, Nigeria</p>
+                    <p><i class="fa fa-map-marker-alt"></i>110 Ogui Road Opposite Stadium, Enugu</p>
                     <p><i class="fa fa-phone-alt"></i>+234 81 488 638 71</p>
                     <p><i class="fa fa-envelope"></i>Orjimichael4886@gmail.com</p>
 
@@ -20,14 +20,14 @@
             <div class="col-md-6 col-lg-3">
                 <div class="footer-link">
                     <h2>Useful Link</h2>
-                    <a href="">About Us</a>
-                    <a href="">Our Story</a>
-                    <a href="">Our Services</a>
-                    <a href="">Our Projects</a>
-                    <a href="">Contact Us</a>
+                    <a href="techac.net/about.php">About Us</a>
+                    <a href="techac.net">Our Story</a>
+                    <a href="techac.net/services.php">Our Services</a>
+                    <a href="techac.net/apps.php">Our Projects</a>
+                    <a href="techac.net/contact.php">Contact Us</a>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
+            <!-- <div class="col-md-6 col-lg-3">
                 <div class="footer-link">
                     <h2>Useful Link</h2>
                     <a href="">Our Clients</a>
@@ -36,7 +36,7 @@
                     <a href="">Customer Support</a>
                     <a href="">FAQs</a>
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-6 col-lg-3">
                 <div class="footer-form">
                     <h2>Mail Us</h2>
@@ -49,7 +49,7 @@
             </div>
         </div>
     </div>
-    <div class="container footer-menu">
+    <!-- <div class="container footer-menu">
         <div class="f-menu">
             <a href="">Terms of use</a>
             <a href="">Privacy policy</a>
@@ -57,7 +57,7 @@
             <a href="">Help & FQAs</a>
             <a href="">Contact us</a>
         </div>
-    </div>
+    </div> -->
     <div class="container copyright">
         <div class="row">
             <div class="col-md-6">
