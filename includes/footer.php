@@ -20,11 +20,11 @@
             <div class="col-md-6 col-lg-3">
                 <div class="footer-link">
                     <h2>Useful Link</h2>
-                    <a href="techac.net/about.php">About Us</a>
-                    <a href="techac.net">Our Story</a>
-                    <a href="techac.net/services.php">Our Services</a>
-                    <a href="techac.net/apps.php">Our Projects</a>
-                    <a href="techac.net/contact.php">Contact Us</a>
+                    <a target="_blank" href="https://techac.net/about.php">About Us</a>
+                    <a target="_blank" href="https://techac.net">Our Story</a>
+                    <a target="_blank" href="https://techac.net/services.php">Our Services</a>
+                    <a target="_blank" href="https://techac.net/apps.php">Our Projects</a>
+                    <a target="_blank" href="https://techac.net/contact.php">Contact Us</a>
                 </div>
             </div>
             <!-- <div class="col-md-6 col-lg-3">
@@ -61,10 +61,10 @@
     <div class="container copyright">
         <div class="row">
             <div class="col-md-6">
-                <p>&copy; <a href="https://techac.net">Tech Acoustic</a>, All Right Reserved.</p>
+                <p>&copy; <a target="_blank" href="https://techac.net">Tech Acoustic</a>, All Right Reserved.</p>
             </div>
             <div class="col-md-6">
-                <p>Designed By <a href="https://techac.net">Orji Michael Chukwuebuka</a></p>
+                <p>Designed By <a target="_blank" href="https://techac.net">Orji Michael Chukwuebuka</a></p>
             </div>
         </div>
     </div>
