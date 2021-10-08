@@ -8,6 +8,41 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
+    <meta content="Past_Questions TAPQ ESUT <?php 
+   
+    if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+                                                echo $_GET['course_code'];
+                                                echo " ";
+                                                echo $_GET['exam_year'];
+                                            } elseif (isset($_SESSION['course_code'])) {
+                                                echo $_SESSION['course_code'];
+                                            }
+                                        ?>" name="keywords">
+    <meta content="<?php
+    
+    if($_GET['exam_id'] == 0){
+
+    }else{
+
+        if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+            echo $_GET['course_code'];
+        } elseif (isset($_SESSION['course_code'])) {
+            echo 'Sorted out Questions for ';
+            echo $_SESSION['course_code'];
+            echo " To Be Written In ";
+            echo $_GET['exam_year'];
+        }  
+
+    if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+                                                echo $_GET['course_code'];
+                                            } elseif (isset($_SESSION['course_code'])) {
+                                               echo 'ESUT Past Questions For'; 
+                                                echo $_SESSION['course_code'];
+                                                echo " Written In ";
+                                                echo $_GET['exam_year'];
+                                            }  
+                                            }//end of if ?>" name="description">
+
     <?php
     require_once "includes/scripts.php";
     ?>
@@ -30,7 +65,7 @@ require_once "functions/functions.php";
         } else {
             die;
         } ?>
-        <?php echo $_GET['exam_year']; ?> Exam Page</title>
+        <?php echo $_GET['exam_year']; ?> Exam</title>
 </head>
 
 <body onload="">

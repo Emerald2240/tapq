@@ -1270,6 +1270,9 @@ function getExamInstructions($exam_id)
 {
     global $db;
 
+    if($exam_id == 0){
+        echo 'STUDY ALL QUESTIONS';
+    }else{
     $sql = "SELECT `instructions` FROM `q_and_a`  WHERE q_and_a.id = '$exam_id' ";
     $response = @mysqli_query($db, $sql);
     if ($response) {
@@ -1277,6 +1280,7 @@ function getExamInstructions($exam_id)
             echo $row['instructions'];
         }
     }
+}//end of if
 }
 
 function generateCQAPSL($course_id)
