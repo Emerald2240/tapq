@@ -2,23 +2,22 @@
 require_once "config/connect.php";
 require_once "functions/functions.php";
 //session_start();
-//generateCQAPSL($_GET['course_id']);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta content="Past_Questions TAPQ ESUT <?php if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
-                echo $_GET['course_code'];
-            } elseif (isset($_SESSION['course_code'])) {
-                echo $_SESSION['course_code'];
-            }?>" name="keywords">
-<meta content="ESUT Past Exams For <?php if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
-                echo $_GET['course_code'];
-            } elseif (isset($_SESSION['course_code'])) {
-                echo $_SESSION['course_code'];
-            }?>" name="description">
+    <meta content="Past_Questions TAPQ ESUT <?php if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+                                                echo $_GET['course_code'];
+                                            } elseif (isset($_SESSION['course_code'])) {
+                                                echo $_SESSION['course_code'];
+                                            } ?>" name="keywords">
+    <meta content="ESUT Past Exams For <?php if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+                                            echo $_GET['course_code'];
+                                        } elseif (isset($_SESSION['course_code'])) {
+                                            echo $_SESSION['course_code'];
+                                        } ?>" name="description">
     <?php
     require_once "includes/head.php";
     ?>
@@ -32,7 +31,7 @@ require_once "functions/functions.php";
                 $_SESSION['course_id'] = $_GET['course_id'];
                 $_SESSION['course_title'] = $_GET['course_title'];
             } elseif (isset($_SESSION['course_code'])) {
-            echo $_SESSION['course_title'];
+                echo $_SESSION['course_title'];
                 echo ' ';
                 echo $_SESSION['course_code'];
             } else {
@@ -54,7 +53,7 @@ require_once "functions/functions.php";
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                    <h2><?php
+                        <h2><?php
                             //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
                             if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
                                 echo $_GET['course_title'];
@@ -90,18 +89,6 @@ require_once "functions/functions.php";
 
         <!-- Service Start -->
         <div class="service">
-            <!-- <div class="container-lg">
-                <form>
-                    <div class="form-group row">
-                        <div class="col-sm-11 p-2">
-                            <input type="text" class="form-control" type="search" placeholder="Enter Year">
-                        </div>
-                        <div class="col-sm-1 p-2 ">
-                            <button class="btn btn-outline-info" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div> -->
 
             <div class="container-lg">
                 <?php

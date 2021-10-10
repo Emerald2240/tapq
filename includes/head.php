@@ -30,8 +30,7 @@
 <meta charset="utf-8">
 
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="Cleaning Company Website Template" name="keywords">
-<meta content="Cleaning Company Website Template" name="description">
+
 
 <!-- Favicon -->
 <link href="../img/favicon.ico" rel="icon">

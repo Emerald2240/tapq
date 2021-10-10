@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+<meta content="Tech Acoustic, Past Questions, TAPQ, Home, ESUT, Engineering, Tech Acoustic Past Questions" name="keywords">
+<meta content="Welcome to TAPQ" name="description">
 <script src="js/filterbox.js"></script>
     <?php
     require_once "includes/head.php";

@@ -8,7 +8,8 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
-
+<meta content="Tech Acoustic, Other Levels, Past Questions, TAPQ, Levels, ESUT, Engineering" name="keywords">
+<meta content="This page contains all courses that cannot be classified under year one to six" name="description">
     <?php
     require_once "includes/head.php";
     ?>
@@ -40,24 +41,6 @@ require_once "functions/functions.php";
 
         <!-- Service Start -->
         <div class="service">
-            <!-- <div class="container-md">
-                <form>
-                    <div class="form-group row">
-                        <div class="col-sm-11 p-8">
-                            <input type="text" class="form-control" type="search" placeholder="Enter Course">
-                        </div>
-                        <div class="col-sm-1 p-2 ">
-                            <button class="btn btn-outline-info" type="submit">Search</button>
-                        </div>
-                    </div>
-                </form>
-            </div> -->
-
-
-
-
-
-
             <div class="container-lg course_head">
                 <?php
                 loadLevelExamQuestions(7);
@@ -66,17 +49,6 @@ require_once "functions/functions.php";
 
         </div>
         <!-- Service End -->
-
-
-        <!-- Feature Start -->
-
-        <!-- Feature End -->
-
-
-        <!-- Pricing Plan Start -->
-
-        <!-- Pricing Plan End -->
-
 
         <!-- Footer Start -->
         <?php

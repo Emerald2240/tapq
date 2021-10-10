@@ -8,46 +8,53 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
-    <meta content="Past_Questions TAPQ ESUT <?php 
-   
-    if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
-                                                echo $_GET['course_code'];
-                                                echo " ";
-                                                echo $_GET['exam_year'];
-                                            } elseif (isset($_SESSION['course_code'])) {
-                                                echo $_SESSION['course_code'];
-                                            }
-                                        ?>" name="keywords">
+    <meta content="Past Questions, TAPQ, ESUT, <?php
+
+                                                if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+                                                    echo $_GET['course_code'];
+                                                    echo ", ";
+                                                    echo $_GET['exam_year'];
+                                                } else {
+                                                    echo $_SESSION['course_code'];
+                                                    echo ", ";
+                                                    echo $_SESSION['exam_year'];
+                                                }
+                                                ?>" name="keywords">
     <meta content="<?php
-    
-    if($_GET['exam_id'] == 0){
 
-    }else{
+                    if ($_GET['exam_id'] == 0) {
 
-        if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
-            echo $_GET['course_code'];
-        } elseif (isset($_SESSION['course_code'])) {
-            echo 'Sorted out Questions for ';
-            echo $_SESSION['course_code'];
-            echo " To Be Written In ";
-            echo $_GET['exam_year'];
-        }  
+                        if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+                            echo 'Sorted out Questions for ';
+                            echo $_GET['course_code'];
+                            echo " To Be Written In ";
+                            echo $_GET['exam_year'];
+                        } elseif (isset($_SESSION['course_code'])) {
+                            echo 'Sorted out Questions for ';
+                            echo $_SESSION['course_code'];
+                            echo " To Be Written In ";
+                            echo $_SESSION['exam_year'];
+                        }
+                    } else {
 
-    if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
-                                                echo $_GET['course_code'];
-                                            } elseif (isset($_SESSION['course_code'])) {
-                                               echo 'ESUT Past Questions For'; 
-                                                echo $_SESSION['course_code'];
-                                                echo " Written In ";
-                                                echo $_GET['exam_year'];
-                                            }  
-                                            }//end of if ?>" name="description">
+                        if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
+                            echo 'ESUT Past Questions For';
+                            echo $_GET['course_code'];
+                            echo " Written In ";
+                            echo $_GET['exam_year'];
+                        } elseif (isset($_SESSION['course_code'])) {
+                            echo 'ESUT Past Questions For';
+                            echo $_SESSION['course_code'];
+                            echo " Written In ";
+                            echo $_SESSION['exam_year'];
+                        }
+                    } //end of if 
+                    ?>" name="description">
 
     <?php
     require_once "includes/scripts.php";
     ?>
-    <!-- <script src="js/acecashStrSimilarity.js"></script>
-    <script src="js/functionsFront.js"></script> -->
+   
     <?php
     require_once "includes/head.php";
     ?>
@@ -139,28 +146,6 @@ require_once "functions/functions.php";
                             } else {
                                 loadQandA($_SESSION['exam_id']);
                             } ?>
-
-
-
-                            <!-- <div class="question">
-                                <span class="num">1</span>
-                                <i class="fa fa-chart-bar fachart" id="mobile_bar"></i>
-                                <div class="q">Who invented the first computer and when?</div>
-                                <div class="topics">
-                                    <span class="item">Basics of Computer Science</span>
-                                    <span class="item">Inventions</span>
-                                    <span class="item">Father of Computer</span>
-                                </div>
-
-                              
-
-                                <i class="fa fa-chevron-down mbfa" id="mobile_bar" onclick="showAnswer('#answer')"></i>
-                                <div class="a container-lg" id="answer">
-                                      <hr>
-                                    Charles Babbage in 1985
-                                </div>
-                                <div class="feedback container-lg"></div>
-                            </div> -->
 
 
                         </div>
