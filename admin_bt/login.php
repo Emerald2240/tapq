@@ -1,6 +1,12 @@
 <?php
 require_once "../config/connect.php";
 require_once "../functions/functions.php";
+
+
+if (isset($_SESSION['log'])) {
+    header('location:index.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,10 +50,6 @@ require_once "../functions/functions.php";
                                         <?php
                                         processLogin($_POST);
 
-                                        if (isset($_SESSION['log'])) {
-                                            header('location:index.php');
-                                            exit();
-                                        }
                                         ?>
                                         <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -56,7 +58,6 @@ require_once "../functions/functions.php";
                                                     Me</label>
                                             </div>
                                         </div> -->
-
 
                                         <button type="submit" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button>
                                         <hr>

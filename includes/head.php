@@ -49,3 +49,5 @@
 
 <!-- Template Stylesheet -->
 <!-- <link href="../css/style.css?v=<?php echo time(); ?>" rel="stylesheet"> -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
+     crossorigin="anonymous"></script>

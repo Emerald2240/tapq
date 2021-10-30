@@ -259,7 +259,7 @@ function processLogin($formstream)
             echo 'Logged In';
             echo "<pre>";
             print_r($result);
-            header('location:admin.php');
+            header('location:admins.php');
         } else {
 
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -284,12 +284,11 @@ function processNewCourse($formstream)
             $data_missing['Course_code'] = "Missing Course Code";
         } else {
             if (strlen($code) == 6) {
-                if(validateCoursecode($code)){
+                if (validateCoursecode($code)) {
                     $code = trim(Sanitize($code));
-                }else{
-                    $data_missing['Course_code'] = "Course already exists";   
+                } else {
+                    $data_missing['Course_code'] = "Course already exists";
                 }
-                
             } else {
                 $data_missing['Course_code'] = "Course code is not 6 characters";
             }
@@ -926,7 +925,7 @@ function deleteCourse($id)
         echo '<p class="text-success">';
         echo "Course deleted";
         echo '</p>';
-         header("location:courses.php");
+        header("location:courses.php");
     } else {
         // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
@@ -1270,17 +1269,17 @@ function getExamInstructions($exam_id)
 {
     global $db;
 
-    if($exam_id == 0){
+    if ($exam_id == 0) {
         echo 'STUDY ALL QUESTIONS';
-    }else{
-    $sql = "SELECT `instructions` FROM `q_and_a`  WHERE q_and_a.id = '$exam_id' ";
-    $response = @mysqli_query($db, $sql);
-    if ($response) {
-        while ($row = mysqli_fetch_array($response)) {
-            echo $row['instructions'];
+    } else {
+        $sql = "SELECT `instructions` FROM `q_and_a`  WHERE q_and_a.id = '$exam_id' ";
+        $response = @mysqli_query($db, $sql);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                echo $row['instructions'];
+            }
         }
-    }
-}//end of if
+    } //end of if
 }
 
 function generateCQAPSL($course_id)
