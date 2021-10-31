@@ -36,7 +36,7 @@ require_once "functions/functions.php";
                 echo $_SESSION['course_code'];
             } else {
                 die;
-            } ?> Exams</title>
+            } ?> EXAMS</title>
 </head>
 
 <body>

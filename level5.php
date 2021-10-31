@@ -7,12 +7,16 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
-<meta content="Tech Acoustic, Level 5, Fifth Year, Past Questions, TAPQ, Levels, ESUT, Engineering" name="keywords">
-<meta content="This page contains all courses classified under year five" name="description">
+    <title>TA PAST QUESTIONS 500 LEVEL PAGE</title>
+    <meta name="description" content="TAPQ Year Five Page">
+    <!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
+    <meta property='og:url' content="https://techac.net/tapq/level5.php">
+    <!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+    <meta property='keywords' content="Tech Acoustic, year 5, 500 Level, Past Questions, TAPQ, Levels, ESUT, Engineering, Tech, Science, Computers">
+    <meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
     <?php
     require_once "includes/head.php";
     ?>
-    <title>TA Past Questions 500 Level Page</title>
 </head>
 
 <body>
@@ -51,7 +55,7 @@ require_once "functions/functions.php";
         <!-- Service End -->
 
 
-    
+
 
         <!-- Footer Start -->
         <?php

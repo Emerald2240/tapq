@@ -8,7 +8,13 @@
     <?php
     require_once "includes/head.php";
     ?>
-    <title>TA Past Questions Home Page</title>
+    <title>TA PAST QUESTIONS HOME PAGE</title>
+	<meta name="description" content="TAPQ Home Page">
+	<!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
+	<meta property='og:url' content="https://techac.net/tapq">
+	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+	<meta property='keywords' content="Orji Michael, Michael, Chukwuebuka, Tech Acoustic, TAPQ, ESUT, Past Questions, Tech, Science, Computers">
+	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 </head>
 
 <body>

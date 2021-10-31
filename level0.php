@@ -8,12 +8,17 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
-<meta content="Tech Acoustic, Other Levels, Past Questions, TAPQ, Levels, ESUT, Engineering" name="keywords">
-<meta content="This page contains all courses that cannot be classified under year one to six" name="description">
+<title>TA PAST QUESTIONS OTHER LEVEL PAGE</title>
+	<meta name="description" content="TAPQ Home Page">
+	<!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
+	<meta property='og:url' content="https://techac.net/tapq/level0.php">
+	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+	<meta property='keywords' content="Tech Acoustic, Other Levels, Past Questions, TAPQ, Levels, ESUT, Engineering, Tech, Science, Computers">
+	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
+
     <?php
     require_once "includes/head.php";
     ?>
-    <title>TA Past Questions Other Level Page</title>
 </head>
 
 <body>

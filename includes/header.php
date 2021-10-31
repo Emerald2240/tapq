@@ -19,11 +19,11 @@
                                 </div>
                                 <div class="topbar-col">
                                     <div class="topbar-social">
-                                        <a href=""><i class="fab fa-twitter"></i></a>
-                                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                                        <a href=""><i class="fab fa-youtube"></i></a>
-                                        <a href=""><i class="fab fa-instagram"></i></a>
-                                        <a href=""><i class="fab fa-linkedin-in"></i></a>
+                                        <a target="_blank" href="https://twitter.com/Michelson_Java"><i class="fab fa-twitter"></i></a>
+                                        <a target="_blank" href="https://facebook.com/Emerald.inc"><i class="fab fa-facebook-f"></i></a>
+                                        <a target="_blank" href=""><i class="fab fa-youtube"></i></a>
+                                        <a target="_blank" href="https://instagram.com/emerald_inc"><i class="fab fa-instagram"></i></a>
+                                        <a target="_blank" href="https://www.linkedin.com/in/michael-orji-1274b1220/"><i class="fab fa-linkedin-in"></i></a>
                                     </div>
                                 </div>
                             </div>

@@ -8,12 +8,17 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
-<meta content="Tech Acoustic, Level 1, First Year, Past Questions, TAPQ, Levels, ESUT, Engineering" name="keywords">
-<meta content="This page contains all courses classified under year one" name="description">
+    <title>TA PAST QUESTIONS 100 LEVEL PAGE</title>
+    <meta name="description" content="TAPQ Year One Page">
+    <!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
+    <meta property='og:url' content="https://techac.net/tapq/level1.php">
+    <!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+    <meta property='keywords' content="Tech Acoustic, year 1, 100 Level, Past Questions, TAPQ, Levels, ESUT, Engineering, Tech, Science, Computers">
+    <meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
+
     <?php
     require_once "includes/head.php";
     ?>
-    <title>TA Past Questions 100 Level Page</title>
 </head>
 
 <body>
@@ -41,7 +46,7 @@ require_once "functions/functions.php";
 
         <!-- Service Start -->
         <div class="service">
-           
+
             <div class="container-lg course_head">
                 <!-- <input class="form-control search-box" type="search" > -->
                 <?php

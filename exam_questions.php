@@ -54,7 +54,7 @@ require_once "functions/functions.php";
     <?php
     require_once "includes/scripts.php";
     ?>
-   
+
     <?php
     require_once "includes/head.php";
     ?>
@@ -72,7 +72,7 @@ require_once "functions/functions.php";
         } else {
             die;
         } ?>
-        <?php echo $_GET['exam_year']; ?> Exam</title>
+        <?php echo $_GET['exam_year']; ?> EXAM</title>
 </head>
 
 <body onload="">
