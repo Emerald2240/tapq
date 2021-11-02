@@ -8,7 +8,7 @@ require_once "functions/functions.php";
 
 <head>
 
-<title>TA PAST QUESTIONS 600 LEVEL PAGE</title>
+    <title>TA PAST QUESTIONS 600 LEVEL PAGE</title>
     <meta name="description" content="TAPQ Year Six Page">
     <!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
     <meta property='og:url' content="https://techac.net/tapq/level2.php">
@@ -45,12 +45,25 @@ require_once "functions/functions.php";
 
         <!-- Service Start -->
         <div class="service">
-         
+            <div>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-8230887621285431" data-ad-slot="4289956650"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
 
             <div class="container-lg course_head">
                 <?php
                 loadLevelExamQuestions(6);
                 ?>
+            </div>
+            <div>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-pub-8230887621285431" data-ad-slot="4289956650"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
             </div>
 
         </div>
