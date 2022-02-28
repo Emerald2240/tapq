@@ -33,7 +33,7 @@ require_once "functions/functions.php";
                             echo 'Sorted out Questions for ';
                             echo $_SESSION['course_code'];
                             echo " To Be Written In ";
-                            echo $_SESSION['exam_year'];
+                            //echo $_SESSION['exam_year'];
                         }
                     } else {
 
@@ -46,7 +46,7 @@ require_once "functions/functions.php";
                             echo 'ESUT Past Questions For';
                             echo $_SESSION['course_code'];
                             echo " Written In ";
-                            echo $_SESSION['exam_year'];
+                            //echo $_SESSION['exam_year'];
                         }
                     } //end of if 
                     ?>" name="description">
@@ -150,17 +150,7 @@ require_once "functions/functions.php";
 
                         </div>
 
-                        <div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-8230887621285431"
-     data-ad-slot="4289956650"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+                      
 
 
                     </div>

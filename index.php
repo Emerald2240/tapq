@@ -2,19 +2,19 @@
 <html lang="en">
 
 <head>
-<meta content="Tech Acoustic, Past Questions, TAPQ, Home, ESUT, Engineering, Tech Acoustic Past Questions" name="keywords">
-<meta content="Welcome to TAPQ" name="description">
-<script src="js/filterbox.js"></script>
+    <meta content="Tech Acoustic, Past Questions, TAPQ, Home, ESUT, Engineering, Tech Acoustic Past Questions" name="keywords">
+    <meta content="Welcome to TAPQ" name="description">
+    <script src="js/filterbox.js"></script>
     <?php
     require_once "includes/head.php";
     ?>
     <title>TA PAST QUESTIONS HOME PAGE</title>
-	<meta name="description" content="TAPQ Home Page">
-	<!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
-	<meta property='og:url' content="https://techac.net/tapq">
-	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
-	<meta property='keywords' content="Orji Michael, Michael, Chukwuebuka, Tech Acoustic, TAPQ, ESUT, Past Questions, Tech, Science, Computers">
-	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
+    <meta name="description" content="TAPQ Home Page">
+    <!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
+    <meta property='og:url' content="https://techac.net/tapq">
+    <!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+    <meta property='keywords' content="Orji Michael, Michael, Chukwuebuka, Tech Acoustic, TAPQ, ESUT, Past Questions, Tech, Science, Computers">
+    <meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 </head>
 
 <body>
@@ -46,17 +46,6 @@
         </div>
         <!-- Header End -->
 
-<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-8230887621285431"
-     data-ad-slot="4289956650"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
         <!-- Team Start -->
         <div class="team">
             <div class="container">
@@ -194,17 +183,7 @@
         </div>
         <!-- Team End -->
 
-<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-8230887621285431"
-     data-ad-slot="4289956650"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+       
 
         <!-- Call to Action Start -->
         <div class="call-to-action">
@@ -224,17 +203,7 @@
         </div>
         <!-- Call to Action End -->
 
-<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-8230887621285431"
-     data-ad-slot="4289956650"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+     
 
         <!-- Footer Start -->
         <?php

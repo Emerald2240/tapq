@@ -8,13 +8,13 @@ require_once "functions/functions.php";
 <html lang="en">
 
 <head>
-<title>TA PAST QUESTIONS OTHER LEVEL PAGE</title>
-	<meta name="description" content="TAPQ Home Page">
-	<!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
-	<meta property='og:url' content="https://techac.net/tapq/level0.php">
-	<!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
-	<meta property='keywords' content="Tech Acoustic, Other Levels, Past Questions, TAPQ, Levels, ESUT, Engineering, Tech, Science, Computers">
-	<meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
+    <title>TA PAST QUESTIONS OTHER LEVEL PAGE</title>
+    <meta name="description" content="TAPQ Home Page">
+    <!-- <meta property='og:title' content="TA PAST QUESTIONS HOME PAGE"> -->
+    <meta property='og:url' content="https://techac.net/tapq/level0.php">
+    <!-- <meta property='og:image' itemprop="image" content="https://techac.net/tatb/assets/images/mike.jpg"> -->
+    <meta property='keywords' content="Tech Acoustic, Other Levels, Past Questions, TAPQ, Levels, ESUT, Engineering, Tech, Science, Computers">
+    <meta name="author" content="Orji Michael Chukwuebuka at Tech Acoustic">
 
     <?php
     require_once "includes/head.php";
@@ -47,17 +47,7 @@ require_once "functions/functions.php";
         <!-- Service Start -->
         <div class="service">
 
-<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-8230887621285431"
-     data-ad-slot="4289956650"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+          
 
             <div class="container-lg course_head">
                 <?php
@@ -65,17 +55,7 @@ require_once "functions/functions.php";
                 ?>
             </div>
 
-<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-8230887621285431"
-     data-ad-slot="4289956650"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+           
 
         </div>
         <!-- Service End -->
@@ -90,7 +70,7 @@ require_once "functions/functions.php";
     </div>
 
     <!-- JavaScript Libraries -->
-   <?php
+    <?php
     require_once "includes/scripts.php";
     ?>
 </body>

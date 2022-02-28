@@ -95,17 +95,7 @@ require_once "functions/functions.php";
                 loadCourseExamYears($_GET['course_id']);
                 ?>
             </div>
-<div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8230887621285431"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-format="fluid"
-     data-ad-layout-key="-fb+5w+4e-db+86"
-     data-ad-client="ca-pub-8230887621285431"
-     data-ad-slot="4289956650"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
+
         </div>
 
         <!-- Footer Start -->

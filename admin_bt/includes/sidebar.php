@@ -57,10 +57,10 @@
 
     <!-- Nav Item - Charts -->
     <!-- <li class="nav-item  <?php
-                            if (strpos($_SERVER["PHP_SELF"], "charts.php")) {
-                                echo 'active';
-                            }
-                            ?>">
+                                if (strpos($_SERVER["PHP_SELF"], "charts.php")) {
+                                    echo 'active';
+                                }
+                                ?>">
         <a class="nav-link" href="charts.php">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Charts</span></a>
@@ -68,10 +68,10 @@
 
     <!-- Nav Item - Tables -->
     <!-- <li class="nav-item  <?php
-                            if (strpos($_SERVER["PHP_SELF"], "tables.php")) {
-                                echo 'active';
-                            }
-                            ?>">
+                                if (strpos($_SERVER["PHP_SELF"], "tables.php")) {
+                                    echo 'active';
+                                }
+                                ?>">
         <a class="nav-link" href="tables.php">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
@@ -88,10 +88,10 @@
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <!-- <li class="nav-item  <?php
-                            // if (strpos($_SERVER["PHP_SELF"], "index.php")) {
-                            //     echo 'active';
-                            // }
-                            ?>">
+                                // if (strpos($_SERVER["PHP_SELF"], "index.php")) {
+                                //     echo 'active';
+                                // }
+                                ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Utilities</span>
@@ -109,10 +109,10 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <!-- <li class="nav-item  <?php
-                            if (strpos($_SERVER["PHP_SELF"], "buttons.php") || strpos($_SERVER["PHP_SELF"], "cards.php")) {
-                                echo 'active';
-                            }
-                            ?>">
+                                if (strpos($_SERVER["PHP_SELF"], "buttons.php") || strpos($_SERVER["PHP_SELF"], "cards.php")) {
+                                    echo 'active';
+                                }
+                                ?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>Components</span>
