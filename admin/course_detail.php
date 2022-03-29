@@ -84,7 +84,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Lecturer</th>
                                                     <th>Time</th>
                                                     <th>Admin</th>  
-                                                    <th>Recreate</th>
+                                                    <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
                                             </thead>
@@ -96,7 +96,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Lecturer</th>
                                                     <th>Time</th>
                                                     <th>Admin</th>
-                                                    <th>Recreate</th>
+                                                    <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
                                             </tfoot>

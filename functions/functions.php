@@ -471,9 +471,16 @@ function UpdateCourse($cd, $tit, $fac, $cred, $lvl, $sem)
     mysqli_close($db);
 }
 
+/**
+ * Renders all courses into a table
+ * 
+ * Takes the course details contained inside the course array and returns fully rendered html table code.
+ * 
+ * @return void
+ * Simply echoes all the courses into the table or echoes a no courses added yet
+ */
 function loadCourses()
 {
-    //This loads up all the courses available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
     global $db;
     $user = $_SESSION['username'];
     if (!empty($user)) {
@@ -481,38 +488,49 @@ function loadCourses()
         $response = @mysqli_query($db, $query);
         if ($response) {
             while ($row = mysqli_fetch_array($response)) {
-                echo '<tr><td>';
+                echo '<tr>';
+                //id
+                echo '<td>';
+                echo $row['id'];
+                echo '</td>';
+
+                //course code
+                echo '<td>';
                 echo $row['code'];
                 $checker = $row['code'];
                 echo '</td>';
 
+                //course title
                 echo  '<td>';
                 echo '<a href="course_detail?id=';
                 echo $row['id'];
                 echo '&coursename=';
                 echo ucwords(strtolower($row['title']));
-
-
                 echo '"> ';
                 echo ucwords(strtoupper($row['title']));
                 echo '</a></td>';
 
+                //course faculty
                 echo '<td>';
                 echo ucwords(strtolower($row['faculty']));
                 echo '</td>';
 
+                //course level
                 echo '<td>';
                 echo $row['level'] . '00';
                 echo '</td>';
 
+                //course credit
                 echo '<td>';
                 echo $row['credit'];
                 echo '</td>';
 
+                //course semester
                 echo '<td>';
                 echo $row['semester'];
                 echo '</td>';
 
+                //edit course
                 echo '<td>';
                 echo '<a href="edit_course?id=';
                 echo $row['id'];
@@ -529,23 +547,21 @@ function loadCourses()
                 echo '&code=';
                 echo ucwords(strtoupper($row['code']));
                 echo '&edit=1';
-
                 echo '">';
                 echo '<i class="fa fa-edit"></i></a></td>';
 
-
+                //add new exam
                 echo '<td><a href="new_exam?id=';
                 echo $row['id'];
                 echo '&coursename=';
                 echo ucwords(strtolower($row['title']));
                 echo '"><i class="fa fa-plus"></i></a></td>';
 
+                //delete course
                 echo '<td><a href="delete_course?id=';
                 echo $row['id'];
                 echo '"';
-
                 echo '><i class="fa fa-trash"></i></a></td>';
-
 
                 echo '</tr>';
             }
@@ -571,7 +587,14 @@ function loadCourseExams($course_id)
 
                 echo '<tr>';
                 echo  '<td>';
-                echo '<a href="#';
+                echo '<a target="_blank" href="';
+                echo '../exam_questions';
+                echo '?course_id=';
+                echo $row['course_id'];
+                echo '&exam_year=';
+                echo $row['year'];
+                echo '&exam_id=';
+                echo $row['id'];
                 echo '"> ';
                 echo ucwords(strtoupper($row['year']));
                 echo '</a></td>';
@@ -602,11 +625,11 @@ function loadCourseExams($course_id)
                 echo $row['admin_id'];
                 echo '</td>';
 
-                echo '<td><a  href="delete_exam?exam_id=';
+                echo '<td><a  href="workshop?exam_id=';
                 echo $row['id'];
-                echo '&refresh=1"';
+                echo '&edit=1"';
                 // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
-                echo '><i class="fa fa-recycle"></i></a></td>';
+                echo '><i class="fa fa-edit"></i></a></td>';
 
                 echo '<td><a  href="delete_exam?exam_id=';
                 echo $row['id'];
@@ -948,7 +971,7 @@ function deleteExam($ref = null)
         echo '</p>';
         if ($ref == 1) {
             //this should head to the new_exam page where the user will set up everything afresh for the exam, but it will be delayed for now.
-            header("location:courses");
+            //header("location:courses");
         } else {
             //header("location:course_detail?exam_id=$id&coursename=$course");
             header("location:courses");
