@@ -152,7 +152,7 @@ function processRegister($formstream)
             // $_SESSION['rege'] = "true";
             // AddRegistered($firstname, $lastname, $phone, $email, $username, $password, $job, $twitter, $facebook,  $linkedin, $instagram, $uniqueimagename);
             AddRegistered($firstname, $lastname, $phone, $email, $password);
-            header('location:login.php');
+            header('location:login');
             exit;
             //echo '<br>';
             // echo("Everything entered Succesfully");
@@ -201,7 +201,7 @@ function AddRegistered($fname, $lname, $ph, $em, $pass)
     if (mysqli_query($db, $sql)) {
 
         echo "New record created successfully";
-        //header("location:login.php");
+        //header("location:login");
     } else {
         //echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
@@ -259,7 +259,7 @@ function processLogin($formstream)
             echo 'Logged In';
             echo "<pre>";
             print_r($result);
-            header('location:admins.php');
+            header('location:admins');
         } else {
 
             echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -444,7 +444,7 @@ function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
         echo '<p class="text-success">';
         echo "Course Saved";
         echo '</p>';
-        header("location:courses.php");
+        header("location:courses");
     } else {
         // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
@@ -464,7 +464,7 @@ function UpdateCourse($cd, $tit, $fac, $cred, $lvl, $sem)
         echo '<p class="text-success">';
         echo "Course Saved";
         echo '</p>';
-        header("location:courses.php");
+        header("location:courses");
     } else {
         // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
@@ -487,7 +487,7 @@ function loadCourses()
                 echo '</td>';
 
                 echo  '<td>';
-                echo '<a href="course_detail.php?id=';
+                echo '<a href="course_detail?id=';
                 echo $row['id'];
                 echo '&coursename=';
                 echo ucwords(strtolower($row['title']));
@@ -514,7 +514,7 @@ function loadCourses()
                 echo '</td>';
 
                 echo '<td>';
-                echo '<a href="edit_course.php?id=';
+                echo '<a href="edit_course?id=';
                 echo $row['id'];
                 echo '&coursename=';
                 echo ucwords(strtolower($row['title']));
@@ -534,13 +534,13 @@ function loadCourses()
                 echo '<i class="fa fa-edit"></i></a></td>';
 
 
-                echo '<td><a href="new_exam.php?id=';
+                echo '<td><a href="new_exam?id=';
                 echo $row['id'];
                 echo '&coursename=';
                 echo ucwords(strtolower($row['title']));
                 echo '"><i class="fa fa-plus"></i></a></td>';
 
-                echo '<td><a href="delete_course.php?id=';
+                echo '<td><a href="delete_course?id=';
                 echo $row['id'];
                 echo '"';
 
@@ -602,13 +602,13 @@ function loadCourseExams($course_id)
                 echo $row['admin_id'];
                 echo '</td>';
 
-                echo '<td><a  href="delete_exam.php?exam_id=';
+                echo '<td><a  href="delete_exam?exam_id=';
                 echo $row['id'];
                 echo '&refresh=1"';
                 // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
                 echo '><i class="fa fa-recycle"></i></a></td>';
 
-                echo '<td><a  href="delete_exam.php?exam_id=';
+                echo '<td><a  href="delete_exam?exam_id=';
                 echo $row['id'];
                 echo '"';
                 // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
@@ -640,7 +640,7 @@ function loadAdmins()
                 echo '</td>';
 
                 echo  '<td>';
-                //echo '<a href="admin_details.php?id=';
+                //echo '<a href="admin_details?id=';
                 //echo $row['id'];
                 //echo '"> ';
                 echo ucwords(strtolower($row['firstname']));
@@ -666,13 +666,13 @@ function loadAdmins()
 
 
 
-                // echo '<td><a href="new_exam.php?id=';
+                // echo '<td><a href="new_exam?id=';
                 // echo $row['id'];
                 // echo '&coursename=';
                 // echo ucwords(strtolower($row['title']));
                 // echo '"><i class="fa fa-plus"></i></a></td>';
 
-                // echo '<td><a href="edit_admin.php?id=';
+                // echo '<td><a href="edit_admin?id=';
                 // echo $row['id'];
                 // echo '"';
                 // echo '>';
@@ -682,7 +682,7 @@ function loadAdmins()
                 if ($row['id'] == 1) {
                     echo '<td></td>';
                 } else {
-                    echo '<td><a href="delete_admin.php?id=';
+                    echo '<td><a href="delete_admin?id=';
                     echo $row['id'];
                     echo '"';
                     // echo 'data-toggle="modal" data-target="#deleteModal"';
@@ -790,7 +790,7 @@ function processNewExam($formstream)
             $_SESSION['exam']['duration']              = $duration;
             $_SESSION['exam']['instructions']              = $instructions;
 
-            header('location:workshop.php');
+            header('location:workshop');
         } else {
             return $data_missing;
         }
@@ -833,7 +833,7 @@ function createQuestionAndAnswerBoxes($num)
 {
     echo '<div class="special_char" >';
     echo '<i id="special_bar" style="display:inline-block; text-align:right; width:100%; font-size:20px;" class="fa fa-chevron-down">&$/</i>';
-    require("includes/special_char_table.php");
+    require("includes/special_char_table");
     echo '</div>';
 
     //This function creates question and answer boxes for the number of questions available. its id's are given so its arranged perfectly with luckyMoshy
@@ -903,13 +903,13 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
             // echo '<p class="text-success">';
             // echo "Course Saved";
             // echo '</p>';
-            header("location:courses.php");
+            header("location:courses");
         } else {
             // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
         }
         mysqli_close($db);
     } else {
-        //header("location:new_exam.php");
+        //header("location:new_exam");
     }
 }
 
@@ -925,7 +925,7 @@ function deleteCourse($id)
         echo '<p class="text-success">';
         echo "Course deleted";
         echo '</p>';
-        header("location:courses.php");
+        header("location:courses");
     } else {
         // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
     }
@@ -948,10 +948,10 @@ function deleteExam($ref = null)
         echo '</p>';
         if ($ref == 1) {
             //this should head to the new_exam page where the user will set up everything afresh for the exam, but it will be delayed for now.
-            header("location:courses.php");
+            header("location:courses");
         } else {
-            //header("location:course_detail.php?exam_id=$id&coursename=$course");
-            header("location:courses.php");
+            //header("location:course_detail?exam_id=$id&coursename=$course");
+            header("location:courses");
         }
     } else {
         // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
@@ -963,15 +963,15 @@ function deleteAdmin($id)
 {
     global $db;
     if ($id == 1) {
-        header("location:admins.php");
+        header("location:admins");
     } else {
         //This sql statement deletes the course with the mentioned id
         $sql = "DELETE FROM `admins`  WHERE admins.id = '$id' ";
         if (mysqli_query($db, $sql)) {
-            header("location:admins.php");
+            header("location:admins");
         } else {
-            //header("location:course_detail.php?exam_id=$id&coursename=$course");
-            header("location:courses.php");
+            //header("location:course_detail?exam_id=$id&coursename=$course");
+            header("location:courses");
         }
     }
     mysqli_close($db);
@@ -979,6 +979,50 @@ function deleteAdmin($id)
 
 
 //FRONTEND//
+function returnPageLevelTitle($level)
+{
+    switch ($level) {
+
+        case 1:
+            //code here
+            return 'First Year';
+            break;
+
+        case 2:
+            //code here
+            return 'Second Year';
+            break;
+
+        case 3:
+            //code here
+            return 'Third Year';
+            break;
+
+        case 4:
+            //code here
+            return 'Fourth Year';
+            break;
+
+        case 5:
+            //code here
+            return 'Fifth Year';
+            break;
+
+        case 6:
+            //code here
+            return 'Sixth Year';
+            break;
+
+        case 7:
+            //code here
+            return 'Seventh Year';
+            break;
+
+        default:
+            //incase all else fails. don't forget to end code with semicolon
+            return 'Other Years';
+    }
+}
 
 function loadLevelExamQuestions($level)
 {
@@ -991,7 +1035,7 @@ function loadLevelExamQuestions($level)
         while ($row = mysqli_fetch_array($response)) {
             echo  '<td>';
             echo '<a class="course" href="';
-            echo 'course_exams.php?course_id=';
+            echo 'course_exams?course_id=';
             echo $row['id'];
             echo '&course_code=';
             echo $row['code'];
@@ -1052,7 +1096,7 @@ function loadCourseExamYears($course_id)
         while ($row = mysqli_fetch_array($response2)) {
             echo  '<td>';
             echo '<a class="course" href="';
-            echo 'exam_questions.php?course_id=';
+            echo 'exam_questions?course_id=';
             echo $row['course_id'];
             echo '&exam_year=';
             echo $row['year'];
@@ -1097,7 +1141,7 @@ function loadCourseExamYearsDatabase($course_id)
         while ($row = mysqli_fetch_array($response)) {
             echo  '<td>';
             echo '<a class="course" href="';
-            echo 'exam_questions.php?course_id=';
+            echo 'exam_questions?course_id=';
             echo $row['course_id'];
             echo '&exam_year=';
             echo $row['year'];
@@ -1134,7 +1178,7 @@ function loadCQASLColumn($course_id, $year, $obj_thr)
 
     echo  '<td>';
     echo '<a class="course hybrid" href="';
-    echo 'exam_questions.php?course_id=';
+    echo 'exam_questions?course_id=';
     echo $course_id;
     echo '&exam_year=';
     echo $year;

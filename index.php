@@ -31,7 +31,7 @@
                         <h2>Accurate</h2>
                         <h2><span>Free</span> Reference</h2>
                         <p>Giving Students an edge over the messed up system</p>
-                        <a class="btn" href="level1.php">Explore Now</a>
+                        <a class="btn" href="level?level=1">Explore Now</a>
                     </div>
                     <div class="col-md-5">
                         <div class="form">

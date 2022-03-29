@@ -3,7 +3,7 @@
 <div class="header-top row align-items-center">
                         <div class="col-lg-3">
                             <div class="brand">
-                                <a href="index.php">
+                                <a href="index">
                                     TAP<span style="color:gold;">Q</span>
                                     <!-- <img src="img/logo.png" alt="Logo"> -->
                                 </a>
@@ -35,20 +35,20 @@
 
                                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                                     <div class="navbar-nav ml-auto">
-                                        <a href="index.php" class="nav-item nav-link">Home</a>
+                                        <a href="index" class="nav-item nav-link">Home</a>
                                         <!-- <a href="about.php" class="nav-item nav-link">About</a> -->
                                     
                                         <!-- <a href="contact.php" class="nav-item nav-link">Contact</a> -->
                                         <div class="nav-item dropdown">
                                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Levels</a>
                                             <div class="dropdown-menu">
-                                                <a href="level1.php" class="dropdown-item">100 Level</a>
-                                                <a href="level2.php" class="dropdown-item">200 level</a>
-                                                <a href="level3.php" class="dropdown-item">300 level</a>
-                                                <a href="level4.php" class="dropdown-item">400 level</a>
-                                                <a href="level5.php" class="dropdown-item">500 level</a>
-                                                <a href="level6.php" class="dropdown-item">600 level</a>
-                                                <a href="level0.php" class="dropdown-item">Other levels</a>
+                                                <a href="level?level=1" class="dropdown-item">100 Level</a>
+                                                <a href="level?level=2" class="dropdown-item">200 level</a>
+                                                <a href="level?level=3" class="dropdown-item">300 level</a>
+                                                <a href="level?level=4" class="dropdown-item">400 level</a>
+                                                <a href="level?level=5" class="dropdown-item">500 level</a>
+                                                <a href="level?level=6" class="dropdown-item">600 level</a>
+                                                <a href="level" class="dropdown-item">Other levels</a>
                                             </div>
                                         </div>
                                         <!-- <a href="#" class="btn">Login</a> -->

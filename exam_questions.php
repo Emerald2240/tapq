@@ -16,8 +16,8 @@ require_once "functions/functions.php";
                                                     echo $_GET['exam_year'];
                                                 } else {
                                                     echo $_SESSION['course_code'];
-                                                    echo ", ";
-                                                    echo $_SESSION['exam_year'];
+                                                    //echo ", ";
+                                                    //echo $_SESSION['exam_year'];
                                                 }
                                                 ?>" name="keywords">
     <meta content="<?php
@@ -150,7 +150,7 @@ require_once "functions/functions.php";
 
                         </div>
 
-                      
+
 
 
                     </div>
