@@ -1185,10 +1185,11 @@ function loadCourseExamYears($course_id)
         if ($row0) {
             $year2 = $row0['year'] += 1;
             $objorthr2 = $row0['obj_thr'];
+            $exam_id = $row0['id'];
 
 
             if (!empty($year2)) {
-                loadCQASLColumn($course_id, $year2, $objorthr2);
+                loadCQASLColumn($course_id, $year2, $objorthr2, 0);
             }
         } else {
             echo 'No Exams Added Yet';
@@ -1284,18 +1285,25 @@ function loadCourseExamYearsDatabase($course_id)
     }
 }
 
-function loadCQASLColumn($course_id, $year, $obj_thr)
+function loadCQASLColumn($course_id, $year, $obj_thr, $exam_id)
 {
 
     echo  '<td>';
     echo '<a class="course hybrid" href="';
-    echo 'exam_questions?course_id=';
+    echo 'exam_questions';
+    echo '?course_id=';
     echo $course_id;
     echo '&exam_year=';
     echo $year;
     echo '&exam_id=';
-    echo 0;
-    echo '">';
+    echo $exam_id;
+    echo '&course_semester=';
+    echo getCourseSemester($course_id);
+    echo '&course_code=';
+    echo getCourseCode($course_id);
+    echo '&course_title=';
+    echo getCourseTitle($course_id);
+    echo '"> ';
 
     echo '<ul class="list-group list-group-horizontal">';
 

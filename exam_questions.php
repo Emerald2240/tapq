@@ -49,7 +49,12 @@ require_once "functions/functions.php";
     ?>
     <link rel="stylesheet" href="css/q_and_a.css?v=<?php echo time(); ?>">
     <title>
-        <?php echo $_GET['course_code']. " ".  $_GET['exam_year']; ?> EXAM</title>
+        <?php  if ($_GET['exam_id'] == 0) {
+            echo "Frequent Appearing Questions For ". $_GET['course_code'];
+        }else{
+                     echo $_GET['course_code']. " ".  $_GET['exam_year']; 
+        }
+         ?> EXAM</title>
 </head>
 
 <body onload="">
@@ -73,7 +78,11 @@ require_once "functions/functions.php";
 
 
                         <h2> <?php
+                        if ($_GET['exam_id'] == 0) {
+                            echo "Frequent Appearing Questions For ". $_GET['course_code'];
+                        }else{
                         echo $_GET['course_code'];
+                        }
                         ?> ESUT</h2>
 
                         <h2>
@@ -91,7 +100,11 @@ require_once "functions/functions.php";
                             echo $_GET['course_title']; ?>
                         </h2>
                         <h2>INSTRUCTION(S):
-                            <?php getExamInstructions($_GET['exam_id']) ?>
+                            <?php  if ($_GET['exam_id'] == 0) {
+                                echo "Study All";
+                            }else{
+                             getExamInstructions($_GET['exam_id']); 
+                            }?>
                         </h2>
                     </div>
 
