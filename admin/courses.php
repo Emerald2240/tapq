@@ -72,6 +72,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Course Code</th>
                                                     <th>Course Title</th>
                                                     <th>Faculty</th>
+                                                    <th>Exams</th>
                                                     <th>Level</th>
                                                     <th>Credit</th>
                                                     <th>Semester</th>
@@ -86,6 +87,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Course Code</th>
                                                     <th>Course Title</th>
                                                     <th>Faculty</th>
+                                                    <th>Exams</th>
                                                     <th>Level</th>
                                                     <th>Edit</th>
                                                     <th>Credit</th>

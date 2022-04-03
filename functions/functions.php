@@ -515,6 +515,11 @@ function loadCourses()
                 echo ucwords(strtolower($row['faculty']));
                 echo '</td>';
 
+                //number of exams added to course
+                echo '<td>';
+                echo getNumberOfAddedExamsForEachCourse($row['id']);
+                echo '</td>';
+
                 //course level
                 echo '<td>';
                 echo $row['level'] . '00';
@@ -572,6 +577,74 @@ function loadCourses()
     }
 }
 
+function getNumberOfAddedExamsForEachCourse($course_id)
+{
+    global $db;
+    $count = 0;
+    
+        $query = "SELECT id FROM q_and_a
+        WHERE course_id = '$course_id' ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $count++;
+            }
+            return $count;
+        }
+    
+}
+
+function getCourseSemester($course_id)
+{
+    global $db;
+    $semester = 0;
+  
+        $query = "SELECT semester FROM courses
+        WHERE id = '$course_id' ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $semester = $row['semester'];
+            }
+        }
+        return $semester;
+   
+}
+
+function getCourseTitle($course_id)
+{
+    global $db;
+    $code = "";
+   
+        $query = "SELECT title FROM courses
+        WHERE id = '$course_id' ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $code = $row['title'];
+            }
+        }
+        return $code;
+  
+}
+
+function getCourseCode($course_id)
+{
+    global $db;
+    $code = "";
+    
+        $query = "SELECT code FROM courses
+        WHERE id = '$course_id' ";
+        $response = @mysqli_query($db, $query);
+        if ($response) {
+            while ($row = mysqli_fetch_array($response)) {
+                $code = $row['code'];
+            }
+        }
+        return $code;
+  
+}
+
 function loadCourseExams($course_id)
 {
     //This loads up all the exams available and fills their links/options with the required items so they can be worked on and used to get more data on that particular course
@@ -595,6 +668,12 @@ function loadCourseExams($course_id)
                 echo $row['year'];
                 echo '&exam_id=';
                 echo $row['id'];
+                echo '&course_semester=';
+                echo getCourseSemester($row['course_id']);
+                echo '&course_code=';
+                echo getCourseCode($row['course_id']);
+                echo '&course_title=';
+                echo getCourseTitle($row['course_id']);
                 echo '"> ';
                 echo ucwords(strtoupper($row['year']));
                 echo '</a></td>';
@@ -1119,13 +1198,21 @@ function loadCourseExamYears($course_id)
         while ($row = mysqli_fetch_array($response2)) {
             echo  '<td>';
             echo '<a class="course" href="';
-            echo 'exam_questions?course_id=';
-            echo $row['course_id'];
-            echo '&exam_year=';
-            echo $row['year'];
-            echo '&exam_id=';
-            echo $row['id'];
-            echo '">';
+                echo 'exam_questions';
+                echo '?course_id=';
+                echo $row['course_id'];
+                echo '&exam_year=';
+                echo $row['year'];
+                echo '&exam_id=';
+                echo $row['id'];
+                echo '&course_semester=';
+                echo getCourseSemester($row['course_id']);
+                echo '&course_code=';
+                echo getCourseCode($row['course_id']);
+                echo '&course_title=';
+                echo getCourseTitle($row['course_id']);
+                echo '"> ';
+               
 
             echo '<ul class="list-group list-group-horizontal">';
 
@@ -1147,6 +1234,7 @@ function loadCourseExamYears($course_id)
 
             echo '</ul>';
             echo '</a>';
+            echo '</td>';
         }
     }
 }

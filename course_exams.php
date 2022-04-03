@@ -10,14 +10,12 @@ require_once "functions/functions.php";
 <head>
     <meta content="Past_Questions TAPQ ESUT <?php if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
                                                 echo $_GET['course_code'];
-                                            } elseif (isset($_SESSION['course_code'])) {
-                                                echo $_SESSION['course_code'];
-                                            } ?>" name="keywords">
+                                            }else{
+                                                echo "not found";
+                                            }?>" name="keywords">
     <meta content="ESUT Past Exams For <?php if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
                                             echo $_GET['course_code'];
-                                        } elseif (isset($_SESSION['course_code'])) {
-                                            echo $_SESSION['course_code'];
-                                        } ?>" name="description">
+                                        }?>" name="description">
     <?php
     require_once "includes/head.php";
     ?>
@@ -27,15 +25,8 @@ require_once "functions/functions.php";
                 echo $_GET['course_title'];
                 echo ' ';
                 echo $_GET['course_code'];
-                $_SESSION['course_code'] = $_GET['course_code'];
-                $_SESSION['course_id'] = $_GET['course_id'];
-                $_SESSION['course_title'] = $_GET['course_title'];
-            } elseif (isset($_SESSION['course_code'])) {
-                echo $_SESSION['course_title'];
-                echo ' ';
-                echo $_SESSION['course_code'];
             } else {
-                die;
+                //die;
             } ?> EXAMS</title>
 </head>
 
@@ -57,27 +48,17 @@ require_once "functions/functions.php";
                             //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
                             if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
                                 echo $_GET['course_title'];
-                                $_SESSION['course_code'] = $_GET['course_code'];
-                                $_SESSION['course_id'] = $_GET['course_id'];
-                                $_SESSION['course_title'] = $_GET['course_title'];
-                                $_SESSION['course_semester'] = $_GET['course_semester'];
-                            } elseif (isset($_SESSION['course_code'])) {
-                                echo $_SESSION['course_title'];
+                              
                             } else {
-                                die;
+                                //die;
                             } ?> </h2>
                         <h2><?php
                             //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
                             if (isset($_GET['course_code']) && isset($_GET['course_id'])) {
                                 echo $_GET['course_code'];
-                                $_SESSION['course_code'] = $_GET['course_code'];
-                                $_SESSION['course_id'] = $_GET['course_id'];
-                                $_SESSION['course_title'] = $_GET['course_title'];
-                                $_SESSION['course_semester'] = $_GET['course_semester'];
-                            } elseif (isset($_SESSION['course_code'])) {
-                                echo $_SESSION['course_code'];
-                            } else {
-                                die;
+                               
+                        } else {
+                                //die;
                             } ?> </h2>
                     </div>
 

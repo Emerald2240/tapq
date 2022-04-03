@@ -83,7 +83,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Format</th>
                                                     <th>Lecturer</th>
                                                     <th>Time</th>
-                                                    <th>Admin</th>  
+                                                    <th>Created By</th>  
                                                     <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
@@ -95,7 +95,7 @@ if (!isset($_SESSION['log'])) {
                                                     <th>Format</th>
                                                     <th>Lecturer</th>
                                                     <th>Time</th>
-                                                    <th>Admin</th>
+                                                    <th>Created By</th>
                                                     <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
@@ -152,7 +152,7 @@ if (!isset($_SESSION['log'])) {
     <?php
     require_once("includes/logout_modal.php");
     require_once("includes/delete_modal.php");
-    require_once("includes/delete_exam_modal.php");
+    require_once("includes/delete_modal.php");
 
 
 

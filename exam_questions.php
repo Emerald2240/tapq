@@ -1,7 +1,6 @@
 <?php
 require_once "config/connect.php";
 require_once "functions/functions.php";
-//session_start();
 ?>
 
 <!DOCTYPE html>
@@ -15,9 +14,7 @@ require_once "functions/functions.php";
                                                     echo ", ";
                                                     echo $_GET['exam_year'];
                                                 } else {
-                                                    echo $_SESSION['course_code'];
-                                                    //echo ", ";
-                                                    //echo $_SESSION['exam_year'];
+                                                    echo "Not Found";
                                                 }
                                                 ?>" name="keywords">
     <meta content="<?php
@@ -29,11 +26,7 @@ require_once "functions/functions.php";
                             echo $_GET['course_code'];
                             echo " To Be Written In ";
                             echo $_GET['exam_year'];
-                        } elseif (isset($_SESSION['course_code'])) {
-                            echo 'Sorted out Questions for ';
-                            echo $_SESSION['course_code'];
-                            echo " To Be Written In ";
-                            //echo $_SESSION['exam_year'];
+                        } else {
                         }
                     } else {
 
@@ -42,11 +35,7 @@ require_once "functions/functions.php";
                             echo $_GET['course_code'];
                             echo " Written In ";
                             echo $_GET['exam_year'];
-                        } elseif (isset($_SESSION['course_code'])) {
-                            echo 'ESUT Past Questions For';
-                            echo $_SESSION['course_code'];
-                            echo " Written In ";
-                            //echo $_SESSION['exam_year'];
+                        } else {
                         }
                     } //end of if 
                     ?>" name="description">
@@ -60,19 +49,7 @@ require_once "functions/functions.php";
     ?>
     <link rel="stylesheet" href="css/q_and_a.css?v=<?php echo time(); ?>">
     <title>
-        <?php
-        //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
-        if (isset($_GET['course_id']) && isset($_GET['exam_year']) && isset($_GET['exam_id'])) {
-            $_SESSION['course_id'] = $_GET['course_id'];
-            $_SESSION['exam_year'] = $_GET['exam_year'];
-            $_SESSION['exam_id'] = $_GET['exam_id'];
-            echo $_SESSION['course_code'];
-        } elseif (isset($_SESSION['course_code'])) {
-            echo $_SESSION['course_code'];
-        } else {
-            die;
-        } ?>
-        <?php echo $_GET['exam_year']; ?> EXAM</title>
+        <?php echo $_GET['course_code']. " ".  $_GET['exam_year']; ?> EXAM</title>
 </head>
 
 <body onload="">
@@ -92,36 +69,29 @@ require_once "functions/functions.php";
                 <div class="row">
                     <div class="col-12">
 
-                        <?php
-                        //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
-                        if (isset($_GET['course_id']) && isset($_GET['exam_year']) && isset($_GET['exam_id'])) {
-                            $_SESSION['course_id'] = $_GET['course_id'];
-                            $_SESSION['exam_year'] = $_GET['exam_year'];
-                            $_SESSION['exam_id'] = $_GET['exam_id'];
-                        } elseif (isset($_SESSION['course_code'])) {
-                            echo $_SESSION['course_code'];
-                        } else {
-                            die;
-                        } ?>
+                       
 
 
-                        <h2>ESUT</h2>
+                        <h2> <?php
+                        echo $_GET['course_code'];
+                        ?> ESUT</h2>
 
                         <h2>
-                            <?php if ($_SESSION['course_semester'] == 1) {
+                            <?php
+                            if ($_GET['course_semester'] == 1) {
                                 echo "FIRST SEMESTER EXAMINATIONS ";
                             } else {
                                 echo "SECOND SEMESTER EXAMINATIONS ";
                             }
-                            yearSlashYear($_SESSION['exam_year']) ?>
+                            yearSlashYear($_GET['exam_year']) ?>
                         </h2>
                         <h2>
-                            <?php echo $_SESSION['course_code'];
+                            <?php echo $_GET['course_code'];
                             echo ":";
-                            echo $_SESSION['course_title']; ?>
+                            echo $_GET['course_title']; ?>
                         </h2>
                         <h2>INSTRUCTION(S):
-                            <?php getExamInstructions($_SESSION['exam_id']) ?>
+                            <?php getExamInstructions($_GET['exam_id']) ?>
                         </h2>
                     </div>
 
@@ -141,10 +111,10 @@ require_once "functions/functions.php";
                         <!--  -->
 
                         <div class="qabox container-lg" id="qabox">
-                            <?php if ($_SESSION['exam_id'] == 0) {
-                                generateCQAPSL($_SESSION['course_id']);
+                            <?php if ($_GET['exam_id'] == 0) {
+                                generateCQAPSL($_GET['course_id']);
                             } else {
-                                loadQandA($_SESSION['exam_id']);
+                                loadQandA($_GET['exam_id']);
                             } ?>
 
 
