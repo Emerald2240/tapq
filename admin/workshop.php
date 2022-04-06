@@ -74,7 +74,7 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
 </head>
 
 <body id="page-top">
-
+<script src="js/functions.js?v=<?php echo time(); ?>"></script>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -181,49 +181,6 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
     <!-- <?php require("includes/ck_editor.php") ?> -->
     <?php require_once("includes/js_includes.php") ?>
     <?php require_once("includes/data_tables.php"); ?>
-
-
-    <!-- <script>
-        var size = <?php echo $_SESSION['exam']['number_of_questions'] ?>;
-        var num = 1;
-        let appEditorQ;
-        do {
-            ClassicEditor
-                .create(document.querySelector('#question' + num), {
-                    //toolbar: [ 'heading', '|', 'bold', 'italic', /*'link',*/ 'specialCharacters' ]
-                })
-                .then(editor => {
-                    window.editor = editor;
-                    appEditorQ = editor;
-                })
-                .catch(err => {
-                    console.error(err.stack);
-                })
-            num++;
-        }
-        while (num <= size);
-    </script> -->
-
-    <!-- <script>
-        var size = <?php echo $_SESSION['exam']['number_of_questions'] ?>;
-        var num = 1;
-        let appEditorA;
-        do {
-            ClassicEditor
-                .create(document.querySelector('#answer' + num), {
-                    //toolbar: [ 'heading', '|', 'bold', 'italic', /*'link',*/ 'specialCharacters' ]
-                })
-                .then(editor => {
-                    window.editor = editor;
-                    appEditorA = editor;
-                })
-                .catch(err => {
-                    console.error(err.stack);
-                })
-            num++;
-        }
-        while (num <= size);
-    </script> -->
 
 </body>
 

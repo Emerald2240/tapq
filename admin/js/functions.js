@@ -62,7 +62,6 @@ function validateNewExamForm(numOfquestions, obj_or_theory) {
 
             } else {
                 console.log("form field filled")
-
             }
         }
 
@@ -83,24 +82,24 @@ function validateNewExamForm(numOfquestions, obj_or_theory) {
                 tfieldname = tfields[i];
 
 
-                //example: {id:159223019, title, 'Deadpool', year:2015}
-                // var qdata = CKEDITOR.instances.qfieldname.getData();
-                // var adata = CKEDITOR.instances.afieldname.getData();
-
                 let q_and_a = {
                     number: i,
                     question: htmlEntities(document.getElementById(qfieldname).value),
                     answer: htmlEntities(document.getElementById(afieldname).value),
                     topic: htmlEntities(document.getElementById(tfieldname).value)
-                    // question: appEditorQ.getData(),
-                    // answer: appEditorA.getData()
+
                 }
 
                 qs_and_as.push(q_and_a);
 
             }
-            jsonta.innerHTML = JSON.stringify(qs_and_as, 't', 3);
-
+            var jsonifiedText = JSON.stringify(qs_and_as, 't', 3);
+            console.log(jsonifiedText.length);
+            if (jsonifiedText.length > 5500) {
+                missing_num.innerHTML += 'Text is over 5000 characters and too long.'
+            } else {
+                jsonta.innerHTML = JSON.stringify(qs_and_as, 't', 3);
+            }
         }
 
     }
@@ -135,34 +134,34 @@ function generateCQAPSL(originalArray) {
 // function deliverQuestion
 
 
-document.querySelector('#dataTable').onclick = function (ev) {
-    var index = ev.target.parentElement.rowIndex;
-    var row = document.getElementById("dataTable").rows[index].cells[0].innerHTML;
+// document.querySelector('#dataTable').onclick = function (ev) {
+//     var index = ev.target.parentElement.rowIndex;
+//     var row = document.getElementById("dataTable").rows[index].cells[0].innerHTML;
 
-    if (focusedEle == "") { } else {
-        var TA = document.getElementById(focusedEle);
-        //var currentText = TA.textContent;
-        //currentText += row;
-        //TA.innerHTML = currentText;
-        //TA.innerHTML += row;   
-        TA.value += row;
-        TA.focus();
-        TA.selectionEnd;
-    }
+//     if (focusedEle == "") { } else {
+//         var TA = document.getElementById(focusedEle);
+//         //var currentText = TA.textContent;
+//         //currentText += row;
+//         //TA.innerHTML = currentText;
+//         //TA.innerHTML += row;   
+//         TA.value += row;
+//         TA.focus();
+//         TA.selectionEnd;
+//     }
 
-    // console.log(row);
+//     // console.log(row);
 
-    // alert(index);
-}
+//     // alert(index);
+// }
 
-$(document).ready(
-    function () {
-        // nav bar toggle
-        $("#special_bar").click(function () {
-            $("#dataTb").slideToggle();
-        })
+// $(document).ready(
+//     function () {
+//         // nav bar toggle
+//         $("#special_bar").click(function () {
+//             $("#dataTb").slideToggle();
+//         })
 
-    })
+//     })
 
 
 

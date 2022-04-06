@@ -435,20 +435,34 @@ function processEditCourse($formstream)
 function AddNewCourse($cd, $tit, $fac, $cred, $lvl, $sem)
 {
     //This simply adds the filtered and cleansed data into the database 
-    global $db;
-    $sql = "INSERT INTO courses(code, title, faculty, credit, level, semester ) VALUES ('$cd', '$tit', '$fac', '$cred', '$lvl', '$sem')";
+    //global $db;
+    global $pdo;
+    // $sql = "INSERT INTO courses(code, title, faculty, credit, level, semester ) VALUES ('$cd', '$tit', '$fac', '$cred', '$lvl', '$sem')";
 
-    if (mysqli_query($db, $sql)) {
+    // if (mysqli_query($db, $sql)) {
 
-        //echo "Course Saved";
+    //     //echo "Course Saved";
+    //     echo '<p class="text-success">';
+    //     echo "Course Saved";
+    //     echo '</p>';
+    //     header("location:courses");
+    // } else {
+    //     // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    // }
+    // mysqli_close($db);
+
+    try {
+        //INSERT
+        $stmt = $pdo->prepare("INSERT INTO courses(code, title, faculty, credit, level, semester ) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->execute([$cd, $tit, $fac, $cred, $lvl, $sem]);
+        $stmt = null;
+
         echo '<p class="text-success">';
         echo "Course Saved";
         echo '</p>';
         header("location:courses");
-    } else {
-        // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+    } catch (Exception $e) {
     }
-    mysqli_close($db);
 }
 
 function UpdateCourse($cd, $tit, $fac, $cred, $lvl, $sem)
@@ -581,68 +595,64 @@ function getNumberOfAddedExamsForEachCourse($course_id)
 {
     global $db;
     $count = 0;
-    
-        $query = "SELECT id FROM q_and_a
+
+    $query = "SELECT id FROM q_and_a
         WHERE course_id = '$course_id' ";
-        $response = @mysqli_query($db, $query);
-        if ($response) {
-            while ($row = mysqli_fetch_array($response)) {
-                $count++;
-            }
-            return $count;
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+        while ($row = mysqli_fetch_array($response)) {
+            $count++;
         }
-    
+        return $count;
+    }
 }
 
 function getCourseSemester($course_id)
 {
     global $db;
     $semester = 0;
-  
-        $query = "SELECT semester FROM courses
+
+    $query = "SELECT semester FROM courses
         WHERE id = '$course_id' ";
-        $response = @mysqli_query($db, $query);
-        if ($response) {
-            while ($row = mysqli_fetch_array($response)) {
-                $semester = $row['semester'];
-            }
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+        while ($row = mysqli_fetch_array($response)) {
+            $semester = $row['semester'];
         }
-        return $semester;
-   
+    }
+    return $semester;
 }
 
 function getCourseTitle($course_id)
 {
     global $db;
     $code = "";
-   
-        $query = "SELECT title FROM courses
+
+    $query = "SELECT title FROM courses
         WHERE id = '$course_id' ";
-        $response = @mysqli_query($db, $query);
-        if ($response) {
-            while ($row = mysqli_fetch_array($response)) {
-                $code = $row['title'];
-            }
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+        while ($row = mysqli_fetch_array($response)) {
+            $code = $row['title'];
         }
-        return $code;
-  
+    }
+    return $code;
 }
 
 function getCourseCode($course_id)
 {
     global $db;
     $code = "";
-    
-        $query = "SELECT code FROM courses
+
+    $query = "SELECT code FROM courses
         WHERE id = '$course_id' ";
-        $response = @mysqli_query($db, $query);
-        if ($response) {
-            while ($row = mysqli_fetch_array($response)) {
-                $code = $row['code'];
-            }
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+        while ($row = mysqli_fetch_array($response)) {
+            $code = $row['code'];
         }
-        return $code;
-  
+    }
+    return $code;
 }
 
 function loadCourseExams($course_id)
@@ -659,6 +669,7 @@ function loadCourseExams($course_id)
                 //$query2 = "SELECT profilepic FROM users WHERE emailaddress = '$master' ";
 
                 echo '<tr>';
+                //View exam in clientside view
                 echo  '<td>';
                 echo '<a target="_blank" href="';
                 echo '../exam_questions';
@@ -678,43 +689,79 @@ function loadCourseExams($course_id)
                 echo ucwords(strtoupper($row['year']));
                 echo '</a></td>';
 
+                //Number of questions
                 echo  '<td>';
                 echo $row['num_questions'];
                 echo '</td>';
 
+                //Objective or Theory
                 echo '<td>';
                 if ($row['obj_thr'] == 1) {
                     echo ucwords(strtolower("Objective"));
                 } else {
                     echo ucwords(strtolower("Theory"));
                 }
-
                 echo '</td>';
 
+                //Lecturer incharge of course
                 echo '<td>';
                 echo ucwords(strtolower($row['lecturers']));
                 echo '</td>';
 
+                //Exam duration in hours
                 echo '<td>';
                 echo $row['time'] / 60;
                 echo " Hour(s)";
                 echo '</td>';
 
+                //Id of admin who created exam
                 echo '<td>';
                 echo $row['admin_id'];
                 echo '</td>';
 
+                //State of the underlying exam data in json
+                echo '<td>';
+                json_decode($row['questions_and_answers']);
+                switch (json_last_error()) {
+                    case JSON_ERROR_NONE:
+                        echo ' - No errors';
+                    break;
+                    case JSON_ERROR_DEPTH:
+                        echo ' - Maximum stack depth exceeded';
+                    break;
+                    case JSON_ERROR_STATE_MISMATCH:
+                        echo ' - Underflow or the modes mismatch';
+                    break;
+                    case JSON_ERROR_CTRL_CHAR:
+                        echo ' - Unexpected control character found';
+                    break;
+                    case JSON_ERROR_SYNTAX:
+                        echo ' - Syntax error, malformed JSON';
+                    break;
+                    case JSON_ERROR_UTF8:
+                        echo ' - Malformed UTF-8 characters, possibly incorrectly encoded';
+                    break;
+                    default:
+                        echo ' - Unknown error';
+                    break;
+                }
+                echo '</td>';
+
+                //Edit exam(unfinished)
                 echo '<td><a  href="workshop?exam_id=';
                 echo $row['id'];
                 echo '&edit=1"';
                 // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
-                echo '><i class="fa fa-edit"></i></a></td>';
+                echo '><i class="fa fa-edit"></i></a>';
+                echo '</td>';
 
+                //Delete Exam
                 echo '<td><a  href="delete_exam?exam_id=';
                 echo $row['id'];
                 echo '"';
                 // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
-                echo '><i class="fa fa-trash"></i></a></td>';
+                echo '><i class="fa fa-trash"></i></a>';
+                echo '</td>';
 
                 echo '</tr>';
             }
@@ -933,10 +980,10 @@ function showDataMissing2($data_missing)
 
 function createQuestionAndAnswerBoxes($num)
 {
-    echo '<div class="special_char" >';
-    echo '<i id="special_bar" style="display:inline-block; text-align:right; width:100%; font-size:20px;" class="fa fa-chevron-down">&$/</i>';
-    require("includes/special_char_table");
-    echo '</div>';
+    //echo '<div class="special_char" >';
+    //echo '<i id="special_bar" style="display:inline-block; text-align:right; width:100%; font-size:20px;" class="fa fa-chevron-down">&$/</i>';
+    //require("includes/special_char_table");
+    //echo '</div>';
 
     //This function creates question and answer boxes for the number of questions available. its id's are given so its arranged perfectly with luckyMoshy
     for ($i = 1; $i <= $num; $i++) {
@@ -996,22 +1043,34 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
 
 
         //This simply adds the filtered and cleansed data into the database (questions and answers)
-        global $db;
-        $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time, instructions  ) VALUES ('$course_id', '$admin_id', '$year', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes', '$instructions')";
+        //     global $db;
+        //     $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time, instructions  ) VALUES ('$course_id', '$admin_id', '$year', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes', '$instructions')";
 
-        if (mysqli_query($db, $sql)) {
+        //     if (mysqli_query($db, $sql)) {
 
-            //echo "Exam Saved";
-            // echo '<p class="text-success">';
-            // echo "Course Saved";
-            // echo '</p>';
+        //         //echo "Exam Saved";
+        //         // echo '<p class="text-success">';
+        //         // echo "Course Saved";
+        //         // echo '</p>';
+        //         header("location:courses");
+        //     } else {
+        //         // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        //     }
+        //     mysqli_close($db);
+        // } else {
+        //     //header("location:new_exam");
+        // }
+
+        global $pdo;
+        try {
+            //INSERT
+            $stmt = $pdo->prepare("INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time, instructions  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$course_id, $admin_id, $year, $number_of_questions, $jsonta, $lecturers, $obj_or_theory, $duration_in_minutes, $instructions]);
+            $stmt = null;
+
             header("location:courses");
-        } else {
-            // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
+        } catch (Exception $e) {
         }
-        mysqli_close($db);
-    } else {
-        //header("location:new_exam");
     }
 }
 
@@ -1199,21 +1258,21 @@ function loadCourseExamYears($course_id)
         while ($row = mysqli_fetch_array($response2)) {
             echo  '<td>';
             echo '<a class="course" href="';
-                echo 'exam_questions';
-                echo '?course_id=';
-                echo $row['course_id'];
-                echo '&exam_year=';
-                echo $row['year'];
-                echo '&exam_id=';
-                echo $row['id'];
-                echo '&course_semester=';
-                echo getCourseSemester($row['course_id']);
-                echo '&course_code=';
-                echo getCourseCode($row['course_id']);
-                echo '&course_title=';
-                echo getCourseTitle($row['course_id']);
-                echo '"> ';
-               
+            echo 'exam_questions';
+            echo '?course_id=';
+            echo $row['course_id'];
+            echo '&exam_year=';
+            echo $row['year'];
+            echo '&exam_id=';
+            echo $row['id'];
+            echo '&course_semester=';
+            echo getCourseSemester($row['course_id']);
+            echo '&course_code=';
+            echo getCourseCode($row['course_id']);
+            echo '&course_title=';
+            echo getCourseTitle($row['course_id']);
+            echo '"> ';
+
 
             echo '<ul class="list-group list-group-horizontal">';
 
