@@ -9,8 +9,10 @@ if (!isset($_SESSION['log'])) {
 
 //echo '<pre>';
 //print_r($_SESSION);
-
-$datamissing = processQandA($_POST, $_GET['course_id'],  $_SESSION['admin_id'],  $_GET['year'],   $_GET['number_of_questions'],  $_GET['lecturer'], $_GET['format'],  $_GET['duration'], $_GET['instructions'], $_GET['edit'], $_GET['exam_id']);
+if ($_GET['edit'] == 1) {
+    $datamissing = processQandA($_POST, $_GET['course_id'],  $_SESSION['admin_id'],  $_GET['year'],   $_GET['number_of_questions'],  $_GET['lecturer'], $_GET['format'],  $_GET['duration'], $_GET['instructions'], $_GET['edit'], $_GET['exam_id']);
+}
+$datamissing = processQandA($_POST, $_GET['course_id'],  $_SESSION['admin_id'],  $_GET['year'],   $_GET['number_of_questions'],  $_GET['lecturer'], $_GET['format'],  $_GET['duration'], $_GET['instructions'], $_GET['edit']);
 ?>
 
 <!DOCTYPE html>

@@ -1054,7 +1054,7 @@ function createQuestionAndAnswerBoxes($num)
 }
 
 //Look into this function later. it has an unresolved issue.
-function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number_of_questions, $lecturer, $obj_or_theory, $duration_in_minutes, $instructions, $edit, $exam_id)
+function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number_of_questions, $lecturer, $obj_or_theory, $duration_in_minutes, $instructions, $edit, $exam_id = null)
 {
     //next two lines are very important
     extract($q_and_a_formstream);
