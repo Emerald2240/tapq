@@ -8,7 +8,7 @@ if (!isset($_SESSION['log'])) {
 }
 
 //This code snippet initializes the datamissing variable with the missing items, so the showDataMissing function can display them
-$dataMissing[] = processNewExam($_POST);
+$dataMissing[] = processNewExam($_POST, $_GET['id']);
 //print_r($dataMissing);
 ?>
 
@@ -21,13 +21,9 @@ $dataMissing[] = processNewExam($_POST);
     ?>
     <title>
         <?php
-        //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
         if (isset($_GET['coursename'])) {
             echo $_GET['coursename'];
-            $_SESSION['course_name'] = $_GET['coursename'];
-            $_SESSION['course_id'] = $_GET['id'];
         } else {
-            echo $_SESSION['course_name'];
         }
         ?>
         Add Exam</title>
@@ -66,13 +62,8 @@ $dataMissing[] = processNewExam($_POST);
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">
                             <?php
-                                    //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
                             if (isset($_GET['coursename']) && isset($_GET['id'])) {
                                 echo $_GET['coursename'];
-                                $_SESSION['course_name'] = $_GET['coursename'];
-                                $_SESSION['course_id'] = $_GET['id'];
-                            } elseif (isset($_SESSION['course_name'])) {
-                                echo $_SESSION['course_name'];
                             } else {
                                 die;
                             }
@@ -96,7 +87,7 @@ $dataMissing[] = processNewExam($_POST);
                                     showDataMissing($dataMissing);
                                     ?>
                                     <div class="container-lg">
-                                        <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data">
+                                        <form method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="exam_year">Exam Year/Session</label>
                                                 <select class="form-control" name="exam_year" id="exam_year">
@@ -115,7 +106,7 @@ $dataMissing[] = processNewExam($_POST);
 
                                             <div class="form-group">
                                                 <label for="no_questions">Number Of Questions</label>
-                                                <input  type="number" class="form-control" name="no_questions" id="no_questions" value="3">
+                                                <input type="number" class="form-control" name="no_questions" id="no_questions" value="3">
                                             </div>
 
                                             <div class="form-group">

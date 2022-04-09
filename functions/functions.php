@@ -725,34 +725,63 @@ function loadCourseExams($course_id)
                 switch (json_last_error()) {
                     case JSON_ERROR_NONE:
                         echo ' - No errors';
-                    break;
+                        break;
                     case JSON_ERROR_DEPTH:
                         echo ' - Maximum stack depth exceeded';
-                    break;
+                        break;
                     case JSON_ERROR_STATE_MISMATCH:
                         echo ' - Underflow or the modes mismatch';
-                    break;
+                        break;
                     case JSON_ERROR_CTRL_CHAR:
                         echo ' - Unexpected control character found';
-                    break;
+                        break;
                     case JSON_ERROR_SYNTAX:
                         echo ' - Syntax error, malformed JSON';
-                    break;
+                        break;
                     case JSON_ERROR_UTF8:
                         echo ' - Malformed UTF-8 characters, possibly incorrectly encoded';
-                    break;
+                        break;
                     default:
                         echo ' - Unknown error';
-                    break;
+                        break;
                 }
                 echo '</td>';
 
                 //Edit exam(unfinished)
-                echo '<td><a  href="workshop?exam_id=';
-                echo $row['id'];
-                echo '&edit=1"';
+                echo '<td><a  href="';
+                //This is an edit, plus the year
+                echo  'workshop?edit=1&year='
+                    . $row['year']
+
+                    //objective or theory
+                    . '&format='
+                    . $row['obj_thr']
+
+                    //number of questions
+                    . '&number_of_questions='
+                    . $row['num_questions']
+
+                    //Lecturer in charge of course
+                    . '&lecturer='
+                    . $row['lecturers']
+
+                    //Exam duration in minutes
+                    . '&duration='
+                    . $row['time']
+
+                    //Exam instructions
+                    . '&instructions='
+                    . $row['instructions']
+
+                    //unique course id
+                    . '&course_id='
+                    . $row['course_id']
+
+                    //unique exam id
+                    . '&exam_id='
+                    . $row['id'];
                 // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
-                echo '><i class="fa fa-edit"></i></a>';
+                echo '"><i class="fa fa-edit"></i></a>';
                 echo '</td>';
 
                 //Delete Exam
@@ -869,7 +898,7 @@ function loadTenyears()
     }
 }
 
-function processNewExam($formstream)
+function processNewExam($formstream, $course_id)
 {
     //This function looks through all the items collected and checks if everything is in order
     extract($formstream);
@@ -931,15 +960,17 @@ function processNewExam($formstream)
 
 
         if (empty($data_missing)) {
-            $_SESSION['new_exam_set']                  = 'true';
-            $_SESSION['exam']['year']                  = $exam_year;
-            $_SESSION['exam']['format']                = $obj_thr;
-            $_SESSION['exam']['number_of_questions']   = $no_questions;
-            $_SESSION['exam']['lecturer']              = $lecturer;
-            $_SESSION['exam']['duration']              = $duration;
-            $_SESSION['exam']['instructions']              = $instructions;
+            // $_SESSION['new_exam_set']                  = 'true';
+            // $_SESSION['exam']['year']                  = $exam_year;
+            // $_SESSION['exam']['format']                = $obj_thr;
+            // $_SESSION['exam']['number_of_questions']   = $no_questions;
+            // $_SESSION['exam']['lecturer']              = $lecturer;
+            // $_SESSION['exam']['duration']              = $duration;
+            // $_SESSION['exam']['instructions']              = $instructions;
 
-            header('location:workshop');
+            header(
+                'location:workshop?edit=0&year=' . $exam_year . '&format=' . $obj_thr . '&number_of_questions=' . $no_questions . '&lecturer=' . $lecturer . '&duration=' . $duration . '&instructions=' . $instructions . '&course_id=' . $course_id
+            );
         } else {
             return $data_missing;
         }
@@ -1023,53 +1054,64 @@ function createQuestionAndAnswerBoxes($num)
 }
 
 //Look into this function later. it has an unresolved issue.
-function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number_of_questions, $lecturers, $obj_or_theory, $duration_in_minutes, $instructions)
+function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number_of_questions, $lecturer, $obj_or_theory, $duration_in_minutes, $instructions, $edit, $exam_id)
 {
-
+    //next two lines are very important
     extract($q_and_a_formstream);
+    $data_missing = [];
+
+    // echo '<pre>';
+    // print_r($_POST);
+    // print_r($_GET);
+    // print_r($_SESSION);
+    // die;
 
     if (isset($submit)) {
-
-        $data_missing = [];
-
-        //the next 5 lines of code are useless and shouldnt be here. especially considering the data is directly added into the database
+        $jsonta = "";
         if (empty($jsonta)) {
-            $data_missing['Q_and_A'] = "Missing questions and answer box";
+            $data_missing['JSON Text Area'] = "Missing json text area";
         } else {
-            $jsonta = trim($jsonta);
+            $validJsonDecoded = json_decode($jsonta, true);
+            $validJsonEncoded = json_encode($validJsonDecoded);
             //$jsonta = utf8_encode($jsonta), ENT_QUOTES);
         }
 
-
-
-        //This simply adds the filtered and cleansed data into the database (questions and answers)
-        //     global $db;
-        //     $sql = "INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time, instructions  ) VALUES ('$course_id', '$admin_id', '$year', '$number_of_questions', '$jsonta', '$lecturers', '$obj_or_theory', '$duration_in_minutes', '$instructions')";
-
-        //     if (mysqli_query($db, $sql)) {
-
-        //         //echo "Exam Saved";
-        //         // echo '<p class="text-success">';
-        //         // echo "Course Saved";
-        //         // echo '</p>';
-        //         header("location:courses");
-        //     } else {
-        //         // echo  "<br>" . "Error: " . "<br>" . mysqli_error($db);
-        //     }
-        //     mysqli_close($db);
-        // } else {
-        //     //header("location:new_exam");
-        // }
-
         global $pdo;
-        try {
-            //INSERT
-            $stmt = $pdo->prepare("INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, 	time, instructions  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->execute([$course_id, $admin_id, $year, $number_of_questions, $jsonta, $lecturers, $obj_or_theory, $duration_in_minutes, $instructions]);
-            $stmt = null;
 
-            header("location:courses");
-        } catch (Exception $e) {
+
+
+
+        if (empty($data_missing)) {
+            try {
+                if ($edit == 1) {
+                    //UPDATE
+                    // echo 'we got here';
+                    // die;
+                    $stmt = $pdo->prepare("UPDATE q_and_a SET admin_id = :admin_id, questions_and_answers = :q_and_a WHERE q_and_a.id = :id");
+
+
+                    $stmt->execute([':admin_id' => $admin_id, ':q_and_a' => $validJsonEncoded, ':id' => $exam_id]);
+                    ///$result = $stmt->rowCount();
+                    // if ($result == 1) {
+                    header("location:courses");
+                    // } else {
+
+                    //}
+                    $stmt = null;
+                } else {
+                    //INSERT
+
+                    $stmt = $pdo->prepare("INSERT INTO q_and_a(course_id, 	admin_id, 	year,  	num_questions, 	questions_and_answers, 	lecturers, 	obj_thr, time, instructions  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                    $stmt->execute([$course_id, $admin_id, $year, $number_of_questions, $validJsonEncoded, $lecturer, $obj_or_theory, $duration_in_minutes, $instructions]);
+                    $stmt = null;
+
+                    header("location:courses");
+                }
+            } catch (Exception $e) {
+                exit($e->getMessage());
+            }
+        } else {
+            return $data_missing;
         }
     }
 }
@@ -1137,7 +1179,6 @@ function deleteAdmin($id)
     }
     mysqli_close($db);
 }
-
 
 //FRONTEND//
 function returnPageLevelTitle($level)

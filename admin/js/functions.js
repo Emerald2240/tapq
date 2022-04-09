@@ -143,7 +143,7 @@ function generateCQAPSL(originalArray) {
 //         //var currentText = TA.textContent;
 //         //currentText += row;
 //         //TA.innerHTML = currentText;
-//         //TA.innerHTML += row;   
+//         //TA.innerHTML += row;
 //         TA.value += row;
 //         TA.focus();
 //         TA.selectionEnd;

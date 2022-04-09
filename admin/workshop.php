@@ -10,7 +10,7 @@ if (!isset($_SESSION['log'])) {
 //echo '<pre>';
 //print_r($_SESSION);
 
-processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION['exam']['year'],   $_SESSION['exam']['number_of_questions'],  $_SESSION['exam']['lecturer'], $_SESSION['exam']['format'],  $_SESSION['exam']['duration'], $_SESSION['exam']['instructions']);
+$datamissing = processQandA($_POST, $_GET['course_id'],  $_SESSION['admin_id'],  $_GET['year'],   $_GET['number_of_questions'],  $_GET['lecturer'], $_GET['format'],  $_GET['duration'], $_GET['instructions'], $_GET['edit'], $_GET['exam_id']);
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +24,7 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
         //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
         if (isset($_GET['coursename'])) {
             echo $_GET['coursename'];
-            $_SESSION['course_name'] = $_GET['coursename'];
-            $_SESSION['course_id'] = $_GET['id'];
         } else {
-            echo $_SESSION['course_name'];
         }
         ?>
         Workshop
@@ -74,7 +71,7 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
 </head>
 
 <body id="page-top">
-<script src="js/functions.js?v=<?php echo time(); ?>"></script>
+    <script src="js/functions.js?v=<?php echo time(); ?>"></script>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -101,10 +98,7 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
                         //this code snippet sets the coursename and id variables to the session global array, this is so the data is retained even when the page is refreshed
                         if (isset($_GET['coursename'])) {
                             echo $_GET['coursename'];
-                            $_SESSION['course_name'] = $_GET['coursename'];
-                            $_SESSION['course_id'] = $_GET['id'];
                         } else {
-                            echo $_SESSION['course_name'] . ' -> 2019/2020 -> First Semester';
                         }
                         ?></h1>
 
@@ -125,11 +119,14 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
                             </div> -->
 
                             <div class="card-body">
+                                <?php
+                                showDataMissing($datamissing);
+                                ?>
                                 <div class="container-lg">
-                                    <form action=<?= $_SERVER["PHP_SELF"]; ?> method="post" enctype="multipart/form-data" class="json" id="json">
+                                    <form method="post" enctype="multipart/form-data" class="json" id="json">
                                         <div class="form-group"></div>
                                         <?php
-                                        createQuestionAndAnswerBoxes($_SESSION['exam']['number_of_questions']);
+                                        createQuestionAndAnswerBoxes($_GET['number_of_questions']);
                                         ?>
                                         <ul id="luckmoshy" class="pagination justify-content-center pagination-md"></ul>
 
@@ -137,12 +134,11 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
 
                                         <div class="form-group m-4">
                                             <label for="jsonta">Click to Preview</label>
-                                            <textarea onclick="validateNewExamForm(<?php echo $_SESSION['exam']['number_of_questions'] ?>)" class="form-control jsonta" readonly name="jsonta" id="jsonta" required></textarea>
+                                            <textarea onclick="validateNewExamForm(<?php echo $_GET['number_of_questions'] ?>)" class="form-control jsonta" readonly name="jsonta" id="jsonta" required></textarea>
 
                                         </div>
 
-
-                                        <button type="submit" onclick="validateNewExamForm(<?php echo $_SESSION['exam']['number_of_questions'] ?>)" class="btn btn-danger btn-user btn-block" id="submit" name="submit">Submit</button>
+                                        <button type="submit" onclick="validateNewExamForm(<?php echo $_GET['number_of_questions'] ?>)" class="btn btn-danger btn-user btn-block" id="submit" name="submit">Submit</button>
                                         <!-- <button type="submit" onclick="validateNewExamForm(10)" class="btn btn-primary btn-user btn-block" id="submit" name="submit">Submit</button> -->
                                     </form>
 
@@ -153,20 +149,19 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
                     </div>
                 </div>
             </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <?php require_once("includes/footer.php") ?>
+            <!-- End of Footer -->
+
         </div>
-
-    </div>
-    <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <?php require_once("includes/footer.php") ?>
-    <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
+        <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
+
+
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -175,13 +170,9 @@ processQandA($_POST, $_SESSION['course_id'],  $_SESSION['admin_id'],  $_SESSION[
 
     <!-- Logout Modal-->
     <?php require_once("includes/logout_modal.php") ?>
-
-
     <?php require_once("includes/luckymoshy.php") ?>
-    <!-- <?php require("includes/ck_editor.php") ?> -->
     <?php require_once("includes/js_includes.php") ?>
     <?php require_once("includes/data_tables.php"); ?>
-
 </body>
 
 </html>
