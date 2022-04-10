@@ -9,10 +9,11 @@ if (!isset($_SESSION['log'])) {
 
 //echo '<pre>';
 //print_r($_SESSION);
-if ($_GET['edit'] == 1) {
+if (isset($_GET['exam_id']) && $_GET['edit'] == 1) {
     $datamissing = processQandA($_POST, $_GET['course_id'],  $_SESSION['admin_id'],  $_GET['year'],   $_GET['number_of_questions'],  $_GET['lecturer'], $_GET['format'],  $_GET['duration'], $_GET['instructions'], $_GET['edit'], $_GET['exam_id']);
+} else {
+    $datamissing = processQandA($_POST, $_GET['course_id'],  $_SESSION['admin_id'],  $_GET['year'],   $_GET['number_of_questions'],  $_GET['lecturer'], $_GET['format'],  $_GET['duration'], $_GET['instructions'], $_GET['edit']);
 }
-$datamissing = processQandA($_POST, $_GET['course_id'],  $_SESSION['admin_id'],  $_GET['year'],   $_GET['number_of_questions'],  $_GET['lecturer'], $_GET['format'],  $_GET['duration'], $_GET['instructions'], $_GET['edit']);
 ?>
 
 <!DOCTYPE html>
@@ -122,13 +123,17 @@ $datamissing = processQandA($_POST, $_GET['course_id'],  $_SESSION['admin_id'], 
 
                             <div class="card-body">
                                 <?php
-                                showDataMissing($datamissing);
+                                showDataMissingUltimate($datamissing);
                                 ?>
                                 <div class="container-lg">
                                     <form method="post" enctype="multipart/form-data" class="json" id="json">
                                         <div class="form-group"></div>
                                         <?php
-                                        createQuestionAndAnswerBoxes($_GET['number_of_questions']);
+                                        if (isset($_GET['exam_id']) && $_GET['edit'] == 1) {
+                                            createQuestionAndAnswerBoxes($_GET['number_of_questions'], getQandA($_GET['exam_id']));
+                                        } else {
+                                            createQuestionAndAnswerBoxes($_GET['number_of_questions']);
+                                        }
                                         ?>
                                         <ul id="luckmoshy" class="pagination justify-content-center pagination-md"></ul>
 

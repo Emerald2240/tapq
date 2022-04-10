@@ -7,6 +7,75 @@ function gotoPage($location)
     exit();
 }
 
+/**
+ * Shows invalid or missing data in form submission
+ * 
+ * Shows all the entries in the datamissing array if it isnt empty.
+ * 
+ * @param array $datamissing
+ * An array containing information on errors in form submission, including invalid entries and empty forms
+ * @param bool $showSuccess
+ * [optional]
+ * 
+ * When set to yes a success message is echoed wherever the function is called.
+ * 
+ * @return void
+ * Depending on the content of $datamissing, a message will be echoed or not.
+ */
+function showDataMissingUltimate($datamissing, $showSuccess = null)
+{
+    if (isset($datamissing)) {
+        foreach ($datamissing as $miss) {
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole! </strong>' . $miss . '
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+        }
+    } elseif (isset($showSuccess)) {
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole! </strong> Successful
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>';
+    }
+}
+
+function showDataMissing($data_missing)
+{
+    //this function checks if the datamissing array passed in is empty. if it isnt it prints out all of its contents. if it is empty nothing happens
+    if (isset($data_missing[0])) {
+        foreach ($data_missing[0] as $miss) {
+            echo '<p class="text-danger">';
+            echo $miss;
+            echo '</p>';
+        }
+        // } else {
+        //     echo '<p class="text-success">';
+        //     echo "Success";
+        //     echo '</p>';
+    }
+}
+
+function showDataMissing2($data_missing)
+{
+    //this function checks if the datamissing array passed in is empty. if it isnt it prints out all of its contents. if it is empty nothing happens
+    if (isset($data_missing)) {
+        foreach ($data_missing as $miss) {
+            echo '<p class="text-danger">';
+            echo $miss;
+            echo '</p>';
+        }
+        // } else {
+        //     echo '<p class="text-success">';
+        //     echo "Success";
+        //     echo '</p>';
+    }
+}
+
+
 function Sanitize($data, $case = null)
 {
     //This function cleanses and arranges the data about to be stored. like freeing it from any impurities like sql injection
@@ -780,6 +849,12 @@ function loadCourseExams($course_id)
                     //unique exam id
                     . '&exam_id='
                     . $row['id'];
+
+                //questions and answers
+                // . '&q_and_a='
+                // . $row['questions_and_answers'];
+
+
                 // echo 'data-toggle="modal" data-target="#delete_Exam_Modal"';
                 echo '"><i class="fa fa-edit"></i></a>';
                 echo '</td>';
@@ -797,6 +872,22 @@ function loadCourseExams($course_id)
         } else {
             echo 'No Post Yet';
         }
+    }
+}
+
+function getQandA($exam_id)
+{
+    global $db;
+    $count = 0;
+
+    $query = "SELECT questions_and_answers FROM q_and_a WHERE q_and_a.id = '$exam_id' ";
+    $response = @mysqli_query($db, $query);
+    if ($response) {
+
+        while ($row = mysqli_fetch_array($response)) {
+            $json = $row['questions_and_answers'];
+        }
+        return $json;
     }
 }
 
@@ -977,39 +1068,7 @@ function processNewExam($formstream, $course_id)
     }
 }
 
-function showDataMissing($data_missing)
-{
-    //this function checks if the datamissing array passed in is empty. if it isnt it prints out all of its contents. if it is empty nothing happens
-    if (isset($data_missing[0])) {
-        foreach ($data_missing[0] as $miss) {
-            echo '<p class="text-danger">';
-            echo $miss;
-            echo '</p>';
-        }
-        // } else {
-        //     echo '<p class="text-success">';
-        //     echo "Success";
-        //     echo '</p>';
-    }
-}
-
-function showDataMissing2($data_missing)
-{
-    //this function checks if the datamissing array passed in is empty. if it isnt it prints out all of its contents. if it is empty nothing happens
-    if (isset($data_missing)) {
-        foreach ($data_missing as $miss) {
-            echo '<p class="text-danger">';
-            echo $miss;
-            echo '</p>';
-        }
-        // } else {
-        //     echo '<p class="text-success">';
-        //     echo "Success";
-        //     echo '</p>';
-    }
-}
-
-function createQuestionAndAnswerBoxes($num)
+function createQuestionAndAnswerBoxes($num, $q_and_a = null)
 {
     //echo '<div class="special_char" >';
     //echo '<i id="special_bar" style="display:inline-block; text-align:right; width:100%; font-size:20px;" class="fa fa-chevron-down">&$/</i>';
@@ -1018,8 +1077,20 @@ function createQuestionAndAnswerBoxes($num)
 
     //This function creates question and answer boxes for the number of questions available. its id's are given so its arranged perfectly with luckyMoshy
     for ($i = 1; $i <= $num; $i++) {
+        $question = "";
+        $answer = "";
+        $topic = "";
 
-
+        if (isset($q_and_a)) {
+            $k = $i - 1;
+            $particularQuestion = getParticularQnAInJson($q_and_a, $k);
+            if ($particularQuestion['question'] == null || $particularQuestion['answer'] == null || $particularQuestion['topic'] == null) {
+            } else {
+                $question = $particularQuestion['question'];
+                $answer = $particularQuestion['answer'];
+                $topic = $particularQuestion['topic'];
+            }
+        }
         echo '<div class="form-group p-5 container-fluid shadow page-mimi" id="container-pagnation' . $i . '">';
 
         // echo'Number '. $i;
@@ -1041,21 +1112,40 @@ function createQuestionAndAnswerBoxes($num)
 
 
         echo  '<label for="question">Question</label>';
-        echo '<textarea  onfocus="setLastFocusedElement(\'question' . $i . '\')" class="form-control question' . $i . '" name="question' . $i . '" id="question' . $i . '" required></textarea>';
+        echo '<textarea  onfocus="setLastFocusedElement(\'question' . $i . '\')" class="form-control question' . $i . '" name="question' . $i . '" id="question' . $i . '" required>';
+        echo $question;
+        echo '</textarea>';
 
         echo '<label for="question">Answer</label>';
-        echo '<textarea  onfocus="setLastFocusedElement(\'answer' . $i . '\')" class="form-control answer' . $i . '" name="answer' . $i . '" id="answer' . $i . '" required></textarea>';
+        echo '<textarea  onfocus="setLastFocusedElement(\'answer' . $i . '\')" class="form-control answer' . $i . '" name="answer' . $i . '" id="answer' . $i . '" required>';
+        echo $answer;
+        echo '</textarea>';
 
         echo '<label for="topic">Topic</label>';
-        echo '<textarea style="height:35px;" onfocus="setLastFocusedElement(\'topic' . $i . '\')" class="form-control topic' . $i . '" name="topic' . $i . '" id="topic' . $i . '" required></textarea>';
+        echo '<textarea style="height:35px;" onfocus="setLastFocusedElement(\'topic' . $i . '\')" class="form-control topic' . $i . '" name="topic' . $i . '" id="topic' . $i . '" required>';
+        echo $topic;
+        echo '</textarea>';
 
         echo '</div>';
+    }
+}
+
+function getParticularQnAInJson($q_and_a, $targetPosition)
+{
+    $jsonDec = json_decode($q_and_a, true);
+    //echo '<pre>';
+    //print_r($jsonDec[$targetPosition]);
+    if ($jsonDec[$targetPosition] == null) {
+        return null;
+    } else {
+        return $jsonDec[$targetPosition];
     }
 }
 
 //Look into this function later. it has an unresolved issue.
 function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number_of_questions, $lecturer, $obj_or_theory, $duration_in_minutes, $instructions, $edit, $exam_id = null)
 {
+
     //next two lines are very important
     extract($q_and_a_formstream);
     $data_missing = [];
@@ -1067,9 +1157,10 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
     // die;
 
     if (isset($submit)) {
-        $jsonta = "";
+
+        //$jsonta = "";
         if (empty($jsonta)) {
-            $data_missing['JSON Text Area'] = "Missing json text area";
+            $data_missing['JSON Text Area'] = "Missing json text area value";
         } else {
             $validJsonDecoded = json_decode($jsonta, true);
             $validJsonEncoded = json_encode($validJsonDecoded);
@@ -1078,15 +1169,12 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
 
         global $pdo;
 
-
-
-
         if (empty($data_missing)) {
+          
             try {
                 if ($edit == 1) {
                     //UPDATE
-                    // echo 'we got here';
-                    // die;
+
                     $stmt = $pdo->prepare("UPDATE q_and_a SET admin_id = :admin_id, questions_and_answers = :q_and_a WHERE q_and_a.id = :id");
 
 
@@ -1111,6 +1199,8 @@ function processQandA($q_and_a_formstream, $course_id, $admin_id, $year, $number
                 exit($e->getMessage());
             }
         } else {
+            // echo 'we got here';
+            // die;
             return $data_missing;
         }
     }
