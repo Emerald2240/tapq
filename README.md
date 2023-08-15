@@ -1,44 +1,61 @@
-# tapq(Tech Acoustic Past Questions)
+# Tech Acoustic Past Questions (tapq)
 
-**tapq** is a website that provides well formatted and well typed past questions for students. It also has a feature for viewing a curated past question list of the most occuring questions by scanning and comparing different exams for different years of the same topic. This feature means, if a particular question under a particular topic appears regularly throughout the years, said question will be featured on the CPQL(Curated Past Question List).  
+**tapq** is a website that offers meticulously formatted and accurately typed past questions for students. It features a unique functionality that presents a curated list of frequently encountered questions, derived from scanning and comparing exams from various years within the same topic. This special feature, known as the Curated Past Question List (CPQL), highlights questions that appear consistently across different years.
 
-The project is built mainly in PHP and JavaScript. The main reason being a higher range of support and currently the creators arsenal  
+## Overview
 
-The greatest challenge in building the project was the  CMS; I had to keep in mind the nature of the data that was being input, which consisted of multiple questions and answers of different courses in different years.  
+The core architecture of the project is constructed primarily using PHP and JavaScript. The main rationale behind this choice is the broader range of support and the current tools available in the creator's toolkit.
 
-I plan to make the cms a bit easier to use, and also add a feature to store entries as a user enters them(They're usually large and can get completely lost if the site is closed unknowingly.)  
-I also plan to find smarter ways to layout questions and answers so they are easy for users/students to read.  
+A notable challenge during the development phase was the creation of the content management system (CMS). The data input to the system consisted of diverse questions and answers from various courses spanning different years. Striking a balance between accommodating this variety and maintaining user-friendly data input was a significant task.
 
+Future plans for the project include refining the user experience of the CMS, implementing a feature to auto-save entries as users input them (particularly useful for large entries that might otherwise be lost if the site is inadvertently closed), and exploring improved methods of displaying questions and answers to enhance readability for users, particularly students.
 
 ## Table of Contents
-1. How to install and run locally
-2. How to use the project
-3. Credits
-4. How to contribute	
 
+1. [Installation and Local Setup](#installation-and-local-setup)
+2. [Using the Project](#using-the-project)
+3. [Credits](#credits)
+4. [How to Contribute](#how-to-contribute)
 
-## How To Install And Run Locally
-I use a windows operating system, so my explanation might be a bit limited, but with a little googling you should be able to do the same with any other OS.  
+## Installation and Local Setup
 
-The site is made mainly with php so you'll need a localhost to be able to run the code. I use XAMPP, an apache emulator. You can download it for any machine [here](https://www.apachefriends.org/download.html).  
-After installation, go to the folder you installed it in, then htdocs and copy the project to it. The file path will look something like this: C:\xampp\htdocs\tapq  
+To set up **tapq** locally on your machine, follow these steps:
 
-Make sure the virtual server is running, then go to this address in your browser: localhost\phpmyadmin and create a database called tapq. After the folder is succesfully created, import the mysql file 'tapq.sql' located in the root folder of the project, if successful, your done.
-On your browser go to this address: localhost/tapq/ and the home page should load up.  
+1. **Download XAMPP**: If you're using Windows, you can download XAMPP, an Apache emulator, from [here](https://www.apachefriends.org/download.html). For other operating systems, similar tools are available.
 
-## How To Use The Project
-Once the virtual server is setup, the rest is easy. Go to the navbar and choose a level; Each level signifies a year, and in each level there are different courses. In each course there are exams, differentiated by years. If you click on an exam, you can view the questions and answers under it.  
+2. **Install XAMPP**: Install XAMPP and navigate to its installation folder (e.g., `C:\xampp\htdocs`). Create a new folder named `tapq`.
 
-The project/site contains an admin side; To login use admin@mail.com as the email and 1 as the password. Here you can create a new course, and a new exam. Just follow the navbar.  
+3. **Database Setup**: Launch the XAMPP control panel and ensure that both Apache and MySQL services are running. Then, access your browser and visit `http://localhost/phpmyadmin`. Create a new database called `tapq`. Import the `tapq.sql` file located in the root folder of the project into this newly created database.
+
+4. **Access the Site**: With the virtual server operational, open your browser and enter `http://localhost/tapq/`. This will load the **tapq** home page.
+
+## Using the Project
+
+Navigating and utilizing **tapq** is straightforward:
+
+- **Level Selection**: In the navigation bar, choose a level. Each level corresponds to a year. Within each level, you'll find various courses. Each course contains exams categorized by years. Clicking on an exam allows you to access the associated questions and answers.
+
+- **Admin Side**: The project includes an admin section. To log in, use the email address `admin@mail.com` and the password `1`. Within the admin section, you can create new courses and exams. Simply follow the navigation bar.
 
 ## Credits
-I had the assistance of many people whilst building the project; in the way of coding, design, testing, data entry and advice. They are all featured on the home page of the site, but i shall mention their names in no particular order:
+
+While building the project, I received valuable assistance from numerous individuals in the areas of coding, design, testing, data entry, and advice. Their contributions are acknowledged on the home page of the site. Here, I would like to recognize their names without a specific order:
+
 1. Okorie Emmanuel
 2. Chiemerie Daze
 3. Izaak Walex
 4. Ikeonyia Stellamaris
-5. Nnamani Ifeanyi 
+5. Nnamani Ifeanyi
 6. Chidera Stanley
 
-## How to contribute
-If you find any part of the site you can improve, just fork the project, work on your own copy then send me a pull request, i reply as soon as possible. Do try to make the pull request as small as possible, that way its easier to read through them.
+## How to Contribute
+
+Your contributions to enhancing **tapq** are highly appreciated. To contribute, follow these steps:
+
+1. **Fork the Project**: Start by forking the **tapq** repository.
+
+2. **Make Changes**: Create your own copy of the project and make your improvements.
+
+3. **Pull Request**: Once your changes are ready, submit a pull request. I will review and respond as promptly as possible. To ensure ease of review, try to keep your pull requests concise and focused.
+
+Thank you for your contributions in advancing the **tapq** platform. Your involvement is integral to the project's evolution. I look forward to collaborating with you!
